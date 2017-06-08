@@ -34,7 +34,7 @@
 
     <!-- 输出对象转JSON支持 -->
     <bean id="jsonConverter"
-          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
     <!--mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
