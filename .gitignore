@@ -24,9 +24,14 @@
 hs_err_pid*
 
 out/
-/lib/
-/.idea/
-/web/WEB-INF/lib/
-UglyGroup.iml
-!/web/
-!/src/
+!/.idea/
+!/UglyGroup.iml
+!/.gitignore
+!/web/WEB-INF/lib/
+.idea/dataSources.local.xml
+.idea/dataSources/41113e3f-125b-4670-a82d-441ad072efb4/_src_/
+.idea/dataSources/41113e3f-125b-4670-a82d-441ad072efb4/_staging_/
+.idea/workspace.xml
+lib/
+src/com/uglygroup/rest/
+web/WEB-INF/lib/
