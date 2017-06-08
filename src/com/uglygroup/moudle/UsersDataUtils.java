@@ -1,4 +1,4 @@
-package com.uglygroup.moudle.;
+package com.uglygroup.moudle;
 
 import java.util.ArrayList;
 
