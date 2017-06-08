@@ -28,5 +28,5 @@ out/
 /.idea/
 /web/WEB-INF/lib/
 UglyGroup.iml
-src/
-web/
+!/web/
+!/src/
