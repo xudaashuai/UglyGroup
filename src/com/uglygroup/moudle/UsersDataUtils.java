@@ -1,4 +1,4 @@
-package com.uglygroup.moudle.;
+package com.uglygroup.moudle;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.sql.ResultSet;
 
 public class UsersDataUtils {
-
+    //git test
     private static int inId;
     //用户登录、注册和更改信息操作
     static {
