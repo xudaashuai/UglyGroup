@@ -1,4 +1,6 @@
-package com.uglygroup.moudle;
+package com.uglygroup.Utils;
+
+import com.uglygroup.Utils.Utils;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class UsersDataUtils {
         inId=0;
     }
     //登陆处理
-    public static Utils.loginStatus login(String loginName, String usersPassword, User u) {
+    public static Utils.loginStatus login(String loginName, String usersPassword, com.uglygroup.model.User u) {
         String sql = "select password from users where loginname='" + loginName + "'";
         try {
             //statement = connection.createStatement();
@@ -31,7 +33,7 @@ public class UsersDataUtils {
                             u.allSet(rs.getString(1), rs.getString(2),
                                     rs.getString(3), rs.getString(4),
                                     rs.getString(5), rs.getString(6),
-                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));
+                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getInt(15));
                         }
                     }catch (Exception e) {
                         throw new RuntimeException(e);
@@ -63,7 +65,7 @@ public class UsersDataUtils {
         String sql = "insert into users values(" +
                 "'" + sex + "','" + age + "','" + birthDay + "','" + favorite + "','" + hate + "','" + realName + "','"
                 + userPassword + "','" + userId + "','" + loginName +
-                "','" + nickName+"','"+sign+ "')" + "on conflict do nothing;";
+                "','" + nickName+"','"+sign+"','"+String.valueOf(inId)+ "')" + "on conflict do nothing;";
         String sql2="select * from users where loginName='"+loginName+"'";
         try {
             ResultSet rs= DatabaseUtils.getResult(sql2);
@@ -93,8 +95,8 @@ public class UsersDataUtils {
 
     }
     // 查询用户信息
-    public static User selectUserInfor(String userId){
-        User u=new User();
+    public static com.uglygroup.model.User selectUserInfor(String userId){
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         String sql = "select * from users where user_id='" + userId + "'";
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
@@ -102,7 +104,7 @@ public class UsersDataUtils {
                 u.allSet(rs.getString(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14));;
+                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getInt(15));;
 
             }
         }catch (Exception e) {
@@ -115,9 +117,9 @@ public class UsersDataUtils {
     //查询操作
 
     //获取好友列表
-    public static ArrayList<User> selectUserFriend(String userId){
-        User u=new User();
-        ArrayList<User> friLis=new ArrayList<User>();
+    public static ArrayList<com.uglygroup.model.User> selectUserFriend(String userId){
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
+        ArrayList<com.uglygroup.model.User> friLis=new ArrayList<com.uglygroup.model.User>();
         u=selectUserInfor(userId);
         String friendId="";
         for(int i=0;i<u.getFrinedList().size();i++){
@@ -128,9 +130,9 @@ public class UsersDataUtils {
 
     }
     //获取用户特别关心
-    public static ArrayList<User> selectUserConcern(String userId){
-        User u=new User();
-        ArrayList<User> concernLis=new ArrayList<User>();
+    public static ArrayList<com.uglygroup.model.User> selectUserConcern(String userId){
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
+        ArrayList<com.uglygroup.model.User> concernLis=new ArrayList<com.uglygroup.model.User>();
         u=selectUserInfor(userId);
         String friendId="";
         for(int i=0;i<u.getConcern().size();i++){
@@ -141,9 +143,9 @@ public class UsersDataUtils {
 
     }
     //获取用户粉丝
-    public static ArrayList<User> selectUserFans(String userId){
-        User u=new User();
-        ArrayList<User> fansLis=new ArrayList<User>();
+    public static ArrayList<com.uglygroup.model.User> selectUserFans(String userId){
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
+        ArrayList<com.uglygroup.model.User> fansLis=new ArrayList<com.uglygroup.model.User>();
         u=selectUserInfor(userId);
         String friendId="";
         for(int i=0;i<u.getFans().size();i++){
@@ -154,7 +156,7 @@ public class UsersDataUtils {
     }
     //获取用户喜欢吃的列表
     public static ArrayList<String> selectUserFavorite(String userId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         ArrayList<String> favLis=new ArrayList<String>();
         u=selectUserInfor(userId);
         for(int i=0;i<u.getFavorite().size();i++){
@@ -164,7 +166,7 @@ public class UsersDataUtils {
     }
      //获取用户讨厌吃的列表
     public static ArrayList<String> selectUserHate(String userId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         ArrayList<String> hateLis=new ArrayList<String>();
         u=selectUserInfor(userId);
         for(int i=0;i<u.getHate().size();i++){
@@ -173,9 +175,9 @@ public class UsersDataUtils {
         return hateLis;
     }
     //获取所有注册用户的对象数组
-    public static ArrayList<User> getAlluserId(){
+    public static ArrayList<com.uglygroup.model.User> getAlluserId(){
         ArrayList<String> allUserId=new ArrayList<String>();
-        ArrayList<User> allUser=new ArrayList<User>();
+        ArrayList<com.uglygroup.model.User> allUser=new ArrayList<com.uglygroup.model.User>();
         String sql="select user_id from users";
 
    try{
@@ -198,35 +200,35 @@ public class UsersDataUtils {
 
     //添加好友
     public static  void addFriend(String userId,String friendId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addFriend(friendId);
 
     }
     //添加关心
     public static  void addConcern(String userId,String concernId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addConcern(concernId);
 
     }
     //添加粉丝
     public static  void addFans(String userId,String fansId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addFans(fansId);
 
     }
     //添加喜欢吃
     public static  void addFavorite(String userId,String favorite){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addFavorite(favorite);
 
     }
     //添加讨厌吃
     public static  void addHate(String userId,String hate){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addHate(hate);
 
@@ -237,35 +239,35 @@ public class UsersDataUtils {
 
     //删除好友
     public static  void deleteFriend(String userId,String friendId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.deleteFriend(friendId);
 
     }
     //删除关心
     public static  void deleteConcern(String userId,String concernId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.deleteConcern(concernId);
 
     }
     //删除粉丝
     public static  void deleteFans(String userId,String fansId){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.deleteFans(fansId);
 
     }
     //删除喜欢吃
     public static  void deleteFavorite(String userId,String favorite){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.deleteFavorite(favorite);
 
     }
     //删除讨厌吃
     public static  void deleteHate(String userId,String hate){
-        User u=new User();
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.deleteHate(hate);
 

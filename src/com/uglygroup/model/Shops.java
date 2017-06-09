@@ -1,4 +1,7 @@
-package com.uglygroup.moudle;
+package com.uglygroup.model;
+
+import com.uglygroup.Utils.ShopsDataUtils;
+import com.uglygroup.Utils.UsersDataUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,6 +28,7 @@ public class Shops {
     private String address;
     private String shopname;
     private String signId;
+    private int tId;
     public void allSet(String sId,
                        String sLocal,
                        String sInRank,
@@ -38,7 +42,8 @@ public class Shops {
                        String sMaintype,
                        String sAddress,
                        String sName,
-                       String sSignId
+                       String sSignId,
+                       int sTid
 
     ) {
         id = sId;
@@ -63,6 +68,11 @@ public class Shops {
     @Column(name = "Id")//商家Id
     public String getId() {
         return id;
+    }
+    @Id
+    @Column(name = "tId")//商家Id
+    public int getTid() {
+        return tId;
     }
     @Basic
     @Column(name = "local")//经纬度

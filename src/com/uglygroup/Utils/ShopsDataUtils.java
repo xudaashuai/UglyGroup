@@ -1,9 +1,6 @@
-package com.uglygroup.moudle;
+package com.uglygroup.Utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +23,7 @@ public class ShopsDataUtils {
         String sql = "insert into shop values(" +
                 "'" + shopId + "','" + sLocal + "','" + sInrank + "','" + sSubtype + "','" + sTel + "','" + sStar + "','"
                 + sAvgprice + "','" + sTastep + "','" + sEnviornmentp +
-                "','" + sServicep + "','" + sMaintype + "','" + sAddress + "','" + sName + "','" + sSignId + "')" + "on conflict do nothing;";
+                "','" + sServicep + "','" + sMaintype + "','" + sAddress + "','" + sName + "','" + sSignId +"','"+ shopId+"')" + "on conflict do nothing;";
         String sql2 = "select * from shop where \"signId\"='" + sSignId + "'";
         try {
             ResultSet rs = DatabaseUtils.getResult(sql2);
@@ -47,8 +44,8 @@ public class ShopsDataUtils {
    //信息查询
 
     //获取商家信息
-    public static Shops selectShop(String shopId){
-        Shops shop=new Shops();
+    public static com.uglygroup.model.Shops selectShop(String shopId){
+        com.uglygroup.model.Shops shop=new com.uglygroup.model.Shops();
         String sql = "select * from shop where \"Id\"='" + shopId + "'";
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
@@ -61,7 +58,7 @@ public class ShopsDataUtils {
                         rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10),
                         rs.getString(11),rs.getString(12),
-                        rs.getString(13),rs.getString(14));
+                        rs.getString(13),rs.getString(14),rs.getInt(15));
 
             }
         }catch (Exception e) {
@@ -70,7 +67,7 @@ public class ShopsDataUtils {
         return shop;
     }
     //获取在列表中的所有商家的对象数组
-    public static ArrayList<Shops> getAllShops(){
+    public static ArrayList<com.uglygroup.model.Shops> getAllShops(){
         ArrayList<String> shopsId=new ArrayList<String>();
         String sql="select \"Id\" from shop;";
         try {
@@ -82,15 +79,15 @@ public class ShopsDataUtils {
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ArrayList<Shops> shops=new ArrayList<Shops>();
+        ArrayList<com.uglygroup.model.Shops> shops=new ArrayList<com.uglygroup.model.Shops>();
         for(int i=0;i<shopsId.size();i++){
             shops.add(selectShop(shopsId.get(i)));
         }
         return shops;
     }
     //获取相关商家
-    public static ArrayList<Shops> getAboutShop(String keyWrod){
-        ArrayList<Shops> shops=new ArrayList<Shops>();
+    public static ArrayList<com.uglygroup.model.Shops> getAboutShop(String keyWrod){
+        ArrayList<com.uglygroup.model.Shops> shops=new ArrayList<com.uglygroup.model.Shops>();
         ArrayList<String> shopsId=new ArrayList<String>();
         String sql="select \"Id\" from shop where shopname like '%"+keyWrod+"%';";
         try {
@@ -115,34 +112,34 @@ public class ShopsDataUtils {
 
     //添加操作
     public static  void addShopInRank(String shopId,String newRank){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.addRank(newRank);
     }
     public static void addShopSubtype(String shopId,String newSubtype){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.addSubtype(newSubtype);
     }
     public static  void addShopMaintype(String shopId,String newMaintpe){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.addMaintype(newMaintpe);
     }
 
     //删除操作
     public  static void deleteShopInRank(String shopId,String oldRank){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.deleteRank(oldRank);
     }
     public  static void deleteShopSubtype(String shopId,String oldSubtype){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.deleteSubtype(oldSubtype);
     }
     public  static void deleteShopMaintype(String shopId,String oldMaintype){
-        Shops shop;
+        com.uglygroup.model.Shops shop;
         shop=selectShop(shopId);
         shop.deleteMaintype(oldMaintype);
     }

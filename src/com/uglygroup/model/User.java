@@ -1,12 +1,10 @@
-package com.uglygroup.moudle;
-import javafx.scene.input.GestureEvent;
+package com.uglygroup.model;
+
+import com.uglygroup.Utils.UsersDataUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Id;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -27,6 +25,7 @@ public class User {
     private String concern;
     private String fans;
     private String sign;
+    private int tId;
     public void allSet(String uSex,
                        String uAge,
                        String uBirthDay,
@@ -40,7 +39,8 @@ public class User {
                        String uFriendlist,
                        String uConcern,
                        String uFans,
-                       String uSign
+                       String uSign,
+                       int uTid
 
     ){
         sex=uSex;
@@ -56,6 +56,7 @@ public class User {
         friendlist=uFriendlist;
         concern=uConcern;
         fans=uFans;
+        tId=uTid;
 
 
     }
@@ -70,6 +71,11 @@ public class User {
         this.sex = sex;
        // getConnection();
          UsersDataUtils.userChangeInfor(sex,loginname,"sex");
+    }
+    @Basic
+    @Column(name = "tId")
+    public int getTid() {
+        return tId;
     }
     @Basic
     @Column(name = "sign")
