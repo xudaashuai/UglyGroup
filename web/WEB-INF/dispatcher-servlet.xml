@@ -35,7 +35,7 @@
     <!-- 输出对象转JSON支持 -->
     <bean id="jsonConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
-    <!--mvc:interceptors>
+    <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:mapping path="/"/>
@@ -44,7 +44,7 @@
             <mvc:exclude-mapping path="/font/**"/>
             <mvc:exclude-mapping path="/login*"/>
             <mvc:exclude-mapping path="/register*"/>
-            <bean class="com.uglygroup.interceptor.LoginInterceptors"></bean>
+            <bean class="com.uglygroup.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors-->
+    </mvc:interceptors>
 </beans>
