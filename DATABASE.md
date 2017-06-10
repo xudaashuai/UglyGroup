@@ -11,18 +11,19 @@ user表
 
 **favorite text**喜爱
 
+**hate text**讨厌
 
 **realname text**真实姓名
 
 **password text**密码
 
-**loginname text**用户名 用于登录
+**username text**用户名 用于登录
 
 **nickname text**昵称
 
 **friendlist text**好友列表
 
-**concern text**特别关心
+**follow text**特别关心
 
 **fans text**粉丝
 
@@ -42,7 +43,7 @@ CREATE TABLE public."users"
     hate TEXT,
     realName TEXT,
     password TEXT,
-    loginName TEXT,
+    userName TEXT,
     nickName TEXT,
     friendList TEXT,
     follow TEXT,
