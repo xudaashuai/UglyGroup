@@ -14,7 +14,19 @@ public class UserDataUtils {
     private static int inId;
     //用户登录、注册和更改信息操作
     static {
-        inId=0;
+        String sql="select max(trueId) from \"users\"";
+        ResultSet rs=DatabaseUtils.getResult(sql);
+        try {
+            if (rs.next()) {
+              inId=rs.getInt(1);
+            }
+            else {
+                inId = 0;
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+       System.out.println(inId);
     }
     //登陆处理
     public static Utils.loginStatus login(String userName, String userPassword, com.uglygroup.model.User u) {
