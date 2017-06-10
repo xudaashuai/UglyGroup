@@ -32,6 +32,7 @@ public class DatabaseUtils {
             statement.execute(sql);
         }
         catch (Exception e) {
+            System.out.println(sql);
             throw new RuntimeException(e);
         }
     }
