@@ -44,7 +44,7 @@ public class DatabaseUtils {
             String password = "";
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
-            System.out.println("是否成功连接pg数据库" + connection);
+            //System.out.println("是否成功连接pg数据库" + connection);
             statement = connection.createStatement();
         } catch (Exception e) {
             throw new RuntimeException(e);

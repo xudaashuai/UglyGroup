@@ -1,6 +1,6 @@
 package com.uglygroup.model;
 
-import com.uglygroup.Utils.UsersDataUtils;
+import com.uglygroup.Utils.UserDataUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,35 +12,35 @@ import java.util.ArrayList;
  */
 public class User {
     private String sex;
-    private String age;
+    private int age;
     private String birthday;
     private String favorite;
     private String hate;
-    private String realname;
+    private String realName;
     private String password;
-    private String userId;
-    private String loginname;
-    private String nickname;
-    private String friendlist;
-    private String concern;
+    private String loginName;
+    private String nickName;
+    private String friendList;
+    private String follow;
     private String fans;
     private String sign;
-    private int tId;
+    private int trueId;
+    private String headPicture;
     public void allSet(String uSex,
-                       String uAge,
+                       int uAge,
                        String uBirthDay,
                        String uFavorite,
                        String uHate,
-                       String uRealname,
+                       String uRealName,
                        String uPassword,
-                       String uUserId,
-                       String uLoginname,
-                       String uNickname,
-                       String uFriendlist,
-                       String uConcern,
+                       String uLoginName,
+                       String uNickName,
+                       String uFriendList,
+                       String uFollow,
                        String uFans,
                        String uSign,
-                       int uTid
+                       int uTrueId,
+                       String uHeadPicture
 
     ){
         sex=uSex;
@@ -48,15 +48,15 @@ public class User {
         birthday=uBirthDay;
         favorite=uFavorite;
         hate=uHate;
-        realname=uRealname;
+        realName=uRealName;
         password=uPassword;
-        userId=uUserId;
-        loginname=uLoginname;
-        nickname=uNickname;
-        friendlist=uFriendlist;
-        concern=uConcern;
+        loginName=uLoginName;
+        nickName=uNickName;
+        friendList=uFriendList;
+        follow=uFollow;
         fans=uFans;
-        tId=uTid;
+        trueId=uTrueId;
+        headPicture=uHeadPicture;
 
 
     }
@@ -69,13 +69,22 @@ public class User {
     }
     public void setSex(String sex) {
         this.sex = sex;
-       // getConnection();
-         UsersDataUtils.userChangeInfor(sex,loginname,"sex");
+        UserDataUtils.userChangeInfor(sex,trueId,"sex");
     }
     @Basic
-    @Column(name = "tId")
-    public int getTid() {
-        return tId;
+    @Column(name = "headPicture")
+    public String getHeadPicture() {
+        return headPicture;
+    }
+    public void setHeadPicture(String headPicture) {
+        this.headPicture = headPicture;
+        // getConnection();
+        UserDataUtils.userChangeInfor(headPicture,trueId,"headPicture");
+    }
+    @Basic
+    @Column(name = "trueId")
+    public int getTrueId() {
+        return trueId;
     }
     @Basic
     @Column(name = "sign")
@@ -84,17 +93,16 @@ public class User {
     }
     public void setSign(String sign) {
         this.sign = sign;
-        // getConnection();
-        UsersDataUtils.userChangeInfor(sign,loginname,"sign");
+        UserDataUtils.userChangeInfor(sign,trueId,"sign");
     }
     @Basic
     @Column(name = "age")
-    public String getAge() {
+    public int getAge() {
         return age;
     }
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
-       UsersDataUtils.userChangeInfor(age,loginname,"age");
+       UserDataUtils.userChangeInfor(String.valueOf(age),trueId,"age");
     }
     @Basic
     @Column(name = "birthday")
@@ -103,16 +111,16 @@ public class User {
     }
     public void setBirthday(String birthday) {
         this.birthday = birthday;
-        UsersDataUtils.userChangeInfor(birthday,loginname,"birthday");
+        UserDataUtils.userChangeInfor(birthday,trueId,"birthday");
     }
     @Basic
-    @Column(name = "realname")
-    public String getRealname() {
-        return realname;
+    @Column(name = "realName")
+    public String getRealName() {
+        return realName;
     }
-    public void setRealname(String realname) {
-        this.realname = realname;
-       UsersDataUtils.userChangeInfor(realname,loginname,"realname");
+    public void setRealName(String realName) {
+        this.realName = realName;
+       UserDataUtils.userChangeInfor(realName,trueId,"realName");
     }
     @Basic
     @Column(name = "password")
@@ -121,26 +129,21 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
-       UsersDataUtils.userChangeInfor(password,loginname,"password");
-    }
-    @Id
-    @Column(name = "user_id")
-    public String getUserId() {
-        return userId;
+       UserDataUtils.userChangeInfor(password,trueId,"password");
     }
     @Basic
-    @Column(name = "loginname")
-    public String getLoginname() {
-        return loginname;
+    @Column(name = "loginName")
+    public String getLoginName() {
+        return loginName;
     }
     @Basic
-    @Column(name = "nickname")
-    public String getNickname() {
-        return nickname;
+    @Column(name = "nickName")
+    public String getNickName() {
+        return nickName;
     }
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-        UsersDataUtils.userChangeInfor(nickname,loginname,"nickname");
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+        UserDataUtils.userChangeInfor(nickName,trueId,"nickName");
     }
 
    //列表属性
@@ -163,12 +166,12 @@ public class User {
         else {
             this.favorite = this.favorite + "," + newFavorite;
         }
-        UsersDataUtils.userChangeInfor(this.favorite,loginname,"favorite");
+        UserDataUtils.userChangeInfor(this.favorite,trueId,"favorite");
     }
     public void deleteFavorite(String oldFavorite){
         ArrayList<String> a= this.getFavorite();
-        this.favorite=getStr(a,oldFavorite);
-        UsersDataUtils.userChangeInfor(this.favorite,loginname,"favorite");
+        this.favorite=getStrFromStringList(a,oldFavorite);
+        UserDataUtils.userChangeInfor(this.favorite,trueId,"favorite");
 
     }
     @Basic
@@ -190,105 +193,120 @@ public class User {
         else {
             this.hate = this.hate+ "," + newHate;
         }
-        UsersDataUtils.userChangeInfor(this.hate,loginname,"hate");
+        UserDataUtils.userChangeInfor(this.hate,trueId,"hate");
     }
     public void deleteHate(String oldHate){
         ArrayList<String> a= this.getHate();
-        this.hate=getStr(a,oldHate);
-        UsersDataUtils.userChangeInfor(this.hate,loginname,"hate");
+        this.hate=getStrFromStringList(a,oldHate);
+        UserDataUtils.userChangeInfor(this.hate,trueId,"hate");
     }
 
     @Basic
-    @Column(name = "friendlist")
-    public ArrayList<String> getFrinedList() {
-        ArrayList<String> frList=new ArrayList<String>();
-        frList=getList(friendlist);
+    @Column(name = "friendList")
+    public ArrayList<Integer> getFriendList() {
+        ArrayList<Integer> frList=new ArrayList<Integer>();
+        frList=getIntList(friendList);
         return frList;
     }
-    public void addFriend(String friendId){
-        for(int i=0;i<this.getFrinedList().size();i++){
-            System.out.println(this.getFrinedList().get(i));
-            if(friendId.equals(this.getFrinedList().get(i))) {
+    public void addFriend(int friendId){
+        for(int i=0;i<this.getFriendList().size();i++){
+            if(friendId==this.getFriendList().get(0)) {
                 return;
             }
         }
-        if (this.friendlist.equals("")){
-            this.friendlist=friendId;
+        if (this.friendList.equals("")){
+            this.friendList=String.valueOf(friendId);
         }
         else {
-            this.friendlist = this.friendlist + "," + friendId;
+            this.friendList = this.friendList + "," + String.valueOf(friendId);
         }
-        UsersDataUtils.userChangeInfor(this.friendlist,loginname,"friendlist");
+        UserDataUtils.userChangeInfor(this.friendList,trueId,"friendList");
     }
-    public void deleteFriend(String oldFriend){
-        ArrayList<String> a= this.getFrinedList();
-        this.friendlist=getStr(a,oldFriend);
-        UsersDataUtils.userChangeInfor(this.friendlist,loginname,"friendlist");
+    public void deleteFriend(int oldFriend){
+        ArrayList<Integer> a= this.getFriendList();
+        this.friendList=getStrFromIntList(a,oldFriend);
+        UserDataUtils.userChangeInfor(this.friendList,trueId,"friendList");
     }
 
 
     @Basic
-    @Column(name = "concern")
-    public ArrayList<String> getConcern() {
-        ArrayList<String> concernList = new ArrayList<String>();
+    @Column(name = "follow")
+    public ArrayList<Integer> getFollow() {
+        ArrayList<Integer> followList = new ArrayList<Integer>();
         String a = "";
-        concernList=getList(concern);
-        return concernList;
+        followList=getIntList(follow);
+        return followList;
     }
-    public void addConcern(String concernId){
-        for(int i=0;i<this.getConcern().size();i++){
-            if(concernId.equals(this.getConcern().get(i))) {
+    public void addFollow(int followId){
+        for(int i=0;i<this.getFollow().size();i++){
+            if(followId==this.getFollow().get(i)) {
                 return;
             }
         }
-        if (this.concern.equals("")){
-            this.concern=concernId;
+        if (this.follow.equals("")){
+            this.follow=String.valueOf(followId);
         }
         else {
-            this.concern = this.concern + "," + concernId;
+            this.follow = this.follow + "," + String.valueOf(followId);
         }
-        UsersDataUtils.userChangeInfor(this.concern,loginname,"concern");
+        UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
 
     }
-    public void deleteConcern(String oldConcern){
-        ArrayList<String> a= this.getConcern();
-        this.concern=getStr(a,oldConcern);
-        UsersDataUtils.userChangeInfor(this.concern,loginname,"concern");
+    public void deleteFollow(int oldFollow){
+        ArrayList<Integer> a= this.getFollow();
+        this.follow=getStrFromIntList(a,oldFollow);
+        UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
     }
 
 
 
     @Basic
     @Column(name = "fans")
-    public ArrayList<String> getFans() {
-        ArrayList<String> fansList = new ArrayList<String>();
-        String a = "";
-        fansList=getList(fans);
+    public ArrayList<Integer> getFans() {
+        ArrayList<Integer> fansList = new ArrayList<Integer>();
+        fansList=getIntList(fans);
         return fansList;
     }
-    public void addFans(String fansId){
+    public void addFans(int fansId){
         for(int i=0;i<this.getFans().size();i++){
-            if(fansId.equals(this.getFans().get(i))) {
+            if(fansId==this.getFans().get(i)) {
                 return;
             }
         }
         if (this.fans.equals("")){
-            this.fans=fansId;
+            this.fans=String.valueOf(fansId);
         }
         else {
             this.fans = this.fans + "," + fansId;
         }
-        UsersDataUtils.userChangeInfor(this.fans,loginname,"fans");
+        UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
 
     }
-    public void deleteFans(String oldFans){
-        ArrayList<String> a= this.getFans();
-        this.fans=getStr(a,oldFans);
-        UsersDataUtils.userChangeInfor(this.fans,loginname,"fans");
+    public void deleteFans(int oldFans){
+        ArrayList<Integer> a= this.getFans();
+        this.fans=getStrFromIntList(a,oldFans);
+        UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
     }
 
 
     //用字符串分割的方法获取到列表
+    private ArrayList<Integer> getIntList(String str){
+        ArrayList<Integer> list=new ArrayList<Integer>();
+        if(str.equals("")){
+            return list;
+        }
+        else {
+            String[] strList = str.split(",");
+
+            for (int i = 0; i < strList.length; i++) {
+
+
+                list.add(Integer.parseInt(strList[i]));
+            }
+            return list;
+        }
+
+    }
     private ArrayList<String> getList(String str){
         ArrayList<String> list=new ArrayList<String>();
         String[] strList=str.split(",");
@@ -298,7 +316,24 @@ public class User {
         return list;
     }
     //将列表接成字符串
-    private String getStr(ArrayList<String> a,String content){
+    private String getStrFromIntList(ArrayList<Integer> a,int content){
+        String str="";
+        for(int i=0;i<a.size();i++){
+            if(content==(a.get(i))) {
+                a.remove(i);
+                break;
+            }
+        }
+        for (int i=0;i<a.size();i++){
+
+            str+=String.valueOf(a.get(i));
+            if(i!=a.size()-1){
+                str+=",";
+            }
+        }
+        return str;
+    }
+    private String getStrFromStringList(ArrayList<String> a,String content){
         String str="";
         for(int i=0;i<a.size();i++){
             if(content.equals(a.get(i))) {

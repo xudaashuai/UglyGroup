@@ -1,7 +1,6 @@
 package com.uglygroup.model;
 
-import com.uglygroup.Utils.ShopsDataUtils;
-import com.uglygroup.Utils.UsersDataUtils;
+import com.uglygroup.Utils.ShopDataUtils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -12,76 +11,69 @@ import java.util.ArrayList;
  * Created by Think on 2017/6/4.
  */
 
-public class Shops {
-
-    private String id;
-    private String local;
+public class Shop {
+    private String location;
     private String inRank;
-    private String subtype;
+    private String subType;
     private String tel;
-    private String star;
-    private String avgprice;
-    private String tastep;
-    private String enviornmentp;
-    private String servicep;
-    private String maintype;
+    private double star;
+    private double avgPrice;
+    private double tastep;
+    private double enviornmentp;
+    private double servicep;
+    private String mainType;
     private String address;
-    private String shopname;
+    private String shopName;
     private String signId;
-    private int tId;
-    public void allSet(String sId,
+    private int shopTrueId;
+    public void allSet(
                        String sLocal,
                        String sInRank,
-                       String sSubtype,
+                       String sSubType,
                        String sTel,
-                       String sStar,
-                       String sAvgprice,
-                       String sTastep,
-                       String sEnviornmentp,
-                       String sServicep,
-                       String sMaintype,
+                       double sStar,
+                       double sAvgPrice,
+                       double sTastep,
+                       double sEnviornmentp,
+                       double sServicep,
+                       String sMainType,
                        String sAddress,
                        String sName,
                        String sSignId,
                        int sTid
 
     ) {
-        id = sId;
-        local = sLocal;
+        location = sLocal;
         inRank = sInRank;
-        subtype = sSubtype;
+        subType = sSubType;
         tel = sTel;
         star = sStar;
-        avgprice = sAvgprice;
+        avgPrice = sAvgPrice;
         tastep = sTastep;
         enviornmentp = sEnviornmentp;
         servicep = sServicep;
-        maintype = sMaintype;
+        mainType = sMainType;
         address=sAddress;
-        shopname=sName;
+        shopName=sName;
         signId=sSignId;
+        shopTrueId=sTid;
 
     }
 
     //单个属性
     @Id
-    @Column(name = "Id")//商家Id
-    public String getId() {
-        return id;
-    }
-    @Id
     @Column(name = "tId")//商家Id
     public int getTid() {
-        return tId;
+        return shopTrueId;
     }
     @Basic
     @Column(name = "local")//经纬度
     public String getLocal() {
-        return local;
+        return location;
     }
     public void setLocal(String local) {
-        this.local = local;
-        ShopsDataUtils.shopChangeInfor(local,signId,"local");
+        this.location = local;
+       ShopDataUtils.shopChangeInfor(local,shopTrueId,"location");
     }
     @Basic
     @Column(name = "tel")//电话
@@ -90,52 +82,52 @@ public class Shops {
     }
     public void setTel(String tel) {
         this.tel = tel;
-        ShopsDataUtils.shopChangeInfor(tel,signId,"tel");
+       ShopDataUtils.shopChangeInfor(tel,shopTrueId,"tel");
     }
     @Basic
     @Column(name = "star")//评星等级
-    public String getStar() {
+    public double getStar() {
         return star;
     }
-    public void setStar(String star) {
+    public void setStar(double star) {
         this.star = star;
-        ShopsDataUtils.shopChangeInfor(star,signId,"star");
+       ShopDataUtils.shopChangeInfor(String.valueOf(star),shopTrueId,"star");
     }
     @Basic
     @Column(name = "avgprice")//平均价格
-    public String getAvgprice() {
-        return avgprice;
+    public double getAvgPrice() {
+        return avgPrice;
     }
-    public void setAvgprice(String avgprice) {
-        this.avgprice = avgprice;
-        ShopsDataUtils.shopChangeInfor(avgprice,signId,"avgprice");
+    public void setAvgPrice(double avgprice) {
+        this.avgPrice = avgprice;
+       ShopDataUtils.shopChangeInfor(String.valueOf(avgprice),shopTrueId,"avgPrice");
     }
     @Basic
     @Column(name = "tastep")//味道评分
-    public String getTastep() {
+    public double getTastep() {
         return tastep;
     }
-    public void setTastep(String tastep) {
+    public void setTastep(double tastep) {
         this.tastep = tastep;
-        ShopsDataUtils.shopChangeInfor(tastep,signId,"tastep");
+       ShopDataUtils.shopChangeInfor(String.valueOf(tastep),shopTrueId,"tastep");
     }
     @Basic
     @Column(name = "enviornmentp")//环境评分
-    public String getEnviornmentp() {
+    public double getEnviornmentp() {
         return enviornmentp;
     }
-    public void setEnviornmentp(String enviornmentp) {
+    public void setEnviornmentp(double enviornmentp) {
         this.enviornmentp = enviornmentp;
-        ShopsDataUtils.shopChangeInfor(enviornmentp,signId,"enviornmentp");
+       ShopDataUtils.shopChangeInfor(String.valueOf(enviornmentp),shopTrueId,"enviornmentp");
     }
     @Basic
     @Column(name = "servicep")//服务评分
-    public String getServicep() {
+    public double getServicep() {
         return servicep;
     }
-    public void setServicep(String servicep) {
+    public void setServicep(double servicep) {
         this.servicep = servicep;
-        ShopsDataUtils.shopChangeInfor(servicep,signId,"servicep");
+       ShopDataUtils.shopChangeInfor(String.valueOf(servicep),shopTrueId,"servicep");
     }
     @Basic
     @Column(name = "address")//详细地址
@@ -144,16 +136,16 @@ public class Shops {
     }
     public void setAddress(String address) {
         this.address = address;
-        ShopsDataUtils.shopChangeInfor(address,signId,"address");
+       ShopDataUtils.shopChangeInfor(address,shopTrueId,"address");
     }
     @Basic
     @Column(name = "shopname")//详细地址
     public String getShopname() {
-        return shopname;
+        return shopName;
     }
     public void setShopname(String shopname) {
-        this.shopname =shopname ;
-        ShopsDataUtils.shopChangeInfor(shopname,signId,"shopname");
+        this.shopName =shopname ;
+       ShopDataUtils.shopChangeInfor(shopname,shopTrueId,"shopName");
     }
     @Basic
     @Column(name = "signId")//详细地址
@@ -183,64 +175,64 @@ public class Shops {
         else {
             this.inRank = this.inRank+ "/" + newRank;
         }
-        UsersDataUtils.userChangeInfor(this.inRank,signId,"inRank");
+        ShopDataUtils.shopChangeInfor(this.inRank,shopTrueId,"inRank");
     }
     public void deleteRank(String oldRank){
         ArrayList<String> a= this.getInRank();
         this.inRank=getStr(a,oldRank);
-        UsersDataUtils.userChangeInfor(this.inRank,signId,"inRank");
+        ShopDataUtils.shopChangeInfor(this.inRank,shopTrueId,"inRank");
     }
     @Basic
-    @Column(name = "subtype")//类型
-    public ArrayList<String> getSubtype() {
-        ArrayList<String> subtypeList=new ArrayList<String>();
-        subtypeList=getList(subtype);
-        return subtypeList;
+    @Column(name = "subType")//类型
+    public ArrayList<String> getSubType() {
+        ArrayList<String> subTypeList=new ArrayList<String>();
+        subTypeList=getList(subType);
+        return subTypeList;
     }
-    public void addSubtype(String newSubtype) {
-        for(int i=0;i<this.getSubtype().size();i++){
-            if(newSubtype.equals(this.getSubtype().get(i))) {
+    public void addSubType(String newSubType) {
+        for(int i=0;i<this.getSubType().size();i++){
+            if(newSubType.equals(this.getSubType().get(i))) {
                 return;
             }
         }
-        if (this.subtype.equals("")){
-            this.subtype=newSubtype;
+        if (this.subType.equals("")){
+            this.subType=newSubType;
         }
         else {
-            this.subtype= this.subtype+ "/" + newSubtype;
+            this.subType= this.subType+ "/" + newSubType;
         }
-        UsersDataUtils.userChangeInfor(this.subtype,signId,"subtype");
+        ShopDataUtils.shopChangeInfor(this.subType,shopTrueId,"subType");
     }
-    public void deleteSubtype(String oldSubtype){
-        ArrayList<String> a= this.getSubtype();
-        this.inRank=getStr(a,oldSubtype);
-        UsersDataUtils.userChangeInfor(this.subtype,signId,"subtype");
+    public void deleteSubType(String oldSubType){
+        ArrayList<String> a= this.getSubType();
+        this.inRank=getStr(a,oldSubType);
+        ShopDataUtils.shopChangeInfor(this.subType,shopTrueId,"subType");
     }
     @Basic
-    @Column(name = "maintype")//商圈
-    public ArrayList<String> getMaintype() {
-        ArrayList<String> maintypeList=new ArrayList<String>();
-        maintypeList=getList(maintype);
-        return maintypeList;
+    @Column(name = "mainType")//商圈
+    public ArrayList<String> getMainType() {
+        ArrayList<String> mainTypeList=new ArrayList<String>();
+        mainTypeList=getList(mainType);
+        return mainTypeList;
     }
-    public void addMaintype(String newMaintype) {
-        for(int i=0;i<this.getMaintype().size();i++){
-            if(newMaintype.equals(this.getMaintype().get(i))) {
+    public void addMainType(String newMainType) {
+        for(int i=0;i<this.getMainType().size();i++){
+            if(newMainType.equals(this.getMainType().get(i))) {
                 return;
             }
         }
-        if (this.maintype.equals("")){
-            this.maintype=newMaintype;
+        if (this.mainType.equals("")){
+            this.mainType=newMainType;
         }
         else {
-            this.maintype = this.maintype+ "/" + newMaintype;
+            this.mainType = this.mainType+ "/" + newMainType;
         }
-        UsersDataUtils.userChangeInfor(this.maintype,signId,"maintype");
+        ShopDataUtils.shopChangeInfor(this.mainType,shopTrueId,"mainType");
     }
-    public void deleteMaintype(String oldMaintype){
-        ArrayList<String> a= this.getMaintype();
-        this.maintype=getStr(a,oldMaintype);
-        UsersDataUtils.userChangeInfor(this.maintype,signId,"maintype");
+    public void deleteMainType(String oldMainType){
+        ArrayList<String> a= this.getMainType();
+        this.mainType=getStr(a,oldMainType);
+        ShopDataUtils.shopChangeInfor(this.mainType,shopTrueId,"mainType");
     }
 
 
