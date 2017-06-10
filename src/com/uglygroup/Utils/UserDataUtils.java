@@ -17,8 +17,8 @@ public class UserDataUtils {
         inId=0;
     }
     //登陆处理
-    public static Utils.loginStatus login(String loginName, String userPassword, com.uglygroup.model.User u) {
-        String sql = "select password from user where loginName='" + loginName + "'";
+    public static Utils.loginStatus login(String userName, String userPassword, com.uglygroup.model.User u) {
+        String sql = "select password from \"users\" where userName='" + userName + "'";
         try {
             //statement = connection.createStatement();
             ResultSet resultSet = DatabaseUtils.getResult(sql);
@@ -27,7 +27,7 @@ public class UserDataUtils {
                 String cPassword = resultSet.getString(1);
                 if (cPassword.equals(userPassword)) {
                     try {
-                        String sql2="select * from user where loginName='"+loginName+"'";
+                        String sql2="select * from \"users\" where userName='"+userName+"'";
                         ResultSet rs = DatabaseUtils.getResult(sql2);
                         if(rs.next()) {
                             u.allSet(rs.getString(1), rs.getInt(2),
