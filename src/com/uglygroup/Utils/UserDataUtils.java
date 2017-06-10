@@ -56,8 +56,9 @@ public class UserDataUtils {
         }
     }
     //注册处理
-    public static Utils.registerStatus register(String userName, String userPassword,String birthDay) {
+    public static Utils.registerStatus register(String userName, String userPassword) {
         inId++;
+        String birthDay="";
         String sex="";
         String age="";
         String nickName="";
