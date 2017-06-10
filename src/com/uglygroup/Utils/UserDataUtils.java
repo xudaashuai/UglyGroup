@@ -60,7 +60,7 @@ public class UserDataUtils {
         inId++;
         String birthDay="";
         String sex="";
-        String age="";
+        String age="0";
         String nickName="";
         String favorite ="";
         String hate = "";
