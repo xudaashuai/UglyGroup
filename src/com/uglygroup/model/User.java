@@ -16,9 +16,8 @@ public class User {
     private String birthday;
     private String favorite;
     private String hate;
-    private String realName;
     private String password;
-    private String loginName;
+    private String userName;
     private String nickName;
     private String friendList;
     private String follow;
@@ -31,9 +30,8 @@ public class User {
                        String uBirthDay,
                        String uFavorite,
                        String uHate,
-                       String uRealName,
                        String uPassword,
-                       String uLoginName,
+                       String uUserName,
                        String uNickName,
                        String uFriendList,
                        String uFollow,
@@ -48,9 +46,8 @@ public class User {
         birthday=uBirthDay;
         favorite=uFavorite;
         hate=uHate;
-        realName=uRealName;
         password=uPassword;
-        loginName=uLoginName;
+        userName=uUserName;
         nickName=uNickName;
         friendList=uFriendList;
         follow=uFollow;
@@ -114,15 +111,6 @@ public class User {
         UserDataUtils.userChangeInfor(birthday,trueId,"birthday");
     }
     @Basic
-    @Column(name = "realName")
-    public String getRealName() {
-        return realName;
-    }
-    public void setRealName(String realName) {
-        this.realName = realName;
-       UserDataUtils.userChangeInfor(realName,trueId,"realName");
-    }
-    @Basic
     @Column(name = "password")
     public String getPassword() {
         return password;
@@ -132,9 +120,9 @@ public class User {
        UserDataUtils.userChangeInfor(password,trueId,"password");
     }
     @Basic
-    @Column(name = "loginName")
+    @Column(name = "userName")
     public String getLoginName() {
-        return loginName;
+        return userName;
     }
     @Basic
     @Column(name = "nickName")

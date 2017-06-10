@@ -13,8 +13,6 @@ user表
 
 **hate text**讨厌
 
-**realname text**真实姓名
-
 **password text**密码
 
 **username text**用户名 用于登录
@@ -41,7 +39,6 @@ CREATE TABLE public."users"
     birthday TEXT,
     favorite TEXT,
     hate TEXT,
-    realName TEXT,
     password TEXT,
     userName TEXT,
     nickName TEXT,

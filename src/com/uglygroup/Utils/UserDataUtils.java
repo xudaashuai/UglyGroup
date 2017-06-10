@@ -33,7 +33,7 @@ public class UserDataUtils {
                             u.allSet(rs.getString(1), rs.getInt(2),
                                     rs.getString(3), rs.getString(4),
                                     rs.getString(5), rs.getString(6),
-                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getInt(14),rs.getString(15));
+                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14));
                         }
                     }catch (Exception e) {
                         throw new RuntimeException(e);
@@ -62,7 +62,6 @@ public class UserDataUtils {
         String sex="";
         String age="";
         String nickName="";
-        String realName="";
         String favorite ="";
         String hate = "";
         String headPicture="";
@@ -71,7 +70,7 @@ public class UserDataUtils {
         String fans="";
         String sign="这个人很懒，什么都没写。";
         String sql = "insert into users values(" +
-                "'" + sex + "','" + age + "','" + birthDay + "','" + favorite + "','" + hate + "','" + realName + "','"
+                "'" + sex + "','" + age + "','" + birthDay + "','" + favorite + "','" + hate  + "','"
                 + userPassword + "','" + userName +
                 "','" + nickName+"','"+friendList+ "','"+follow+"','"+fans+"','"+sign+"','"+String.valueOf(inId)+"','"+headPicture+ "')" + "on conflict do nothing;";
         String sql2="SELECT * FROM \"users\" WHERE userName='"+userName+"';";
@@ -112,7 +111,7 @@ public class UserDataUtils {
                 u.allSet(rs.getString(1), rs.getInt(2),
                         rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getString(13),rs.getInt(14),rs.getString(15));;
+                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14));;
 
             }
         }catch (Exception e) {
