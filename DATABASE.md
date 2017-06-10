@@ -101,3 +101,25 @@ CREATE TABLE public.shop
     shopTrueId INT PRIMARY KEY
 );
 
+coment 表
+
+**comment int**评论id
+**shopid  int**商家id
+**userid  int**用户id
+**commentbody text**评论内容
+**score int**评分
+**time text**时间
+
+
+
+SQL 
+ 
+CREATE TABLE public.comment
+(
+    commentId INT PRIMARY KEY,
+    shopId INT,
+    userId INT,
+    commentBody TEXT,
+    score INT,
+    time TEXT
+);

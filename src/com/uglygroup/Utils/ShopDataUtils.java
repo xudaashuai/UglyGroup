@@ -11,7 +11,19 @@ public class ShopDataUtils {
 //git test PPPPP
     //用户登录、注册和更改信息操作
     static {
-        inId = 0;
+    String sql="select max(shopTrueId) from \"shop\"";
+    ResultSet rs=DatabaseUtils.getResult(sql);
+    try {
+        if (rs.next()) {
+            inId=rs.getInt(1);
+        }
+        else {
+            inId = 0;
+        }
+    }catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+     System.out.println(inId);
     }
 
 
