@@ -56,8 +56,12 @@ public class UserDataUtils {
         }
     }
     //注册处理
-    public static Utils.registerStatus register(String loginName, String userPassword, String sex, String age, String nickName, String birthDay, String realName) {
+    public static Utils.registerStatus register(String userName, String userPassword,String birthDay) {
         inId++;
+        String sex="";
+        String age="";
+        String nickName="";
+        String realName="";
         String favorite ="";
         String hate = "";
         String headPicture="";
@@ -67,9 +71,9 @@ public class UserDataUtils {
         String sign="这个人很懒，什么都没写。";
         String sql = "insert into users values(" +
                 "'" + sex + "','" + age + "','" + birthDay + "','" + favorite + "','" + hate + "','" + realName + "','"
-                + userPassword + "','" + loginName +
+                + userPassword + "','" + userName +
                 "','" + nickName+"','"+friendList+ "','"+follow+"','"+fans+"','"+sign+"','"+String.valueOf(inId)+"','"+headPicture+ "')" + "on conflict do nothing;";
-        String sql2="SELECT * FROM \"users\" WHERE userName='"+loginName+"';";
+        String sql2="SELECT * FROM \"users\" WHERE userName='"+userName+"';";
         try {
             ResultSet rs= DatabaseUtils.getResult(sql2);
             if (rs.next()){
