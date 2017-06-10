@@ -29,6 +29,9 @@ user表
 
 **tId int4**(主键)int型Id
 
+
+**headPicture text**头像
+
 SQL
 
 
@@ -46,7 +49,8 @@ CREATE TABLE public."users"
     follow TEXT,
     fans TEXT,
     sign TEXT,
-    trueId INT PRIMARY KEY
+    trueId INT PRIMARY KEY,
+    headPicture TEXT
 );
 
 shop表
