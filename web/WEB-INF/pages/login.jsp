@@ -19,40 +19,76 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/login.js"></script>
 </head>
 <body>
 <div class="container">
     <div style="position: absolute; left:50%; top:50%; width: 800px; height: 500px; margin-left: -400px; margin-top: -250px;">
-        <div class="col-md-offset-3 col-md-6">
-            <form class="form-horizontal" method="post" action="login">
-                <span class="heading">用户登录</span>
-                <div class="form-group">
-                    <input name="username" type="text" class="form-control" id="inputEmail3" placeholder="用户名">
-                    <i class="fa fa-user"></i>
-                </div>
-                <div class="form-group help">
-                    <input name="password" type="password" class="form-control" id="inputPassword3" placeholder="密　码">
-                </div>
-                <!---div class="form-group">
-                    <div class="main-checkbox">
-                        <input type="checkbox" value="None" id="checkbox1" name="check"/>
-                        <label for="checkbox1"></label>
-                    </div>
-                    <span class="text">Remember me</span>
-                </div-->
-                <div class="form-group">
 
-                    <button name="login" type="submit" class="btn-login" style="margin-left: 20px" value="login">登录</button>
-                    <button name="register" type="submit" class="btn btn-default" value="register">注册</button>
+        <div class="col-md-offset-3 col-md-6" >
+            <ul id="myTab" class="nav nav-tabs-justified nav-justified">
+                <li class="active"><a href="#login-pane" data-toggle="tab">
+                    登录</a>
+                </li>
+                <li><a href="#register-pane"data-toggle="tab">注册</a></li>
+
+            </ul>
+            <div class="nav nav-pills">
+                <div id="myTabContent" class="tab-content">
+                    <div class="tab-pane fade in active" id="login-pane">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <input name="username" type="text" class="form-control" id="login-username" placeholder="用户名">
+                                <i class="fa fa-user"></i>
+                            </div>
+                            <div class="form-group">
+                                <input name="password" type="password" class="form-control" id="login-password"
+                                       placeholder="密　码">
+                            </div>
+                        </form>
+                        <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
+                            <button onclick="tryLogin()" id="login" name="login" class="btn btn-login" style="width: 100%;"
+                                    value="login">登录
+                            </button>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade in" id="register-pane">
+                    <form class="form-horizontal" >
+                        <div class="form-group">
+                            <input name="username" type="text" class="form-control" id="register-nickname" placeholder="昵称">
+                        </div>
+                        <div class="form-group">
+                            <input name="username" type="text" class="form-control" id="register-username" placeholder="用户名">
+                        </div>
+                        <div class="form-group">
+                            <input name="password" type="password" class="form-control" id="register-password"
+                                   placeholder="密　码">
+                        </div>
+                    </form>
+                    <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
+                        <button name="register" onclick="tryRegister()" class="btn btn-default" value="register" style="width: 100%">注册
+                        </button>
+                    </div>
                 </div>
-            </form>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
-<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-<script src="/js/bootstrap.min.js"></script>
+</div>
+
+<div id="alert" class="alert alert-danger hidden fade in">
+    <a onclick="closeAlert(this.id)">
+        &times;
+    </a>
+</div>
+
+
 </body>
 </html>
