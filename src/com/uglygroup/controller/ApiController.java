@@ -6,10 +6,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
+ * UglyGroup
  * Created by xudas on 2017/6/5.
+ *
  */
 @Controller
 public class ApiController {
-    // I need
 
 }

@@ -51,28 +51,6 @@
                 </div>
             </div>
         </div>
-        <div class="item">
-            <img class="second-slide" src="/pic/t2.jpeg" alt="Second slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <img class="third-slide" src="/pic/list-2.jpeg" alt="Third slide">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>One more for good measure.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida
-                        at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-                </div>
-            </div>
-        </div>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -118,7 +96,7 @@
     <hr class="featurette-divider">
     <div class="row recommend-item">
         <div class="col-md-7">
-            <h2 class="featurette-heading">焱铁烧</h2>
+            <a href="shop" style="TEXT-DECORATION:none"><h2 class="featurette-heading">焱铁烧</h2></a>
             <p class="lead">
                 焱铁烧是以澳洲黑毛和牛为招牌、致力推崇品质和设计的现代派烧肉料理店。餐厅将现代简约设计风格与奢华高品质的和牛肉合二为一。采用传统焱铁烧法，完整的将和牛肉的口感品质表现出来。让你感受真正的烤肉。吃烤肉、就来焱铁烧！ </p>
         </div>

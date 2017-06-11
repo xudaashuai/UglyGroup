@@ -2,7 +2,7 @@
 <nav class="navbar  navbar-pils navbar-fixed-top" role="navigation" >
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">丑团</a>
+            <a class="navbar-brand" href="/">丑团</a>
         </div>
         <div>
             <ul class="nav navbar-nav">

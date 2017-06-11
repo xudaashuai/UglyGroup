@@ -3,6 +3,7 @@
     padding-bottom: 40px;
     border-radius: 15px;
     text-align: center;
+    margin-top: 30px;
 }
 .form-horizontal .heading{
     display: block;
@@ -100,18 +101,20 @@
     padding-top: 5px;
     text-transform: capitalize;
 }
-.form-horizontal .btn{
+.btn{
+    border: none;
+    box-shadow: none;
+    height: 40px;
     float: right;
     font-size: 14px;
     color: #fff;
     background: #2ec3e7;
     border-radius: 30px;
     padding: 10px 25px;
-    border: none;
     text-transform: capitalize;
     transition: all 0.5s ease 0s;
 }
-.form-horizontal .btn-login{
+.btn-login{
     float: right;
     font-size: 14px;
     color: #fff;
@@ -121,6 +124,9 @@
     border: none;
     text-transform: capitalize;
     transition: all 0.5s ease 0s;
+}
+li :after{
+    background-color: #00b4ef;
 }
 @media only screen and (max-width: 479px){
     .form-horizontal .form-group{
