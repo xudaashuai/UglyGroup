@@ -13,7 +13,7 @@ path = /api/user/register
 method = POST
 
 ####更改属性
-path=/api/user/set/sex/headPi cture/sign/password/birthday/age/nickname
+path=/api/user/set_sex/headPicture/sign/password/birthday/age/nickname
 
 method=POST
 
