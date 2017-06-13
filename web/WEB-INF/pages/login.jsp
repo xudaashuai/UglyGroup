@@ -32,7 +32,7 @@
     <div style="position: absolute; left:50%; top:50%; width: 800px; height: 500px; margin-left: -400px; margin-top: -250px;">
 
         <div class="col-md-offset-3 col-md-6" >
-            <ul id="myTab" class="nav nav-tabs-justified nav-justified">
+            <ul id="myTab" class="nav nav-pills nav-justified">
                 <li class="active"><a href="#login-pane" data-toggle="tab">
                     登录</a>
                 </li>
@@ -53,7 +53,7 @@
                             </div>
                         </form>
                         <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
-                            <button onclick="tryLogin()" id="login" name="login" class="btn btn-login" style="width: 100%;"
+                            <button onclick="tryLogin()" id="login" name="login-btn" class="btn btn-login" style="width: 100%;"
                                     value="login">登录
                             </button>
                         </div>

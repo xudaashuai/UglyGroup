@@ -5,6 +5,10 @@ function tryLogin() {
     console.log('login');
     var uid = $('#login-username').val();
     var pwd = $('#login-password').val();
+    if (uid.length<=6||pwd<=6){
+        openAlert("用户名或密码太短");
+        return;
+    }
     $.ajax({
         type: 'post',
         url: '/test/login',
