@@ -90,6 +90,7 @@ public class User {
         return sign;
     }
     public void setSign(String sign) {
+        //new  here
         this.sign = sign;
         UserDataUtils.userChangeInfor(sign,trueId,"sign");
     }
