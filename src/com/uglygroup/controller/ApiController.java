@@ -72,30 +72,30 @@ public class ApiController {
     public @ResponseBody
 
 
-    Map<String,Object> userSetSex(String newSex,int Id){
+    Map<String,Object> userSetSex(String newSex,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setSex(newSex);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_age",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetAge(int newAge,int Id){
+    Map<String,Object> userSetAge(int newAge,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setAge(newAge);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_nickname",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetNickname(String newNickname,int Id){
+    Map<String,Object> userSetNickname(String newNickname,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setNickName(newNickname);
         return map;
     }
@@ -103,40 +103,40 @@ public class ApiController {
 
     @RequestMapping(path = "/api/user/set_password",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object>  userSetPassword(String newPassword,int Id){
+    Map<String,Object>  userSetPassword(String newPassword,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setPassword(newPassword);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_headPicture",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetHeadPicture(String newHeadPicture,int Id){
+    Map<String,Object> userSetHeadPicture(String newHeadPicture,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setHeadPicture(newHeadPicture);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_birthday",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetBirthday(String newBirthday,int Id){
+    Map<String,Object> userSetBirthday(String newBirthday,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.setBirthday(newBirthday);
         return map;
 
     }
     @RequestMapping(path = "/api/user/add_favorite",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userAddFavorite(String newFavorite,int Id){
+    Map<String,Object> userAddFavorite(String newFavorite,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
-        u=UserDataUtils.selectUserInfor(Id);
+        u=UserDataUtils.selectUserInfor(id);
         u.addFavorite(newFavorite);
 
         return map;

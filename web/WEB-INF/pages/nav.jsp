@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script>
-    var uid=${user}.getId();
+    var uid=${user.getId()};
 </script>
 <nav class="navbar  navbar-pils navbar-fixed-top" role="navigation" >
     <div class="container-fluid">

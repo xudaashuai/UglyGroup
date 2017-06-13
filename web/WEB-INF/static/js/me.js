@@ -19,6 +19,7 @@ function submitEdit() {
         url: '/api/user/set_nickname',
         data: {
             'newNickname': newNickname,
+            'id':uid
         },
         dataType: 'json',
         success: function (r) {
