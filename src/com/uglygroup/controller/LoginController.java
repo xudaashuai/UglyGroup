@@ -25,56 +25,6 @@ public class LoginController {
     public String login() {
         return "login";
     }
-
-    @RequestMapping(path = "/test/login", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public @ResponseBody
-    String testLogin(String username, String password, HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-
-        System.out.println(username + " " + password);
-        User user = new User();
-        switch (UserDataUtils.login(username, password, user)) {
-            case SUCCESS:
-                login(username, password, response, session);
-                session.setAttribute("user", user);
-                return "ok";
-            case PASSWORDERROR:
-                return "pe";
-            case LOGINNAMENOEXIST:
-                return "le";
-        }
-        return "e";
-    }
-    @RequestMapping(path = "/test/register", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
-    public @ResponseBody
-    String testRegister(String username, String password,String nickname, HttpServletRequest request, HttpServletResponse response) {
-        HttpSession session = request.getSession();
-        System.out.println(username + " " + password);
-        User user = new User();
-        switch (UserDataUtils.register(username,password)) {
-            case SUCCESS:
-                if (UserDataUtils.login(username, password, user) == Utils.loginStatus.SUCCESS) {
-                    login(username, password, response, session);
-                    user.setNickName(nickname);
-                    session.setAttribute("user", user);
-                    return "ok";
-                }
-                break;
-            case LOGINNAMEEXIST:
-                return "le";
-        }
-        return "e";
-    }
-
-    private void login(String username, String password, HttpServletResponse response, HttpSession session) {
-        String value = username + "#" + password;
-        System.out.println(value);
-        Cookie loginCookies = new Cookie("login", value);
-        loginCookies.setMaxAge(Integer.MAX_VALUE);
-        loginCookies.setPath("/");
-        response.addCookie(loginCookies);
-    }
-
     @RequestMapping(path = "/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Cookie[] cookies = request.getCookies();

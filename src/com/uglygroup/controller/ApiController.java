@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,35 +27,42 @@ import java.util.Map;
 public class ApiController {
     @RequestMapping(path = "/api/user/login",method = RequestMethod.POST)
     public @ResponseBody
-    Map<String,Object> userLogin(String loginName,String password,User u){
+    Map<String,Object> userLogin(String username, String password, HttpServletRequest request,HttpServletResponse response){
+        User u=new User();
         Map<String,Object> map=new HashMap<>();
         Utils.loginStatus status;
         String str;
-        status= UserDataUtils.login(loginName,password,u);
+        status= UserDataUtils.login(username,password,u);
         if (status.equals(Utils.loginStatus.SUCCESS)){
             map.put("status",true);
+            request.getSession().setAttribute("user",u);
+            String value = username + "#" + password;
+            System.out.println(value);
+            Cookie loginCookies = new Cookie("login", value);
+            loginCookies.setMaxAge(Integer.MAX_VALUE);
+            loginCookies.setPath("/");
+            response.addCookie(loginCookies);
         }
         else{
             map.put("status",false);
-            map.put("errorMassage",status.toString());
+            map.put("errorMessage",status.toString());
         }
-
-
         return map;
     }
+
     @RequestMapping(path = "/api/user/register",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userRegister(String userName, String userPassword){
+    Map<String,Object> userRegister(String username, String password){
         Map<String,Object> map=new HashMap<>();
         Utils.registerStatus status;
         String str;
-        status= UserDataUtils.register(userName,userPassword);
+        status= UserDataUtils.register(username,password);
         if (status.equals(Utils.registerStatus.SUCCESS)){
             map.put("status",true);
         }
         else{
             map.put("status",false);
-            map.put("errorMassage",status.toString());
+            map.put("errorMessage",status.toString());
         }
 
         return map;

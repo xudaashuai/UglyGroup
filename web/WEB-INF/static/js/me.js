@@ -4,7 +4,7 @@
  *
  */
 function startEdit() {
-    $('#name-block').replaceWith(`
+    $('#name-block').html(`
                 <div class="input-group" style="width: 200px;left:50%;margin-left: -100px;">
                     <input id="nickname-edit" type="text" class="form-control" placeholder="">
                     <span class="input-group-btn">
@@ -23,7 +23,13 @@ function submitEdit() {
         dataType: 'json',
         success: function (r) {
             if (r.result){
-
+                $('#name-block').html(`
+                <div style="display:inline-block;">
+                    <p style="color: black" class="">${user.getSign()}</p>
+                </div>
+                <div style="display:inline-block;" onclick="startEdit()">
+                    <span class="glyphicon glyphicon-edit "/>
+                </div>`)
             }else{
 
             }

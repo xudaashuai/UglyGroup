@@ -45,14 +45,22 @@
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 person-item" style="margin-top: -350px">
             <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-            <div id="name-block">
+            <div id="name-block" style="height: 60px;">
                 <div style="display:inline-block;">
                     <h2 style="color: black">${user.getNickName()}</h2></div>
                 <div style="display:inline-block;" onclick="startEdit()">
                     <span class="glyphicon glyphicon-edit "/>
                 </div>
             </div>
-            <p style="color: black" class="person-list">${user.getSign()}</p>
+            <div id="sign-block">
+
+                <div style="display:inline-block;">
+                <p style="color: black" class="">${user.getSign()}</p>
+                </div>
+                <div style="display:inline-block;" onclick="startEdit()">
+                    <span class="glyphicon glyphicon-edit "/>
+                </div>
+            </div>
         </div>
     </div>
 </div>

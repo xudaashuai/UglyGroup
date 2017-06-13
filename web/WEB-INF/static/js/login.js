@@ -5,27 +5,20 @@ function tryLogin() {
     console.log('login');
     var uid = $('#login-username').val();
     var pwd = $('#login-password').val();
-    if (uid.length<=6||pwd<=6){
-        openAlert("用户名或密码太短");
-        return;
-    }
+    $('#login-btn').value='登录中。。。'
     $.ajax({
         type: 'post',
-        url: '/test/login',
+        url: '/api/user/login',
         data: {
             'username': uid,
             'password': pwd
         },
-        dataType: 'TEXT',
+        dataType: 'json',
         success: function (r) {
-            if (r.trim() === 'ok') {
+            if (r.status) {
                 window.location.href = '/';
-            } else if(r.trim()==='le'){
-                openAlert("用户名不存在")
-            }else if (r.trim()==='pe'){
-                openAlert("密码错误了哟")
-            }else{
-                openAlert("错误啦")
+            } else {
+                openAlert(r.errorMessage === 'LOGINNAMENOEXIST' ? '用户名不存在' : '密码错误');
             }
         }
     })
@@ -35,31 +28,38 @@ function tryRegister() {
     var uid = $('#register-username').val();
     var pwd = $('#register-password').val();
     var nick = $('#register-nickname').val();
+    if (uid.length <= 6 || pwd <= 6||nick<=6) {
+        openAlert("用户名或密码或昵称太短（都要大于6个字符哟）");
+        return;
+    }
     $.ajax({
         type: 'post',
-        url: '/test/register',
+        url: '/api/user/register',
         data: {
-            'nickname':nick,
+            'nickname': nick,
             'username': uid,
             'password': pwd
         },
-        dataType: 'TEXT',
+        dataType: 'json',
         success: function (r) {
-            if (r.trim() === 'ok') {
-                window.location.href = '/';
-            } else if(r.trim()==='le'){
-                openAlert("用户名已存在");
+            if (r.status) {
+                $('#myTab').find('li:eq(0) a').tab('show');
+                $('#login-username').val(uid);
+                $('#login-password').val(pwd);
+                openAlert('注册成功，请登录哟')
+            }else{
+                openAlert('用户名已存在')
             }
         }
     })
 }
 function closeAlert() {
-    $("#alert").attr("class","alert alert-danger hidden fade in");
+    $("#alert").attr("class", "alert alert-danger hidden fade in");
 }
 function openAlert(mes) {
     console.log($('#alert').attr);
-    $('#alert').html("<a onclick=\"closeAlert(this.id)\"> &times; </a>"+mes);
-    $('#alert').attr("class","alert alert-danger fade in");
+    $('#alert').html("<a onclick=\"closeAlert(this.id)\"> &times; </a>" + mes);
+    $('#alert').attr("class", "alert alert-danger fade in");
 }
 
 

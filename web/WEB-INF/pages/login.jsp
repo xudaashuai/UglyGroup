@@ -53,7 +53,7 @@
                             </div>
                         </form>
                         <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
-                            <button onclick="tryLogin()" id="login" name="login-btn" class="btn btn-login" style="width: 100%;"
+                            <button onclick="tryLogin()" id="login-btn" name="login" class="btn btn-login" style="width: 100%;"
                                     value="login">登录
                             </button>
                         </div>
@@ -67,12 +67,11 @@
                             <input name="username" type="text" class="form-control" id="register-username" placeholder="用户名">
                         </div>
                         <div class="form-group">
-                            <input name="password" type="password" class="form-control" id="register-password"
-                                   placeholder="密　码">
+                            <input name="password" type="text" class="form-control" id="register-password" placeholder="密　码">
                         </div>
                     </form>
                     <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
-                        <button name="register" onclick="tryRegister()" class="btn btn-default" value="register" style="width: 100%">注册
+                        <button id="register-btn" name="register-btn" onclick="tryRegister()" class="btn btn-default" value="register" style="width: 100%">注册
                         </button>
                     </div>
                 </div>
