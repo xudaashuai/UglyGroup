@@ -141,6 +141,16 @@ public class ApiController {
         return map;
 
     }
+    @RequestMapping(path = "/api/user/search_user",method =RequestMethod.POST )
+    public @ResponseBody
+    Map<String,Object> userSearchUser(String keyword){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<User> users=new ArrayList<>();
+        users=UserDataUtils.searchUser(keyword);
+        map.put("list",users);
+        return map;
+
+    }
     @RequestMapping(path = "/api/user/add_friend",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> userAddFriend(int id,int friendId){
