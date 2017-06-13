@@ -5,7 +5,8 @@ function tryLogin() {
     console.log('login');
     var uid = $('#login-username').val();
     var pwd = $('#login-password').val();
-    $('#login-btn').value='登录中。。。'
+    $('#login-btn').html('登录中。。。');
+    $('#login-btn').attr('disable','disable');
     $.ajax({
         type: 'post',
         url: '/api/user/login',
@@ -15,6 +16,8 @@ function tryLogin() {
         },
         dataType: 'json',
         success: function (r) {
+            $('#login-btn').html('登录');
+            $('#login-btn').attr('disable','');
             if (r.status) {
                 window.location.href = '/';
             } else {
