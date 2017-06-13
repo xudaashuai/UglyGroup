@@ -48,7 +48,7 @@
             <div id="name-block">
                 <div style="display:inline-block;">
                     <h2 style="color: black">${user.getNickName()}</h2></div>
-                <div style="display:inline-block;">
+                <div style="display:inline-block;" onclick="startEdit()">
                     <span class="glyphicon glyphicon-edit "/>
                 </div>
             </div>
