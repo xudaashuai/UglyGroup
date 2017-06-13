@@ -22,9 +22,9 @@ public class ApiController {
     Map<String,Object> todayRecommend(){
         Map<String,Object> map=new HashMap<>();
         Shop shop=new Shop();
-        shop.allSet("1","1","1","1",1,1,1,1,1,"1","1","1","1",1);
+        //shop.allSet("1","1","1","1",1,1,1,1,1,"1","1","1","1",1);
         ArrayList<Shop> list=new ArrayList<Shop>();
-        list.add(shop);
+        //list.add(shop);
         map.put("key",list);
         return map;
     }

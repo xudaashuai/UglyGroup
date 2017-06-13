@@ -1,4 +1,8 @@
 package com.uglygroup.Utils;
+import java.util.HashSet;
+import java.util.Random;
+
+import com.uglygroup.model.Shop;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -23,7 +27,7 @@ public class ShopDataUtils {
     }catch (Exception e) {
         throw new RuntimeException(e);
     }
-     System.out.println(inId);
+    // System.out.println(inId);
     }
 
 
@@ -155,6 +159,41 @@ public class ShopDataUtils {
         shop=selectShop(shopId);
         shop.deleteMainType(oldMainType);
     }
+
+    //推荐
+    public static ArrayList<Shop> getRandomShop(){
+        ArrayList<Shop> shops=new ArrayList<>();
+        int[] r=new int [2];
+        r=getRandom(3);
+                for (int i=0;i<2;i++){
+                    System.out.println(r[i]);
+                    Shop shop=selectShop(r[i]);
+                    shops.add(shop);
+                }
+
+        return shops;
+    }
+    public static int[] getRandom(int n){
+        Random random = new Random();
+        int[] a=new int [n];
+        int[]b=new int[n];
+        System.out.println();
+        for (int i=0;i<n;i++){
+            a[i]=i+1;
+        }
+        int i=0;
+        while (i<n){
+            int number=random.nextInt(n);
+            if(a[number]!=0){
+                b[i]=a[number];
+                a[number]=0;
+                i++;
+
+            }
+        }
+        return b;
+    }
+
 }
 
 

@@ -53,6 +53,7 @@ public class User {
         follow=uFollow;
         fans=uFans;
         trueId=uTrueId;
+        sign=uSign;
         headPicture=uHeadPicture;
 
 
