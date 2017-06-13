@@ -1,6 +1,7 @@
 package com.uglygroup.Utils;
 
 import com.uglygroup.Utils.Utils;
+import com.uglygroup.model.User;
 
 import java.util.ArrayList;
 
@@ -292,7 +293,25 @@ public class UserDataUtils {
 
     }
 
-    //
+
+    public static ArrayList<com.uglygroup.model.User> searchUser(String keyword){
+        ArrayList<com.uglygroup.model.User> users=new ArrayList<User>();
+        ArrayList<Integer> userId=new ArrayList<Integer>();
+        String sql="select \"userTrueId\" from users where nickname like '%"+keyword+"%';";
+        try {
+            ResultSet rs;
+            rs=DatabaseUtils.getResult(sql);
+            while (rs.next()){
+                userId.add(rs.getInt(1));
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        for(int i=0;i<userId.size();i++){
+            users.add(selectUserInfor(userId.get(i)));
+        }
+        return users;
+    }
 
 
 
