@@ -53,9 +53,7 @@
                             </div>
                         </form>
                         <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
-                            <button onclick="tryLogin()" id="login-btn" name="login" class="btn btn-login" style="width: 100%;"
-                                    value="login">登录
-                            </button>
+                            <button onclick="tryLogin()" id="login-btn" class="btn btn-login" style="width: 100%;">登录</button>
                         </div>
                     </div>
                     <div class="tab-pane fade in" id="register-pane">
@@ -71,8 +69,7 @@
                         </div>
                     </form>
                     <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
-                        <button id="register-btn" name="register-btn" onclick="tryRegister()" class="btn btn-default" value="register" style="width: 100%">注册
-                        </button>
+                        <button id="register-btn" onclick="tryRegister()" class="btn btn-default"  style="width: 100%">注册</button>
                     </div>
                 </div>
                 </div>

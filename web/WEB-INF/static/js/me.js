@@ -16,9 +16,9 @@ function submitEdit() {
     var newNickname = $('#submit-edit-nickname').val()
     $.ajax({
         type: 'post',
-        url: '/api/user/change_nickname',
+        url: '/api/user/set_nickname',
         data: {
-            'username': newNickname,
+            'newNickname': newNickname,
         },
         dataType: 'json',
         success: function (r) {
