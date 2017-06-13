@@ -131,16 +131,31 @@ public class ApiController {
         return map;
 
     }
-    @RequestMapping(path = "/api/user/add_favorite",method =RequestMethod.POST )
+    @RequestMapping(path = "/api/user/set_sign",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userAddFavorite(String newFavorite,int id){
+    Map<String,Object> userSetSign(String newSign,int id){
         Map<String,Object> map=new HashMap<>();
         User u;
         u=UserDataUtils.selectUserInfor(id);
-        u.addFavorite(newFavorite);
-
+        u.setSign(newSign);
         return map;
 
     }
+    @RequestMapping(path = "/api/user/add_friend",method =RequestMethod.POST )
+    public @ResponseBody
+    Map<String,Object> userAddFriend(int id,int friendId){
+        Map<String,Object> map=new HashMap<>();
+        User u;
+        u=UserDataUtils.selectUserInfor(id);
+        Utils.addStatus status;
+        status=u.addFriend(friendId);
+        if(status.equals(Utils.addStatus.ADDSUCCESS)){
+            map.put("status",true);
+        }
+        else map.put("status",false);
+        return map;
+
+    }
+
 
 }
