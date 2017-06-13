@@ -10,5 +10,6 @@ function startEdit() {
                     <span class="input-group-btn">
                     <button class="btn btn-default" type="button">Go!</button>
                     </span>
-                </div><!-- /input-group -->`)
+                </div>`)
+
 }
