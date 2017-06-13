@@ -1,6 +1,7 @@
 package com.uglygroup.model;
 
 import com.uglygroup.Utils.UserDataUtils;
+import com.uglygroup.Utils.Utils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -66,8 +67,9 @@ public class User {
         return sex;
     }
     public void setSex(String sex) {
-        this.sex = sex;
-        UserDataUtils.userChangeInfor(sex,trueId,"sex");
+            this.sex = sex;
+            UserDataUtils.userChangeInfor(sex,trueId,"sex");
+
     }
     @Basic
     @Column(name = "headPicture")
@@ -89,10 +91,9 @@ public class User {
     public String getSign() {
         return sign;
     }
-    public void setSign(String sign) {
-        //new  here
-        this.sign = sign;
-        UserDataUtils.userChangeInfor(sign,trueId,"sign");
+    public  void setSign(String sign) {
+            this.sign = sign;
+            UserDataUtils.userChangeInfor(sign,trueId,"sign");
     }
     @Basic
     @Column(name = "age")
@@ -100,8 +101,8 @@ public class User {
         return age;
     }
     public void setAge(int age) {
-        this.age = age;
-       UserDataUtils.userChangeInfor(String.valueOf(age),trueId,"age");
+            this.age = age;
+            UserDataUtils.userChangeInfor(String.valueOf(age), trueId, "age");
     }
     @Basic
     @Column(name = "birthday")
@@ -132,8 +133,9 @@ public class User {
         return nickName;
     }
     public void setNickName(String nickName) {
-        this.nickName = nickName;
-        UserDataUtils.userChangeInfor(nickName,trueId,"nickName");
+            this.nickName = nickName;
+            UserDataUtils.userChangeInfor(nickName,trueId,"nickName");
+
     }
 
    //列表属性
