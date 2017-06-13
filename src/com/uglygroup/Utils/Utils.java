@@ -14,9 +14,15 @@ public class Utils {
         LOGINNAMEEXIST,
         SUCCESS;
     }
-    public static  enum  addFriend{
+    public static  enum  addStatus{
         ADDSUCCESS,
-        NOUSERID,
-        NOFRIENDID
+        FAILED,
+        ITEMEXIST
     }
+    public static  enum deleteStatus{
+        DELETESUCCES,
+        ITEMNOEXIST,
+        FAILED
+    }
+
 }

@@ -83,7 +83,7 @@ public class User {
     }
     @Basic
     @Column(name = "trueId")
-    public int getTrueId() {
+    public int getId() {
         return trueId;
     }
     @Basic
@@ -146,10 +146,10 @@ public class User {
         favList=getList(favorite);
         return favList;
     }
-    public void addFavorite(String newFavorite) {
+    public Utils.addStatus addFavorite(String newFavorite) {
         for(int i=0;i<this.getFavorite().size();i++){
             if(newFavorite.equals(this.getFavorite().get(i))) {
-                return;
+                return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.favorite.equals("")){
@@ -159,11 +159,19 @@ public class User {
             this.favorite = this.favorite + "," + newFavorite;
         }
         UserDataUtils.userChangeInfor(this.favorite,trueId,"favorite");
+        return Utils.addStatus.ADDSUCCESS;
     }
-    public void deleteFavorite(String oldFavorite){
+    public Utils.deleteStatus deleteFavorite(String oldFavorite){
         ArrayList<String> a= this.getFavorite();
-        this.favorite=getStrFromStringList(a,oldFavorite);
-        UserDataUtils.userChangeInfor(this.favorite,trueId,"favorite");
+        int c=0;
+        this.favorite=getStrFromStringList(a,oldFavorite,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else{
+            UserDataUtils.userChangeInfor(this.favorite,trueId,"favorite");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
 
     }
     @Basic
@@ -173,10 +181,10 @@ public class User {
         hateList=getList(hate);
         return hateList;
     }
-    public void addHate(String newHate) {
+    public Utils.addStatus addHate(String newHate) {
         for(int i=0;i<this.getHate().size();i++){
             if(newHate.equals(this.getHate().get(i))) {
-                return;
+                return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.hate.equals("")){
@@ -186,11 +194,19 @@ public class User {
             this.hate = this.hate+ "," + newHate;
         }
         UserDataUtils.userChangeInfor(this.hate,trueId,"hate");
+        return  Utils.addStatus.ADDSUCCESS;
     }
-    public void deleteHate(String oldHate){
+    public Utils.deleteStatus deleteHate(String oldHate){
         ArrayList<String> a= this.getHate();
-        this.hate=getStrFromStringList(a,oldHate);
-        UserDataUtils.userChangeInfor(this.hate,trueId,"hate");
+        int c=0;
+        this.hate=getStrFromStringList(a,oldHate,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else {
+            UserDataUtils.userChangeInfor(this.hate,trueId,"hate");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
     }
 
     @Basic
@@ -200,10 +216,10 @@ public class User {
         frList=getIntList(friendList);
         return frList;
     }
-    public void addFriend(int friendId){
+    public Utils.addStatus addFriend(int friendId){
         for(int i=0;i<this.getFriendList().size();i++){
             if(friendId==this.getFriendList().get(0)) {
-                return;
+                return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.friendList.equals("")){
@@ -213,11 +229,19 @@ public class User {
             this.friendList = this.friendList + "," + String.valueOf(friendId);
         }
         UserDataUtils.userChangeInfor(this.friendList,trueId,"friendList");
+        return Utils.addStatus.ADDSUCCESS;
     }
-    public void deleteFriend(int oldFriend){
+    public Utils.deleteStatus deleteFriend(int oldFriend){
         ArrayList<Integer> a= this.getFriendList();
-        this.friendList=getStrFromIntList(a,oldFriend);
-        UserDataUtils.userChangeInfor(this.friendList,trueId,"friendList");
+        int c=0;
+        this.friendList=getStrFromIntList(a,oldFriend,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else {
+            UserDataUtils.userChangeInfor(this.friendList, trueId, "friendList");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
     }
 
 
@@ -229,10 +253,10 @@ public class User {
         followList=getIntList(follow);
         return followList;
     }
-    public void addFollow(int followId){
+    public Utils.addStatus addFollow(int followId){
         for(int i=0;i<this.getFollow().size();i++){
             if(followId==this.getFollow().get(i)) {
-                return;
+                return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.follow.equals("")){
@@ -242,12 +266,19 @@ public class User {
             this.follow = this.follow + "," + String.valueOf(followId);
         }
         UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
-
+        return Utils.addStatus.ADDSUCCESS;
     }
-    public void deleteFollow(int oldFollow){
+    public Utils.deleteStatus deleteFollow(int oldFollow){
         ArrayList<Integer> a= this.getFollow();
-        this.follow=getStrFromIntList(a,oldFollow);
-        UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
+        int c=0;
+        this.follow=getStrFromIntList(a,oldFollow,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else {
+            UserDataUtils.userChangeInfor(this.follow, trueId, "follow");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
     }
 
 
@@ -259,10 +290,10 @@ public class User {
         fansList=getIntList(fans);
         return fansList;
     }
-    public void addFans(int fansId){
+    public Utils.addStatus addFans(int fansId){
         for(int i=0;i<this.getFans().size();i++){
             if(fansId==this.getFans().get(i)) {
-                return;
+                return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.fans.equals("")){
@@ -272,12 +303,19 @@ public class User {
             this.fans = this.fans + "," + fansId;
         }
         UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
-
+        return Utils.addStatus.ADDSUCCESS;
     }
-    public void deleteFans(int oldFans){
+    public Utils.deleteStatus deleteFans(int oldFans){
         ArrayList<Integer> a= this.getFans();
-        this.fans=getStrFromIntList(a,oldFans);
-        UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
+        int c=0;
+        this.fans=getStrFromIntList(a,oldFans,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else {
+            UserDataUtils.userChangeInfor(this.fans, trueId, "fans");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
     }
 
 
@@ -308,11 +346,12 @@ public class User {
         return list;
     }
     //将列表接成字符串
-    private String getStrFromIntList(ArrayList<Integer> a,int content){
+    private String getStrFromIntList(ArrayList<Integer> a,int content,int c){
         String str="";
         for(int i=0;i<a.size();i++){
             if(content==(a.get(i))) {
                 a.remove(i);
+                c++;
                 break;
             }
         }
@@ -325,11 +364,12 @@ public class User {
         }
         return str;
     }
-    private String getStrFromStringList(ArrayList<String> a,String content){
+    private String getStrFromStringList(ArrayList<String> a,String content,int c){
         String str="";
         for(int i=0;i<a.size();i++){
             if(content.equals(a.get(i))) {
                 a.remove(i);
+                c++;
                 break;
             }
         }
