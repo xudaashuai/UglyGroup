@@ -54,7 +54,7 @@ public class ApiController {
     public @ResponseBody
     Map<String,Object> userRegister(String username, String password,String nickname){
         Map<String,Object> map=new HashMap<>();
-        //
+        //..
         Utils.registerStatus status;
         String str;
         status= UserDataUtils.register(username,password,nickname);
