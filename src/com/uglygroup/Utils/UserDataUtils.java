@@ -298,7 +298,7 @@ public class UserDataUtils {
     public static ArrayList<com.uglygroup.model.User> searchUser(String keyword){
         ArrayList<com.uglygroup.model.User> users=new ArrayList<User>();
         ArrayList<Integer> userId=new ArrayList<Integer>();
-        String sql="select \"userTrueId\" from users where nickname like '%"+keyword+"%';";
+        String sql="select trueId from \"users\" where nickname like '%"+keyword+"%'or username like '%"+keyword+"%';";
         try {
             ResultSet rs;
             rs=DatabaseUtils.getResult(sql);
