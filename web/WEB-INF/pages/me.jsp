@@ -44,20 +44,20 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 person-item" style="margin-top: -350px">
-            <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
+            <img class="img-circle" src="${user.getHeadPicture()}" alt="Generic placeholder image" width="140" height="140">
             <div id="name-block" style="height: 60px;">
                 <div style="display:inline-block;">
                     <h2 style="color: black">${user.getNickName()}</h2></div>
-                <div style="display:inline-block;" onclick="startEdit()">
+                <div style="display:inline-block;" onclick="startNicknameEdit()">
                     <span class="glyphicon glyphicon-edit "/>
                 </div>
             </div>
             <div id="sign-block">
 
                 <div style="display:inline-block;">
-                <p style="color: black" class="">${user.getSign()}</p>
+                    <p style="color: black" class="">${user.getSign()}</p>
                 </div>
-                <div style="display:inline-block;" onclick="startEdit()">
+                <div style="display:inline-block;" onclick="startSignEdit()">
                     <span class="glyphicon glyphicon-edit "/>
                 </div>
             </div>
@@ -102,238 +102,36 @@
                 <div class="tab-pane fade" id="friend">
 
                     <div class="well well-lg">
+                        <div class="input-group">
+                            <input id="search-friend-edit" type="text" class="form-control"
+                                   placeholder="搜索昵称或者账号来添加好友吧">
+                            <span class="input-group-btn">
+                                <button onclick="searchUser($('#search-friend-edit').val(),0,false)" class="btn btn-default"
+                                        type="button">搜索</button>
+                            </span>
+                        </div>
+                        <div class="row" style="margin-top: 20px" id="search-friend-result">
+                        </div>
+                        <div id="search-friend-more" class='hidden'onclick="searchUser($('#search-friend-edit').val(),0,true)" style="margin-bottom: -20px">
+                            <h3 style="text-align: center"><a>more</a></h3>
+                        </div>
+                    </div>
+                    <div class="well well-lg">
                         一个朋友都没有呢。
                     </div>
                 </div>
                 <div class="tab-pane fade" id="follow">
                     <div class="well well-lg">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="搜索昵称或者账号来添加关注吧">
+                            <input id="search-follow-edit" type="text" class="form-control" placeholder="搜索昵称或者账号来添加好友吧">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
+                                <button class="btn btn-default" type="button" onclick="searchUser($('#search-follow-edit').val(),1,false)">搜索</button>
                             </span>
                         </div>
-                        <div class="row" style="margin-top: 20px">
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item ">
-                                <img class="img-circle" src="/pic/p4.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>小菜</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p1.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>徐大帅</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p2.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>Fate`灬潇雨南</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
-                            <div class="col-lg-3 person-item">
-                                <img class="img-circle" src="/pic/p3.jpg" alt="Generic placeholder image" width="140" height="140">
-                                <h6>陈魔菌</h6>
-                                <p><a class="btn btn-success" href="#" role="button">看他</a></p>
-                            </div>
+                        <div class="row" style="margin-top: 20px" id="search-follow-result">
+                        </div>
+                        <div id="search-follow-more" class='hidden'onclick="searchUser($('#search-follow-edit').val(),1,true)" style="margin-bottom: -20px">
+                            <h3 style="text-align: center"><a>more</a></h3>
                         </div>
                     </div>
                     <div class="well well-lg">

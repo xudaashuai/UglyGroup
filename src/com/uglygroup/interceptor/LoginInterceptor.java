@@ -27,6 +27,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         User user= (User) session.getAttribute("user");
         if (user != null){
+            session.setAttribute("user",UserDataUtils.selectUserInfor(user.getId()));
             return true;
         }else{
             Cookie[] cookies=httpServletRequest.getCookies();
