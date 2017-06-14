@@ -139,7 +139,7 @@ public class ApiController {
         u=UserDataUtils.selectUserInfor(id);
         u.setSign(newSign);
         return map;
-
+//
     }
     @RequestMapping(path = "/api/user/search_user",method =RequestMethod.POST )
     public @ResponseBody
