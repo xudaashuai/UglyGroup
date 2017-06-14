@@ -166,6 +166,15 @@ public class ApiController {
         return map;
 
     }
+    @RequestMapping(path = "/api/shop/get_todayShop",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> getTodayShop(){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<Shop>shops=new ArrayList<>();
+        shops=ShopDataUtils.getRandomShop();
+        map.put("shops",shops);
+        return map;
 
+    }
 
 }

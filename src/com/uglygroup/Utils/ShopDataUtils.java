@@ -137,10 +137,10 @@ public class ShopDataUtils {
         shop=selectShop(shopId);
         shop.addSubType(newSubType);
     }
-    public static  void addShopMainType(int shopId,String newMaintpe){
+    public static  void addShopMainType(int shopId,String newMainType){
         com.uglygroup.model.Shop shop;
         shop=selectShop(shopId);
-        shop.addMainType(newMaintpe);
+        shop.addMainType(newMainType);
     }
 
     //删除操作
@@ -164,7 +164,7 @@ public class ShopDataUtils {
     public static ArrayList<Shop> getRandomShop(){
         ArrayList<Shop> shops=new ArrayList<>();
         int[] r=new int [2];
-        r=getRandom(3);
+        r=Utils.getRandom(3);
                 for (int i=0;i<2;i++){
                     System.out.println(r[i]);
                     Shop shop=selectShop(r[i]);
@@ -172,26 +172,6 @@ public class ShopDataUtils {
                 }
 
         return shops;
-    }
-    public static int[] getRandom(int n){
-        Random random = new Random();
-        int[] a=new int [n];
-        int[]b=new int[n];
-        System.out.println();
-        for (int i=0;i<n;i++){
-            a[i]=i+1;
-        }
-        int i=0;
-        while (i<n){
-            int number=random.nextInt(n);
-            if(a[number]!=0){
-                b[i]=a[number];
-                a[number]=0;
-                i++;
-
-            }
-        }
-        return b;
     }
 
 }

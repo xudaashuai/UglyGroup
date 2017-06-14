@@ -77,7 +77,9 @@ public class UserDataUtils {
         String nickName="";
         String favorite ="";
         String hate = "";
-        String headPicture="";
+        int random=Utils.getRandom(6)[0]-1;
+
+        String headPicture=Utils.rheadPicture[random];
         String friendList="";
         String follow="";
         String fans="";
