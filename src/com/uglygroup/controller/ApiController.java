@@ -52,11 +52,11 @@ public class ApiController {
 
     @RequestMapping(path = "/api/user/register",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userRegister(String username, String password){
+    Map<String,Object> userRegister(String username, String password,String nickname){
         Map<String,Object> map=new HashMap<>();
         Utils.registerStatus status;
         String str;
-        status= UserDataUtils.register(username,password);
+        status= UserDataUtils.register(username,password,nickname);
         if (status.equals(Utils.registerStatus.SUCCESS)){
             map.put("status",true);
         }
