@@ -104,7 +104,7 @@
                     <div class="well well-lg">
                         <div class="input-group">
                             <input id="search-friend-edit" type="text" class="form-control"
-                                   placeholder="搜索昵称或者账号来添加好友吧">
+                                   placeholder="搜索昵称或者账号来添加好友吧" onkeypress="if(event.keyCode===13)searchUser($('#search-friend-edit').val(),1,false);">
                             <span class="input-group-btn">
                                 <button onclick="searchUser($('#search-friend-edit').val(),0,false)" class="btn btn-default"
                                         type="button">搜索</button>
@@ -123,7 +123,7 @@
                 <div class="tab-pane fade" id="follow">
                     <div class="well well-lg">
                         <div class="input-group">
-                            <input id="search-follow-edit" type="text" class="form-control" placeholder="搜索昵称或者账号来添加好友吧">
+                            <input id="search-follow-edit" type="text" class="form-control" placeholder="搜索昵称或者账号来添加关注吧" onkeypress="if(event.keyCode===13)searchUser($('#search-follow-edit').val(),1,false);">
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" onclick="searchUser($('#search-follow-edit').val(),1,false)">搜索</button>
                             </span>
