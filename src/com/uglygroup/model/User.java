@@ -347,16 +347,7 @@ public class User {
     }
     public boolean inList(String whatList,int id){
         ArrayList<Integer> lis=new ArrayList<>();
-        if(whatList.equals("fans")){
-            lis=getFans();
-            for(int i=0;i<getFans().size();i++){
-                if(getFans().get(i)==id){
-                    return true;
-                }
-            }
-            return false;
-        }
-        else if(whatList.equals("friend")) {
+         if(whatList.equals("friend")) {
             lis = getFriendList();
             for (int i = 0; i < getFriendList().size(); i++) {
                 if (getFriendList().get(i) == id) {

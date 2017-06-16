@@ -76,6 +76,7 @@ public class UserDataUtils {
         String age="0";
         String favorite ="";
         String hate = "";
+        String message="";
         int random=Utils.getRandom(6)[0]-1;
 
         String headPicture=Utils.rheadPicture[random];
@@ -86,7 +87,7 @@ public class UserDataUtils {
         String sql = "insert into users values(" +
                 "'" + sex + "','" + age + "','" + birthDay + "','" + favorite + "','" + hate  + "','"
                 + userPassword + "','" + userName +
-                "','" + nickname+"','"+friendList+ "','"+follow+"','"+fans+"','"+sign+"','"+String.valueOf(inId)+"','"+headPicture+ "')" + "on conflict do nothing;";
+                "','" + nickname+"','"+friendList+ "','"+follow+"','"+fans+"','"+sign+"','"+String.valueOf(inId)+"','"+headPicture+"','"+message+ "')" + "on conflict do nothing;";
         String sql2="SELECT * FROM \"users\" WHERE userName='"+userName+"';";
         try {
             ResultSet rs= DatabaseUtils.getResult(sql2);
@@ -312,7 +313,7 @@ public class UserDataUtils {
         ArrayList<com.uglygroup.model.User> users=new ArrayList<User>();
         ArrayList<Integer> idList=new ArrayList<Integer>();
         User u=selectUserInfor(userId);
-        String sql="select trueId from \"users\" where nickname like '%"+keyword+"%'or username like '%"+keyword+"%' limit 12 offset+"+String.valueOf(page);
+        String sql="select trueId from \"users\" where nickname like '%"+keyword+"%'or username like '%"+keyword+"%' limit 12 offset+"+String.valueOf(page*12);
         try {
             ResultSet rs;
             rs=DatabaseUtils.getResult(sql);
