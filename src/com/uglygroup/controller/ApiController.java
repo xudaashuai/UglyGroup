@@ -183,7 +183,7 @@ public class ApiController {
         Map<String,Object> map=new HashMap<>();
         ArrayList<Message>messages=new ArrayList<>();
         messages=UserDataUtils.checkMessage(userId);
-        map.put("shops",messages);
+        map.put ("shops",messages);
         return map;
     }
 

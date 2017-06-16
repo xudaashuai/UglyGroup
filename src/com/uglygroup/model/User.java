@@ -329,8 +329,12 @@ public class User {
 
     }
     public void addMessage(String newMessage){
-            this.message = this.message + "," + newMessage;
-
+           if(this.message.equals("")){
+               this.message=newMessage;
+           }
+           else {
+               this.message = this.message + "," + newMessage;
+           }
         UserDataUtils.userChangeInfor(this.message,trueId,"message");
     }
     public Utils.deleteStatus deleteMessage(String oldMessage){

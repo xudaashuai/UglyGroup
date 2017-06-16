@@ -66,11 +66,8 @@ public class Main {
         //for(int i=0;i<shops.size();i++){
           //  System.out.println(shops.get(i).getShopname());
        // }
-        UserDataUtils.addFriend(1,2);
-        for(int i=0;i<UserDataUtils.checkMessage(2).size();i++){
-            System.out.println("!");
-        }
-
+        //UserDataUtils.addFriend(1,2);
+       MessageUtils.addMessage(2,1,3);
       // System.out.println(Utils.setStatus.ILLEAGEL.toString());
        //
         /*
