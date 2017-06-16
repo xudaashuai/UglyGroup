@@ -144,10 +144,10 @@ public class ApiController {
     }
     @RequestMapping(path = "/api/user/search_user",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSearchUser(String keyword){
+    Map<String,Object> userSearchUser(int userId,String keyword,int page,String searchWhat){
         Map<String,Object> map=new HashMap<>();
         ArrayList<User> users=new ArrayList<>();
-        users=UserDataUtils.searchUser(keyword);
+        users=UserDataUtils.searchUser(userId,keyword,page,searchWhat);
         map.put("list",users);
         return map;
 
