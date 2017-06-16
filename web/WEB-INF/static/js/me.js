@@ -24,7 +24,7 @@ String.format = function (src) {
 function startNicknameEdit() {
     $('#name-block').html(`
                 <div class="input-group" style="width: 200px;left:50%;margin-left: -100px;">
-                    <input id="nickname-edit" type="text" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitNicknameEdit();">
+                    <input id="nickname-edit" maxlength="15" type="text" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitNicknameEdit();">
                     <span class="input-group-btn">
                     <button  id="submit-edit-nickname" class="btn btn-default" type="button" onclick="submitNicknameEdit()">✔</button>
                     </span>
@@ -56,7 +56,7 @@ function submitNicknameEdit() {
 function startSignEdit() {
     $('#sign-block').html(`
                 <div class="input-group" style="width: 800px;left:50%;margin-left: -400px;">
-                    <input type="text" id="sign-edit" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitSignEdit();">
+                    <input type="text" maxlength="128" id="sign-edit" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitSignEdit();">
                     <span class="input-group-btn">
                     <button id="submit-edit-sign" class="btn btn-default" type="button" onclick="submitSignEdit()">✔</button>
                     </span>
@@ -107,7 +107,9 @@ function searchUser(keyword, type, m) {
         url: '/api/user/search_user',
         data: {
             'keyword': keyword,
-            'page': p
+            'page': p,
+            'id':uid,
+            'searchWhat':ids[type]
         },
         dataType: 'json',
         success: function (r) {

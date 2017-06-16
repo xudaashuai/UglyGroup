@@ -96,6 +96,10 @@
                 </div>
                 <div class="tab-pane fade" id="moments">
                     <div class="well well-lg">
+                        <textarea placeholder="快来发一条丑圈吧" maxlength="1024" style="width: 100%;height:175px"></textarea>
+                        <button class="btn btn-" style="margin-left: auto;margin-right: 5px" onclick="submitNewStatus()">发布</button>
+                    </div>
+                    <div class="well well-lg">
                         你的丑圈空空荡荡哟。
                     </div>
                 </div>
@@ -104,7 +108,7 @@
                     <div class="well well-lg">
                         <div class="input-group">
                             <input id="search-friend-edit" type="text" class="form-control"
-                                   placeholder="搜索昵称或者账号来添加好友吧" onkeypress="if(event.keyCode===13)searchUser($('#search-friend-edit').val(),1,false);">
+                                   placeholder="搜索昵称或者账号来添加好友吧" onkeypress="if(event.keyCode===13)searchUser($('#search-friend-edit').val(),0,false);">
                             <span class="input-group-btn">
                                 <button onclick="searchUser($('#search-friend-edit').val(),0,false)" class="btn btn-default"
                                         type="button">搜索</button>
@@ -117,7 +121,20 @@
                         </div>
                     </div>
                     <div class="well well-lg">
+                        <div class="row" style="margin-top: 20px" id="friend-list">
+
+                            <c:forEach items="${friend}" var="f">
+                                <div class="col-lg-3 person-item " >
+                                    <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image" width="140"
+                                         height="140">
+                                    <h4 style="height: 40px">${f.nickName}</h4>
+                                    <button onclick="sendMeassage('${f.id}')" class="btn btn-success disabled">发消息哟(todo)</button>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <c:if test="${friend.size()==0}">
                         一个朋友都没有呢。
+                        </c:if>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="follow">
@@ -135,7 +152,20 @@
                         </div>
                     </div>
                     <div class="well well-lg">
-                        关注几个人吧。
+                        <div class="row" style="margin-top: 20px" id="follow-list">
+
+                        <c:forEach items="${follow}" var="f">
+                            <div class="col-lg-3 person-item " >
+                                <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image" width="140"
+                                     height="140">
+                                <h4 style="height: 40px">${f.nickName}</h4>
+                                <button  onclick="sendMessage('${f.id}')" class="btn btn-success disabled">发消息哟(todo)</button>
+                            </div>
+                        </c:forEach>
+                        </div>
+                        <c:if test="${follow.size()==0}">
+                            关注几个人吧。
+                        </c:if>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="fans">

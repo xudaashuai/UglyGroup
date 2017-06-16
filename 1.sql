@@ -16,3 +16,4 @@ CREATE TABLE public."users"
   trueId INT PRIMARY KEY,
   headPicture TEXT
 );
+ALTER TABLE public.users ADD message TEXT NULL;

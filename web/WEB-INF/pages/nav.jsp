@@ -25,5 +25,16 @@
             </ul>
 
         </div>
+        <form class="navbar-form navbar-right" role="search">
+            <div class="input-group">
+                <input id="search-edit" type="text" class="form-control"
+                       placeholder="搜索好吃哒" >
+                <span class="input-group-btn" style="margin-top: 1px">
+                                <button class="btn btn-default"
+                                        type="button">搜索</button>
+                            </span>
+            </div>
+        </form>
+
     </div>
 </nav>

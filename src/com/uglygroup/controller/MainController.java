@@ -2,6 +2,7 @@ package com.uglygroup.controller;
 
 import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
+import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,10 @@ public class MainController {
     @RequestMapping(path = "/user",method = RequestMethod.GET)
     public ModelAndView me(HttpServletRequest request){
         ModelAndView modelAndView=new ModelAndView("me");
-        modelAndView.addObject("user",request.getSession().getAttribute("user"));
+        User user=(User)request.getSession().getAttribute("user");
+        modelAndView.addObject("user",user);
+        modelAndView.addObject("friend",UserDataUtils.selectUserFriend(user.getId()));
+        modelAndView.addObject("follow",UserDataUtils.selectUserFollow(user.getId()));
         return modelAndView;
     }
     //查看其他用户信息
