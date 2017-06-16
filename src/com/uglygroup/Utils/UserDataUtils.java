@@ -319,8 +319,8 @@ public class UserDataUtils {
             rs=DatabaseUtils.getResult(sql);
             while (rs.next()){
                  int id=rs.getInt(1);
-                 if(!u.inList(searchWhat,id)||id!=userId){
-                     idList.add(id);
+                 if(!u.inList(searchWhat,id)){
+                     if(id!=userId) idList.add(id);
                  }
 
             }
