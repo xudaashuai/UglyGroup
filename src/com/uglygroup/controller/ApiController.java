@@ -150,7 +150,6 @@ public class ApiController {
         users=UserDataUtils.searchUser(id,keyword,page,searchWhat);
         map.put("list",users);
         return map;
-
     }
     @RequestMapping(path = "/api/user/add_friend",method =RequestMethod.POST )
     public @ResponseBody
@@ -175,7 +174,6 @@ public class ApiController {
         shops=ShopDataUtils.getRandomShop();
         map.put("shops",shops);
         return map;
-
     }
 
 }

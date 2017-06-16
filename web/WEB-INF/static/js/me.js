@@ -53,7 +53,7 @@ function submitNicknameEdit() {
         }
     })
 }
-function startSignEdit() {
+function startSignEdit(){
     $('#sign-block').html(`
                 <div class="input-group" style="width: 800px;left:50%;margin-left: -400px;">
                     <input type="text" maxlength="128" id="sign-edit" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitSignEdit();">
