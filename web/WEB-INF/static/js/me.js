@@ -24,9 +24,9 @@ String.format = function (src) {
 function startNicknameEdit() {
     $('#name-block').html(`
                 <div class="input-group" style="width: 200px;left:50%;margin-left: -100px;">
-                    <input id="nickname-edit" type="text" class="form-control" placeholder="">
+                    <input id="nickname-edit" type="text" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitNicknameEdit();">
                     <span class="input-group-btn">
-                    <button id="submit-edit-nickname" class="btn btn-default" type="button" onclick="submitNicknameEdit()">✔</button>
+                    <button  id="submit-edit-nickname" class="btn btn-default" type="button" onclick="submitNicknameEdit()">✔</button>
                     </span>
                 </div>`)
 }
@@ -56,7 +56,7 @@ function submitNicknameEdit() {
 function startSignEdit() {
     $('#sign-block').html(`
                 <div class="input-group" style="width: 800px;left:50%;margin-left: -400px;">
-                    <textarea id="sign-edit" class="form-control" placeholder=""></textarea>
+                    <input type="text" id="sign-edit" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitSignEdit();">
                     <span class="input-group-btn">
                     <button id="submit-edit-sign" class="btn btn-default" type="button" onclick="submitSignEdit()">✔</button>
                     </span>
@@ -87,6 +87,7 @@ function submitSignEdit() {
     })
 }
 function searchUser(keyword, type, m) {
+    if(keyword.length<1){alert('请输入搜索内容');return;}
     //type 0 : friend
     //type 1 : follow
     //m true
@@ -94,7 +95,7 @@ function searchUser(keyword, type, m) {
     var more = $('#search-' + ids[type] + '-more');
     var result = $('#search-' + ids[type] + '-result');
     console.log(keyword)
-    if (more) {
+    if (m) {
         keyword = kw[type];
         p = page[type]++;
     }else{
@@ -154,4 +155,29 @@ function add(type, uuid, id) {
             $('#' + id + '-button').attr('class', 'btn btn-success disabled').html('嘿嘿嘿');
         }
     })
+}
+function loadFriend() {
+    $.ajax({
+        type: 'post',
+        url: '/api/user/set_sign',
+        data: {
+            'newSign': newSign,
+            'id': uid
+        },
+        dataType: 'json',
+        success: function (r) {
+
+            $('#sign-block').html(`
+                <div style="display:inline-block;">
+                <p style="color: black" class="">` + newSign + `</p>
+                </div>
+                <div style="display:inline-block;" onclick="startSignEdit()">
+                    <span class="glyphicon glyphicon-edit "/>
+                </div>`)
+
+        }
+    })
+}
+function loadFollow() {
+
 }
