@@ -17,3 +17,14 @@ CREATE TABLE public."users"
   headPicture TEXT
 );
 ALTER TABLE public.users ADD message TEXT NULL;
+
+CREATE TABLE public.message
+(
+  id INT PRIMARY KEY,
+  type INT,
+  src INT,
+  dst INT,
+  body TEXT,
+  status INT,
+  time TIMESTAMP
+);

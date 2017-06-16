@@ -54,17 +54,21 @@ public class Main {
 
     }
     public static void main(String []args){
-        for(int i=0;i<100;i++)
-        UserDataUtils.register(getRandomStr(),getRandomStr(),getRandomNickname());
+       // for(int i=0;i<100;i++)
+        //UserDataUtils.register(getRandomStr(),getRandomStr(),getRandomNickname());
        // UserDataUtils.register("456","321","男","19","Fate灬潇雨南","19970808","李树梁");
         //UserDataUtils.register("12322","321");
         //User u=new User();
       //  System.out.println(UserDataUtils.login("123","321",u));
         //UserDataUtils.searchUser("魔菌");
-        ArrayList<Shop> shops=new ArrayList<>();
-        shops=ShopDataUtils.getRandomShop();
-        for(int i=0;i<shops.size();i++){
-            System.out.println(shops.get(i).getShopname());
+       // ArrayList<Shop> shops=new ArrayList<>();
+        //shops=ShopDataUtils.getRandomShop();
+        //for(int i=0;i<shops.size();i++){
+          //  System.out.println(shops.get(i).getShopname());
+       // }
+        UserDataUtils.addFriend(1,2);
+        for(int i=0;i<UserDataUtils.checkMessage(2).size();i++){
+            System.out.println("!");
         }
 
       // System.out.println(Utils.setStatus.ILLEAGEL.toString());

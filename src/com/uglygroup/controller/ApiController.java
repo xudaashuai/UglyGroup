@@ -1,8 +1,10 @@
 package com.uglygroup.controller;
 
+import com.uglygroup.Utils.MessageUtils;
 import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
 import com.uglygroup.Utils.Utils;
+import com.uglygroup.model.Message;
 import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
@@ -175,5 +177,21 @@ public class ApiController {
         map.put("shops",shops);
         return map;
     }
+    @RequestMapping(path = "/api/user/check_message",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> userCheckMessage(int userId){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<Message>messages=new ArrayList<>();
+        messages=UserDataUtils.checkMessage(userId);
+        map.put("shops",messages);
+        return map;
+    }
 
+    @RequestMapping(path = "/api/message/send_message",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> sendMessage(int src,int dst,int type){
+        Map<String,Object> map=new HashMap<>();
+        MessageUtils.addMessage(src,dst,type);
+         return map;
+    }
 }

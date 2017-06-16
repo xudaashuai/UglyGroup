@@ -1,8 +1,11 @@
 package com.uglygroup.Utils;
 
 import com.uglygroup.Utils.Utils;
+import com.uglygroup.model.Message;
 import com.uglygroup.model.User;
+import java.util.Date;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -237,7 +240,16 @@ public class UserDataUtils {
         com.uglygroup.model.User u=new com.uglygroup.model.User();
         u=selectUserInfor(userId);
         u.addFriend(friendId);
+    }
 
+    public static  void setReaded(int userId,int type){
+      ArrayList<Message>messages;
+        messages=checkMessage(userId);
+      for(int i=0;i<messages.size();i++){
+          if(messages.get(i).getType()==type){
+              messages.get(i).setStatus(1);
+          }
+      }
     }
     //添加关心
     public static  void addFollow(int userId,int followId){
@@ -267,8 +279,18 @@ public class UserDataUtils {
         u.addHate(hate);
 
     }
-    //添加一条消息
-
+    //确认是否有自己的消息
+    public static ArrayList<Message> checkMessage(int userId) {
+        ArrayList<Message> messages = new ArrayList<>();
+        ArrayList<String> messageId = new ArrayList<>();
+        messageId = UserDataUtils.selectUserInfor(userId).getMessage();
+        Message m = new Message();
+        for(int i=0;i<messageId.size();i++) {
+            m = MessageUtils.selectMessage(Integer.parseInt(messageId.get(i)));
+            messages.add(m);
+        }
+        return messages;
+    }
     //删除操作
 
     //删除好友
