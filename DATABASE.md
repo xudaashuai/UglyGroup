@@ -123,3 +123,10 @@ CREATE TABLE public.comment
     score INT,
     time TEXT
 );
+
+
+
+
+user表新增消息字段
+
+ALTER TABLE public.users ADD message TEXT NULL;

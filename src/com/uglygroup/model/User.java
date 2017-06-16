@@ -26,6 +26,7 @@ public class User {
     private String sign;
     private int trueId;
     private String headPicture;
+    private String message;
     public void allSet(String uSex,
                        int uAge,
                        String uBirthDay,
@@ -39,7 +40,8 @@ public class User {
                        String uFans,
                        String uSign,
                        int uTrueId,
-                       String uHeadPicture
+                       String uHeadPicture,
+                       String uMessage
 
     ){
         sex=uSex;
@@ -56,7 +58,7 @@ public class User {
         trueId=uTrueId;
         sign=uSign;
         headPicture=uHeadPicture;
-
+        message=uMessage;
 
     }
 
@@ -318,7 +320,62 @@ public class User {
         }
     }
 
+    @Basic
+    @Column(name = "message")
+    public ArrayList<String> getMessage() {
+        ArrayList<String>  messageList = new ArrayList<String>();
+        messageList=getList(message);
+        return messageList;
 
+    }
+    public void addMessage(String newMessage){
+            this.message = this.message + "," + newMessage;
+
+        UserDataUtils.userChangeInfor(this.message,trueId,"message");
+    }
+    public Utils.deleteStatus deleteMessage(String oldMessage){
+        ArrayList<String> a= this.getMessage();
+        int c=0;
+        this.message=getStrFromStringList(a,oldMessage,c);
+        if(c==0){
+            return Utils.deleteStatus.ITEMNOEXIST;
+        }
+        else {
+            UserDataUtils.userChangeInfor(this.message, trueId, "message");
+            return Utils.deleteStatus.DELETESUCCES;
+        }
+    }
+    public boolean inList(String whatList,int id){
+        ArrayList<Integer> lis=new ArrayList<>();
+        if(whatList.equals("fans")){
+            lis=getFans();
+            for(int i=0;i<getFans().size();i++){
+                if(getFans().get(i)==id){
+                    return true;
+                }
+            }
+            return false;
+        }
+        else if(whatList.equals("friend")) {
+            lis = getFriendList();
+            for (int i = 0; i < getFriendList().size(); i++) {
+                if (getFriendList().get(i) == id) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else if(whatList.equals("follow")){
+                lis=getFollow();
+                for(int i=0;i<getFollow().size();i++){
+                    if(getFollow().get(i)==id){
+                        return true;
+                    }
+                }
+                return false;
+        }
+        return false;
+    }
     //用字符串分割的方法获取到列表
     private ArrayList<Integer> getIntList(String str){
         ArrayList<Integer> list=new ArrayList<Integer>();

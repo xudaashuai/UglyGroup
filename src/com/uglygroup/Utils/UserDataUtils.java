@@ -46,7 +46,7 @@ public class UserDataUtils {
                             u.allSet(rs.getString(1), rs.getInt(2),
                                     rs.getString(3), rs.getString(4),
                                     rs.getString(5), rs.getString(6),
-                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14));
+                                    rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14),rs.getString(15));
                         }
                     }catch (Exception e) {
                         throw new RuntimeException(e);
@@ -125,7 +125,7 @@ public class UserDataUtils {
                 u.allSet(rs.getString(1), rs.getInt(2),
                         rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14));;
+                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10),rs.getString(11),rs.getString(12),rs.getInt(13),rs.getString(14),rs.getString(15));;
 
             }
         }catch (Exception e) {
@@ -151,7 +151,7 @@ public class UserDataUtils {
 
     }
     //获取用户特别关心
-    public static ArrayList<com.uglygroup.model.User> selectUserfollow(int userId){
+    public static ArrayList<com.uglygroup.model.User> selectUserFollow(int userId){
         com.uglygroup.model.User u=new com.uglygroup.model.User();
         ArrayList<com.uglygroup.model.User> followLis=new ArrayList<com.uglygroup.model.User>();
         u=selectUserInfor(userId);
@@ -176,6 +176,7 @@ public class UserDataUtils {
         return fansLis;
     }
     //获取用户喜欢吃的列表
+
     public static ArrayList<String> selectUserFavorite(int userId){
         com.uglygroup.model.User u=new com.uglygroup.model.User();
         ArrayList<String> favLis=new ArrayList<String>();
@@ -185,7 +186,18 @@ public class UserDataUtils {
         }
         return favLis;
     }
-     //获取用户讨厌吃的列表
+
+    //获取用户的消息列表
+    public static ArrayList<String> selectUserMessage(int userId){
+        com.uglygroup.model.User u=new com.uglygroup.model.User();
+        ArrayList<String> messageLis=new ArrayList<String>();
+        u=selectUserInfor(userId);
+        for(int i=0;i<u.getMessage().size();i++){
+            messageLis.add(u.getMessage().get(i));
+        }
+        return messageLis;
+    }
+    //获取用户讨厌吃的列表
     public static ArrayList<String> selectUserHate(int userId){
         com.uglygroup.model.User u=new com.uglygroup.model.User();
         ArrayList<String> hateLis=new ArrayList<String>();
@@ -254,7 +266,7 @@ public class UserDataUtils {
         u.addHate(hate);
 
     }
-
+    //添加一条消息
 
     //删除操作
 
@@ -295,21 +307,27 @@ public class UserDataUtils {
     }
 
 
-    public static ArrayList<com.uglygroup.model.User> searchUser(String keyword){
+
+    public static ArrayList<com.uglygroup.model.User> searchUser(int userId,String keyword,int page,String searchWhat){
         ArrayList<com.uglygroup.model.User> users=new ArrayList<User>();
-        ArrayList<Integer> userId=new ArrayList<Integer>();
-        String sql="select trueId from \"users\" where nickname like '%"+keyword+"%'or username like '%"+keyword+"%';";
+        ArrayList<Integer> idList=new ArrayList<Integer>();
+        User u=selectUserInfor(userId);
+        String sql="select trueId from \"users\" where nickname like '%"+keyword+"%'or username like '%"+keyword+"%' limit 12 offset+"+String.valueOf(page);
         try {
             ResultSet rs;
             rs=DatabaseUtils.getResult(sql);
             while (rs.next()){
-                userId.add(rs.getInt(1));
+                 int id=rs.getInt(1);
+                 if(!u.inList(searchWhat,id)||id!=userId){
+                     idList.add(id);
+                 }
+
             }
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
-        for(int i=0;i<userId.size();i++){
-            users.add(selectUserInfor(userId.get(i)));
+        for(int i=0;i<idList.size();i++){
+            users.add(selectUserInfor(idList.get(i)));
         }
         return users;
     }
