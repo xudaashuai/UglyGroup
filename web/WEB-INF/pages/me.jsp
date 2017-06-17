@@ -77,7 +77,7 @@
             <ul id="myTab" class="nav nav-pills nav-stacked">
                 <li class="active">
                     <a href="#message" data-toggle="tab">
-                        消息<span class="badge">${user.UnReadNumber()}</span>
+                        消息<span class="badge">${user.unread}</span>
                     </a>
                 </li>
                 <li><a href="#moments" data-toggle="tab">丑圈<span class="badge">0</span></a></li>
