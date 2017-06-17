@@ -1,15 +1,16 @@
 package com.uglygroup.controller;
 
+import com.uglygroup.Utils.MessageUtils;
 import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
+import com.uglygroup.model.Message;
 import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 /**
  * UglyGroup
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @Controller
+@SessionAttributes("user")
 public class MainController {
     //首页
     @RequestMapping(path = "/",method = RequestMethod.GET)
@@ -27,12 +29,12 @@ public class MainController {
     }
     //用户个人首页
     @RequestMapping(path = "/user",method = RequestMethod.GET)
-    public ModelAndView me(HttpServletRequest request){
+    public ModelAndView me(HttpServletRequest request,@ModelAttribute("user")User user){
         ModelAndView modelAndView=new ModelAndView("me");
-        User user=(User)request.getSession().getAttribute("user");
         modelAndView.addObject("user",user);
-        modelAndView.addObject("friend",UserDataUtils .selectUserFriend(user.getId()));
-        modelAndView.addObject("follow",UserDataUtils.selectUserFollow(user.getId()));
+        Message messages= MessageUtils.selectMessage(user.getId());
+
+        modelAndView.addObject("");
         return modelAndView;
     }
     //查看其他用户信息

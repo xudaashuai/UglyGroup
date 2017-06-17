@@ -19,7 +19,9 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <link href="/css/login.css" rel="stylesheet">
-
+<script>
+    $('input').onclick=closeAll();
+</script>
     <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 
@@ -44,12 +46,11 @@
                     <div class="tab-pane fade in active" id="login-pane">
                         <form class="form-horizontal">
                             <div class="form-group">
-                                <input name="username" type="text" class="form-control" id="login-username" placeholder="用户名">
+                                <input name="username" type="text" class="form-control" id="login-username" placeholder="用户名" data-toggle="popover" data-placement="top" title="昵称不存在" onclick="">
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="form-group">
-                                <input name="password" type="password" class="form-control" id="login-password"
-                                       placeholder="密　码">
+                                <input name="password" type="password" class="form-control" id="login-password" data-toggle="popover" data-placement="top" title="密码错误" placeholder="密　码">
                             </div>
                         </form>
                         <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
@@ -59,13 +60,13 @@
                     <div class="tab-pane fade in" id="register-pane">
                     <form class="form-horizontal" >
                         <div class="form-group">
-                            <input name="username" type="text" class="form-control" id="register-nickname" placeholder="昵称">
+                            <input name="username" type="text" class="form-control" id="register-nickname" placeholder="昵称"  >
                         </div>
                         <div class="form-group">
-                            <input name="username" type="text" class="form-control" id="register-username" placeholder="用户名">
+                            <input name="username" type="text" class="form-control" id="register-username" placeholder="用户名" data-toggle="popover" data-placement="top" title="用户名已存在">
                         </div>
                         <div class="form-group">
-                            <input name="password" type="text" class="form-control" id="register-password" placeholder="密　码">
+                            <input name="password" type="text" class="form-control" id="register-password" placeholder="密　码" data-toggle="popover" data-placement="top" title="">
                         </div>
                     </form>
                     <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">

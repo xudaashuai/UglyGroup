@@ -7,7 +7,10 @@ body {
     color: #5a5a5a;
 }
 
-
+.nav-pills-2>li.active>a, .nav-pills-2>li.active>a:focus, .nav-pills-2>li.active>a:hover {
+    color: #fff;
+    background-color: #4cae4c;
+}
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 

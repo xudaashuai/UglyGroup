@@ -21,7 +21,11 @@ function tryLogin() {
             if (r.status) {
                 window.location.href = '/';
             } else {
-                openAlert(r.errorMessage === 'LOGINNAMENOEXIST' ? '用户名不存在' : '密码错误');
+                if  (r.errorMessage === 'LOGINNAMENOEXIST'){
+                    $('#login-username').popover('show')
+                }else{
+                    $('#login-password').popover('show')
+                }
             }
         }
     })
@@ -51,7 +55,7 @@ function tryRegister() {
                 $('#login-password').val(pwd);
                 openAlert('注册成功，请登录哟')
             }else{
-                openAlert('用户名已存在')
+                $('#register-username').popover('show')
             }
         }
     })
@@ -64,5 +68,7 @@ function openAlert(mes) {
     $('#alert').html("<a onclick=\"closeAlert(this.id)\"> &times; </a>" + mes);
     $('#alert').attr("class", "alert alert-danger fade in");
 }
-
+function closeAll() {
+    $('input').popover('hide')
+}
 

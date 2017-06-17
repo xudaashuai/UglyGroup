@@ -44,7 +44,8 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 person-item" style="margin-top: -350px">
-            <img class="img-circle" src="${user.getHeadPicture()}" alt="Generic placeholder image" width="140" height="140">
+            <img class="img-circle" src="${user.getHeadPicture()}" alt="Generic placeholder image" width="140"
+                 height="140">
             <div id="name-block" style="height: 60px;">
                 <div style="display:inline-block;">
                     <h2 style="color: black">${user.getNickName()}</h2></div>
@@ -74,30 +75,59 @@
 
             <ul id="myTab" class="nav nav-pills nav-stacked">
                 <li class="active">
-                    <a href="#me" data-toggle="tab">
-                        我
+                    <a href="#message" data-toggle="tab">
+                        消息<span class="badge">${user.message.size()}</span>
                     </a>
                 </li>
-                <li><a href="#moments" data-toggle="tab">丑圈</a></li>
-                <li><a href="#friend" data-toggle="tab">好友</a></li>
-                <li><a href="#follow" data-toggle="tab">关注</a></li>
-                <li><a href="#fans" data-toggle="tab">粉丝</a></li>
+                <li><a href="#moments" data-toggle="tab">丑圈<span class="badge">0</span></a></li>
+                <li><a href="#friend" data-toggle="tab">好友<span class="badge">${user.friendList.size()}</span></a></li>
+                <li><a href="#follow" data-toggle="tab">关注<span class="badge">${user.follow.size()}</span></a></li>
+                <li><a href="#fans" data-toggle="tab">粉丝<span class="badge">${user.fans.size()}</span></a></li>
                 <li><a href="#setting" data-toggle="tab">设置</a></li>
 
             </ul>
         </div>
         <!-- Tab panes -->
-        <div class="col-lg-9 col-lg-offset-1">
+        <div class="col-lg-10 ">
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade in active" id="me">
-                    <div class="well well-lg">
-                        你好像没有动态哟。
+                <div class="tab-pane fade in active" id="message">
+                    <div class="col-lg-8">
+
+                        <div id="messageTabContent" class="tab-content">
+                            <div class="tab-pane fade in active" id="new-friend">
+                                <c:forEach var="mes" items="${user.checkMessage(1,0)}">
+
+                                    <div class="well well-lg active">
+                                        ${mes.content}
+                                    </div>
+                                </c:forEach>
+                            </div>
+                            <div class="tab-pane fade in " id="new-fans">
+                                <div class="well well-lg">
+                                    你没有消息呢
+                                </div>
+                            </div>
+                            <div class="tab-pane fade in " id="new-notice">
+                                <div class="well well-lg">
+                                    你没有消息呢
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <ul id="messsageTab" class="nav nav-pills nav-pills-2 nav-stacked">
+                            <li class="active" ><a href="#new-friend" data-toggle="tab">好友申请<span class="badge">${{user.checkMessage(1,0)}}</span></a></li>
+                            <li><a href="#new-fans" data-toggle="tab">新的粉丝</a></li>
+                            <li><a href="#new-notice" data-toggle="tab">系统消息</a></li>
+                        </ul>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="moments">
                     <div class="well well-lg">
-                        <textarea placeholder="快来发一条丑圈吧" maxlength="1024" style="width: 100%;height:175px"></textarea>
-                        <button class="btn btn-" style="margin-left: auto;margin-right: 5px" onclick="submitNewStatus()">发布</button>
+                        <textarea class="form-control" rows="5" placeholder="来写一下自己的开心事吧"></textarea>
+                        <button class="btn btn-success" style="margin-left: auto;margin-right: 5px;margin-top: 20p"
+                                onclick="submitNewStatus()">发布
+                        </button>
                     </div>
                     <div class="well well-lg">
                         你的丑圈空空荡荡哟。
@@ -108,62 +138,72 @@
                     <div class="well well-lg">
                         <div class="input-group">
                             <input id="search-friend-edit" type="text" class="form-control"
-                                   placeholder="搜索昵称或者账号来添加好友吧" onkeypress="if(event.keyCode===13)searchUser($('#search-friend-edit').val(),0,false);">
+                                   placeholder="搜索昵称或者账号来添加好友吧"
+                                   onkeypress="if(event.keyCode===13)searchUser($('#search-friend-edit').val(),0,false);" data-toggle="popover" data-placement="top" title="输入呀小宝贝">
                             <span class="input-group-btn">
-                                <button onclick="searchUser($('#search-friend-edit').val(),0,false)" class="btn btn-default"
+                                <button onclick="searchUser($('#search-friend-edit').val(),0,false)"
+                                        class="btn btn-default"
                                         type="button">搜索</button>
                             </span>
                         </div>
                         <div class="row" style="margin-top: 20px" id="search-friend-result">
                         </div>
-                        <div id="search-friend-more" class='hidden'onclick="searchUser($('#search-friend-edit').val(),0,true)" style="margin-bottom: -20px">
+                        <div id="search-friend-more" class='hidden' style="margin-bottom: -20px">
                             <h3 style="text-align: center"><a>more</a></h3>
                         </div>
                     </div>
                     <div class="well well-lg">
                         <div class="row" style="margin-top: 20px" id="friend-list">
 
-                            <c:forEach items="${friend}" var="f">
-                                <div class="col-lg-3 person-item " >
-                                    <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image" width="140"
+                            <c:forEach items="${user.friendList}" var="f">
+                                <div class="col-lg-3 person-item ">
+                                    <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
+                                         width="140"
                                          height="140">
                                     <h4 style="height: 40px">${f.nickName}</h4>
-                                    <button onclick="sendMeassage('${f.id}')" class="btn btn-success disabled">发消息哟(todo)</button>
+                                    <button onclick="sendMeassage('${f.id}')" class="btn btn-success disabled">
+                                        发消息哟(todo)
+                                    </button>
                                 </div>
                             </c:forEach>
                         </div>
-                        <c:if test="${friend.size()==0}">
-                        一个朋友都没有呢。
+                        <c:if test="${user.friendList.size()==0}">
+                            一个朋友都没有呢。
                         </c:if>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="follow">
                     <div class="well well-lg">
                         <div class="input-group">
-                            <input id="search-follow-edit" type="text" class="form-control" placeholder="搜索昵称或者账号来添加关注吧" onkeypress="if(event.keyCode===13)searchUser($('#search-follow-edit').val(),1,false);">
+                            <input id="search-follow-edit" type="text" class="form-control" placeholder="搜索昵称或者账号来添加关注吧"
+                                   onkeypress="if(event.keyCode===13)searchUser($('#search-follow-edit').val(),1,false);"  data-toggle="popover" data-placement="top" title="输入呀小宝贝">
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="searchUser($('#search-follow-edit').val(),1,false)">搜索</button>
+                                <button class="btn btn-default" type="button"
+                                        onclick="searchUser($('#search-follow-edit').val(),1,false)">搜索</button>
                             </span>
                         </div>
                         <div class="row" style="margin-top: 20px" id="search-follow-result">
                         </div>
-                        <div id="search-follow-more" class='hidden'onclick="searchUser($('#search-follow-edit').val(),1,true)" style="margin-bottom: -20px">
+                        <div id="search-follow-more" class='hidden' style="margin-bottom: -20px">
                             <h3 style="text-align: center"><a>more</a></h3>
                         </div>
                     </div>
                     <div class="well well-lg">
                         <div class="row" style="margin-top: 20px" id="follow-list">
 
-                        <c:forEach items="${follow}" var="f">
-                            <div class="col-lg-3 person-item " >
-                                <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image" width="140"
-                                     height="140">
-                                <h4 style="height: 40px">${f.nickName}</h4>
-                                <button  onclick="sendMessage('${f.id}')" class="btn btn-success disabled">发消息哟(todo)</button>
-                            </div>
-                        </c:forEach>
+                            <c:forEach items="${user.follow}" var="f">
+                                <div class="col-lg-3 person-item ">
+                                    <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
+                                         width="140"
+                                         height="140">
+                                    <h4 style="height: 40px">${f.nickName}</h4>
+                                    <button onclick="sendMessage('${f.id}')" class="btn btn-success disabled">
+                                        发消息哟(todo)
+                                    </button>
+                                </div>
+                            </c:forEach>
                         </div>
-                        <c:if test="${follow.size()==0}">
+                        <c:if test="${user.follow.size()==0}">
                             关注几个人吧。
                         </c:if>
                     </div>
@@ -175,6 +215,41 @@
                 </div>
                 <div class="tab-pane fade" id="setting">
                     <div class="well well-lg">
+                        <h3>修改密码</h3>
+                        <hr>
+                        <div>
+                            <div class="form-group">
+                                <label for="old-password">旧密码</label>
+                                <input type="password" class="form-control" id="old-password" data-toggle="popover" data-placement="top" title="密码错误" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password-1">新密码</label>
+                                <input type="password" class="form-control" id="new-password-1" placeholder="">
+                            </div>
+                            <div class="form-group has-feedback" id="k" onkeyup="check()">
+                                <label for="new-password-2">重复密码</label>
+                                <input type="password" class="form-control" id="new-password-2" placeholder="" data-toggle="popover" data-placement="top" title="两次密码不一致哟">
+                                <span id="kk" class="glyphicon glyphicon-remove form-control-feedback hidden" ></span>
+                            </div>
+                            <button class="btn btn-success" onclick="changePassword()">确定</button>
+                            <script>
+                                function check() {
+
+                                    if ($('#new-password-2').val() === $('#new-password-1').val()) {
+                                        $('#k').attr('class', 'form-group has-feedback')
+                                        $('#kk').attr('class','glyphicon glyphicon-remove form-control-feedback hidden')
+                                        $('#new-password-2').popover('hide')
+                                    }else{
+                                        $('#new-password-2').popover('show')
+                                        $('#k').attr('class', 'form-group has-error has-feedback')
+                                        $('#kk').attr('class','glyphicon glyphicon-remove form-control-feedback')
+                                    }
+                                }
+                            </script>
+                        </div>
+                        <hr>
+                        <h3>其他</h3>
+                        <hr>
                         <form action="/logout">
                             <button type="submit" name="logout" class="btn btn-danger">退出登录</button>
                         </form>

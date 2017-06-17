@@ -38,7 +38,6 @@ function submitNicknameEdit() {
         url: '/api/user/set_nickname',
         data: {
             'newNickname': newNickname,
-            'id': uid
         },
         dataType: 'json',
         success: function (r) {
@@ -53,7 +52,7 @@ function submitNicknameEdit() {
         }
     })
 }
-function startSignEdit(){
+function startSignEdit() {
     $('#sign-block').html(`
                 <div class="input-group" style="width: 800px;left:50%;margin-left: -400px;">
                     <input type="text" maxlength="128" id="sign-edit" class="form-control" placeholder="" onkeypress="if(event.keyCode===13)submitSignEdit();">
@@ -70,7 +69,6 @@ function submitSignEdit() {
         url: '/api/user/set_sign',
         data: {
             'newSign': newSign,
-            'id': uid
         },
         dataType: 'json',
         success: function (r) {
@@ -86,30 +84,25 @@ function submitSignEdit() {
         }
     })
 }
-function searchUser(keyword, type, m) {
-    if(keyword.length<1){alert('请输入搜索内容');return;}
+function searchUser(keyword, type, m, p = 0) {
+    if (keyword.length < 1) {
+        $('#search-' + ids[type] + '-edit').popover('show')
+        return;
+    }
+    $('#search-' + ids[type] + '-edit').popover('hide')
     //type 0 : friend
     //type 1 : follow
     //m true
-    var p = 0;
     var more = $('#search-' + ids[type] + '-more');
     var result = $('#search-' + ids[type] + '-result');
     console.log(keyword)
-    if (m) {
-        keyword = kw[type];
-        p = page[type]++;
-    }else{
-        kw[type]=keyword;
-        page[type]=1;
-    }
     $.ajax({
         type: 'post',
         url: '/api/user/search_user',
         data: {
             'keyword': keyword,
             'page': p,
-            'id':uid,
-            'searchWhat':ids[type]
+            'searchWhat': ids[type]
         },
         dataType: 'json',
         success: function (r) {
@@ -134,37 +127,74 @@ function searchUser(keyword, type, m) {
             if (users.length < 12) {
                 more.attr('onclick', '').attr('class', '').html(`<h3 style="text-align: center">没有更多了哟</h3>`)
             } else {
-                more.attr('class', '').html(`<h3 style="text-align: center"><a>more</a></h3>`)
+                more.attr('class', '').html(String.format(`<h3 style="text-align: center"><a onclick="searchUser('{0}' ,{1},true,{2})">more</a></h3>`, keyword, type, p + 1))
             }
         }
     })
 }
 function add(type, uuid, id) {
     if (type === 0) {
-        alert('已发送好友请求')
-    } else {
-
+        $.ajax({
+            type: 'post',
+            url: '/api/message/send_message',
+            data: {
+                'dst':uuid,
+                'type':1,
+            },
+            dataType:'json',
+            success:function (r) {
+                alert('已发送好友请求')
+                $('#' + id + '-button').attr('class', 'btn btn-success disabled').html('已发送请求');
+            }
+        })
+        return;
     }
     $.ajax({
         type: 'post',
         url: '/api/user/add_' + ids[type],
         data: {
-            'friendId': uuid,
-            'id': uid
+            'id': uuid,
         },
         dataType: 'json',
         success: function (r) {
-            $('#' + id + '-button').attr('class', 'btn btn-success disabled').html('嘿嘿嘿');
+            $('#' + id + '-button').attr('class', 'btn btn-success disabled').html('已关注');
         }
     })
+}
+function changePassword() {
+    if ($('#new-password-1').val().length < 6) {
+        $('#new-password-1').popover('show')
+    }
+    else if ($('#new-password-1').val() != $('#new-password-2').val()) {
+        $('#new-password-2').popover('show')
+    } else {
+        var oldPassword = $('#old-password').val()
+        var newPassword = $('#new-password-1').val()
+        $('#new-password-1').popover('hide')
+        $('#new-password-2').popover('hide')
+        $.ajax({
+                type: 'post',
+                url: '/api/user/set_password',
+                data: {
+                    'oldPassword': oldPassword,
+                    'newPassword': newPassword
+                },
+                dataType: 'json',
+                success: function (r) {
+                    switch (r.status){
+
+                    }
+                }
+            }
+        )
+    }
 }
 function loadFriend() {
     $.ajax({
         type: 'post',
         url: '/api/user/set_sign',
         data: {
-            'newSign': newSign,
-            'id': uid
+            'newSign': newSign
         },
         dataType: 'json',
         success: function (r) {
