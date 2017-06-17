@@ -31,4 +31,7 @@ public class Message {
     public int getStatus(){
         return status;
     }
+    public String getContent(){
+        return content;
+    }
 }
