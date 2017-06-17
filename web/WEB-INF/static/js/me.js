@@ -210,6 +210,35 @@ function loadFriend() {
         }
     })
 }
-function loadFollow() {
+function dealFriend(mesId,id,type) {
+    $.ajax({
+            type: 'post',
+            url: '/api/message/send_message',
+            data: {
+                'dst':id,
+                'type':type
+            },
+            dataType: 'json',
+            success: function (r) {
+                $('#mes-friend-'+mesId.toString()+' button').html(type===2?'已同意':'已拒绝').attr('disabled','disabled')
+            }
+        })
+    readMes(mesId)
+}
+function knowFans(mesId) {
 
+    $('#mes-fans-'+mesId.toString()+' button').html('已阅').attr('disabled','disabled')
+    readMes(mesId)
+}
+function readMes(id) {
+    $.ajax({
+        type: 'post',
+        url: '/api/message/set_read',
+        data: {
+            'id':id
+        },
+        dataType: 'json',
+        success: function (r) {
+        }
+    })
 }
