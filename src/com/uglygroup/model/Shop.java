@@ -23,7 +23,7 @@ public class Shop {
     private String address;
     private String name;
     private int id;
-    private String recommend_thing;
+    private String[] recommend_thing;
     private String simple_info;
     private String long_info;
     private String type;
@@ -40,8 +40,7 @@ public class Shop {
                        int sPrice,
                        String sAddress,
                        String sName,
-                       String sSignId,
-                       String sRecommend,
+                       String[] sRecommend,
                        String sSimple_info,
                        String sLong_info,
                        String sType,
@@ -121,7 +120,7 @@ public class Shop {
 
     @Basic
     @Column(name = "recommend")//推荐
-    public String getRecommend_thing() {
+    public String[] getRecommend_thing() {
         return recommend_thing;
     }
 
