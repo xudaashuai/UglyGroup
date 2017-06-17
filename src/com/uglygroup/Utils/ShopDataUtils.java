@@ -102,10 +102,12 @@ public class ShopDataUtils {
     public static ArrayList<Shop> getRandomShop(){
         ArrayList<Shop> shops=new ArrayList<>();
         int[] r;
-        int x=getAllShop(1).size();
+
+        ArrayList<Shop>s=getAllShop(1);
+        int x=s.size();
         r=Utils.getRandom(x);
                 for (int i=0;i<10;i++){
-                    Shop shop=selectShop(r[i]);
+                    Shop shop=s.get(r[i]);
                     shops.add(shop);
                 }
 

@@ -25,11 +25,14 @@ public class UserDataUtils {
 
     public static ArrayList<User> getRandomUser(){
         ArrayList<User> users=new ArrayList<>();
+        ArrayList<User> mu=new ArrayList<>();
         int[] r;
-        int x=getAllUser().size();
+
+        mu=getAllUser();
+        int x=mu.size();
         r=Utils.getRandom(x);
         for (int i=0;i<4;i++){
-            User u =selectUserInfor(r[i]);
+            User u =mu.get(r[i]);
             users.add(u);
         }
 
