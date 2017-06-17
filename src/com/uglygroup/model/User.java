@@ -282,14 +282,15 @@ public class User {
             }
         }
         if (this.follow.equals("")){
-            MessageUtils.addMessage(trueId,followId,4);
             this.follow=String.valueOf(followId);
         }
         else {
             this.follow = this.follow + "," + String.valueOf(followId);
         }
         MessageUtils.addMessage(trueId,followId,4);
-
+        User u;
+        u=UserDataUtils.selectUserInfor(followId);
+        u.addFans(trueId);
         UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
         return Utils.addStatus.ADDSUCCESS;
     }
@@ -339,7 +340,6 @@ public class User {
             this.fans = this.fans + "," + fansId;
         }
         MessageUtils.addMessage(trueId,fansId,5);
-
         UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
         return Utils.addStatus.ADDSUCCESS;
     }
