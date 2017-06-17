@@ -230,7 +230,7 @@ public class User {
     @Basic
     @Column(name = "friendList")
 
-    public ArrayList<com.uglygroup.model.User> getFriendInfo() {
+    public ArrayList<com.uglygroup.model.User> selectFriend() {
         ArrayList<Integer> fId=new ArrayList<Integer>();
         fId=getIntList(friendList);
         ArrayList<com.uglygroup.model.User> friends=new ArrayList<com.uglygroup.model.User>();
@@ -275,7 +275,7 @@ public class User {
 
     @Basic
     @Column(name = "follow")
-    public  ArrayList<com.uglygroup.model.User>getFollow() {
+    public  ArrayList<com.uglygroup.model.User> selectFollow() {
         ArrayList<Integer> foId = new ArrayList<Integer>();
         foId=getIntList(follow);
         ArrayList<com.uglygroup.model.User> follows=new ArrayList<>();
@@ -327,7 +327,7 @@ public class User {
 
     @Basic
     @Column(name = "fans")
-    public ArrayList<com.uglygroup.model.User>  getFans() {
+    public ArrayList<com.uglygroup.model.User> selectFans() {
 
         ArrayList<Integer> faId = new ArrayList<Integer>();
         faId=getIntList(fans);
@@ -374,7 +374,7 @@ public class User {
 
     @Basic
     @Column(name = "message")
-    public   ArrayList<Message> getMessage() {
+    public   ArrayList<Message> selectMessage() {
         ArrayList<Integer>  messageList = new ArrayList<>();
         ArrayList<Message> messages=new ArrayList<>();
         messageList=getIntList(message);
@@ -397,7 +397,7 @@ public class User {
     }
     public ArrayList<Message> checkMessage(int type,int status) {
         ArrayList<Message> messages = new ArrayList<>();
-        messages=getMessage();
+        messages= selectMessage();
         ArrayList<Message> typeMessage=new ArrayList<>();
         for(int i=0;i<messages.size();i++){
             if(messages.get(i).getType()==type){
@@ -425,7 +425,7 @@ public class User {
         }
         else if(whatList.equals("follow")){
                 lis=getIntList(follow);
-                for(int i=0;i<getFollow().size();i++){
+                for(int i = 0; i< selectFollow().size(); i++){
                     if(lis.get(i)==id){
                         return true;
                     }

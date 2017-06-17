@@ -68,7 +68,7 @@ public class Main {
       // MessageUtils.addMessage(3,4,1);
 User u;
 u=UserDataUtils.selectUserInfor(1);
-u.getFriendInfo().get(1);
+u.selectFriend().get(1);
       // System.out.println(Utils.setStatus.ILLEAGEL.toString());
        //
         /*
