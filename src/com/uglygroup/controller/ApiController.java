@@ -165,9 +165,9 @@ public class ApiController {
 
     @RequestMapping(path = "/api/message/send_message",method =RequestMethod.GET )
     public @ResponseBody
-    Map<String,Object> sendMessage(int src,int dst,int type){
+    Map<String,Object> sendMessage(@ModelAttribute("user")User u,int dst,int type){
         Map<String,Object> map=new HashMap<>();
-        MessageUtils.addMessage(src,dst,type);
+        MessageUtils.addMessage(u.getId(),dst,type);
          return map;
     }
     @RequestMapping(path = "/api/user/send_message",method =RequestMethod.GET )
