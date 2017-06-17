@@ -33,18 +33,18 @@ public class Shop {
     private String[] shopPic;
 
     public void allSet(
+                       int sId,
+                       String sName,
                        String sLocal,
-                       String sInRank,
-                       String sPhone,
+                       String sAddress,
                        int  sStar,
                        int sPrice,
-                       String sAddress,
-                       String sName,
+                       String sPhone,
                        String[] sRecommend,
                        String sSimple_info,
                        String sLong_info,
                        String sType,
-                       int sId,
+                       String sInRank,
                        String sTime,
                        String sParking,
                        String sWifi,
@@ -66,11 +66,9 @@ public class Shop {
         type=sType;
         inRank = sInRank;
         time=sTime;
-        wifi=sWifi;
         parking=sParking;
+        wifi=sWifi;
         shopPic=pic;
-
-
 
 
 

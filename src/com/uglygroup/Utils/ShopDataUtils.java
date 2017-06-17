@@ -21,12 +21,12 @@ public class ShopDataUtils {
             if (rs.next()) {
 
 
-                shop.allSet(rs.getString(1), rs.getString(2),
-                        rs.getString(3), rs.getInt(4),
-                        rs.getInt(5), rs.getString(6),
+                shop.allSet(rs.getInt(1), rs.getString(2),
+                        rs.getString(3), rs.getString(4),
+                        rs.getInt(5), rs.getInt(6),
                         rs.getString(7), rs.getString(8).split(","),
                         rs.getString(9), rs.getString(10),
-                        rs.getString(11),rs.getInt(12),
+                        rs.getString(11),rs.getString(12),
                         rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(17).split(","));
 
             }
