@@ -143,15 +143,7 @@ public class ApiController {
         map.put("list",users);
         return map;
     }
-    @RequestMapping(path = "/api/shop/get_todayShop",method =RequestMethod.GET )
-    public @ResponseBody
-    Map<String,Object> getTodayShop(){
-        Map<String,Object> map=new HashMap<>();
-        ArrayList<Shop>shops=new ArrayList<>();
-        shops=ShopDataUtils.getRandomShop();
-        map.put("shops",shops);
-        return map;
-    }
+
     @RequestMapping(path = "/api/user/check_message",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> userCheckMessage(int type,int status,HttpServletRequest request){
@@ -188,6 +180,34 @@ public class ApiController {
         return map;
     }
 
+    @RequestMapping(path = "/api/shop/get_allShop",method =RequestMethod.POST)
+    public @ResponseBody
+    Map<String,Object> getAllShop(int page){
+        Map<String,Object> map=new HashMap<>();
+
+        ArrayList<Shop> shops;
+        shops=ShopDataUtils.getAllShop(page);
+        map.put("list",shops);
+        return map;
+    }
+    @RequestMapping(path = "/api/shop/get_todyShop",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> getTodayShop(){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<Shop>shops;
+        shops=ShopDataUtils.getRandomShop();
+        map.put("list",shops);
+        return map;
+    }
+    @RequestMapping(path = "/api/shop/get_searchShop",method =RequestMethod.POST )
+    public @ResponseBody
+    Map<String,Object> searchShop(int page,String keyword){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<Shop>shops=new ArrayList<>();
+        shops=ShopDataUtils.searchShop(keyword,page);
+        map.put("list",shops);
+        return map;
+    }
 
 
 }

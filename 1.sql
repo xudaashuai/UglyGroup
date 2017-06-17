@@ -56,3 +56,4 @@ ALTER TABLE public.shop ADD comment TEXT NULL;
 ALTER TABLE public.shop ADD time TEXT NULL;
 ALTER TABLE public.shop ADD parking TEXT NULL;
 ALTER TABLE public.shop ADD wifi TEXT NULL;
+ALTER TABLE public.shop ADD shoppic TEXT NULL;

@@ -11,52 +11,15 @@ import java.util.ArrayList;
  * Created by Think on 2017/6/6.
  */
 public class ShopDataUtils {
-    private static int inId;
-//git test PPPPP
-    //用户登录、注册和更改信息操作
-    static {
-    String sql="select max(shopTrueId) from \"shop\"";
-    ResultSet rs=DatabaseUtils.getResult(sql);
-    inId=Utils.getInid(sql);
-}
-
-
-    //添加一家商家
-    public static void addShop(String sLocal,String sInrank, String sSubType, String sTel, int sStar, int sAvgprice, int sTastep, int sEnviornmentp, int sServicep, String sMainType, String sAddress, String sName, String sSignId) {
-        inId++;
-
-        String shopId = String.valueOf(inId);
-        String sql = "insert into shop values(" +
-                "'" +sLocal + "','" + sInrank + "','" + sSubType + "','" + sTel + "','" + String.valueOf(sStar) + "','"
-                + String.valueOf(sAvgprice) + "','" + String.valueOf(sTastep) + "','" + String.valueOf(sEnviornmentp) +
-                "','" + String.valueOf(sServicep) + "','" + sMainType + "','" + sAddress + "','" + sName + "','" + sSignId +"','"+ shopId+"')" + "on conflict do nothing;";
-        String sql2 = "select * from \"shop\" where signId='" + sSignId + "'";
-        try {
-            ResultSet rs = DatabaseUtils.getResult(sql2);
-            if (rs.next()) {
-                  return;
-            } else {
-                try {
-                    DatabaseUtils.doSql(sql);
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-   //信息查询
-
     //获取商家信息
     public static com.uglygroup.model.Shop selectShop(int shopId){
         com.uglygroup.model.Shop shop=new com.uglygroup.model.Shop();
-        String sql = "select * from \"shop\" where shopTrueId='" + String.valueOf(shopId) + "'";
+        String sql = "select * from \"shop\" where id='" + String.valueOf(shopId) + "'";
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
 
             if (rs.next()) {
+
 
                 shop.allSet(rs.getString(1), rs.getString(2),
                         rs.getString(3), rs.getInt(4),
@@ -64,7 +27,7 @@ public class ShopDataUtils {
                         rs.getString(7), rs.getString(8),
                         rs.getString(9), rs.getString(10),
                         rs.getString(11),rs.getString(12),
-                        rs.getInt(13));
+                        rs.getInt(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getString(17).split(","));
 
             }
         }catch (Exception e) {
@@ -73,9 +36,9 @@ public class ShopDataUtils {
         return shop;
     }
     //获取在列表中的所有商家的对象数组
-    public static ArrayList<com.uglygroup.model.Shop> getAllShop(){
+    public static ArrayList<com.uglygroup.model.Shop> getAllShop(int page){
         ArrayList<Integer> ShopId=new ArrayList<Integer>();
-        String sql="select \"shopTrueId\" from shop;";
+        String sql="select \"id\" from shop limit 10 offset "+String.valueOf(page*10)+";";
         try {
             ResultSet myrs=DatabaseUtils.getResult(sql);
             while (myrs.next()){
@@ -92,10 +55,10 @@ public class ShopDataUtils {
         return Shop;
     }
     //获取相关商家
-    public static ArrayList<com.uglygroup.model.Shop> getAboutShop(String keyWrod){
+    public static ArrayList<com.uglygroup.model.Shop> searchShop(String keyword,int page){
         ArrayList<com.uglygroup.model.Shop> Shop=new ArrayList<com.uglygroup.model.Shop>();
         ArrayList<Integer> ShopId=new ArrayList<Integer>();
-        String sql="select \"shopTrueId\" from shop where shopname like '%"+keyWrod+"%';";
+        String sql="select \"id\" from shop where name like '%"+keyword+"%' limit 10 offset "+String.valueOf(page*10);
         try {
             ResultSet rs;
             rs=DatabaseUtils.getResult(sql);
@@ -111,11 +74,16 @@ public class ShopDataUtils {
         return Shop;
     }
     //变更商家信息处理
+
+
+
+
+
     public static void shopChangeInfor(String content,int shopId,String changeWhat){
             String sql="update \"shop\" set "+changeWhat+"='"+content+"'where shopTrueId='"+String.valueOf(shopId)+"'";
             DatabaseUtils.doSql(sql);
     }
-
+    //TODO
     //添加操作
     public static  void addShopInRank(int shopId,String newRank){
         com.uglygroup.model.Shop shop;

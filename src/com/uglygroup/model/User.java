@@ -1,5 +1,6 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.CommentUtils;
 import com.uglygroup.Utils.MessageUtils;
 import com.uglygroup.Utils.UserDataUtils;
 import com.uglygroup.Utils.Utils;
@@ -378,7 +379,8 @@ public class User {
 
     }
 
-    public void addComment(String newComment){
+    public void addComment(int shopId,String commentBody,int score){
+        CommentUtils.addComment(commentBody,shopId,trueId,score);
 
     }
     public void addMessage(String newMessage){

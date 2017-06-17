@@ -12,8 +12,9 @@ public class Comment {
     private String commentBody;
     private int score;
     private Timestamp time;
+    private String pic;
     public void allset(int cCommentId,int cShopId,int cUserId,
-                       String cCommentBody,int cScore,Timestamp cTime){
+                       String cCommentBody,int cScore,Timestamp cTime,String cPic){
         commentId=cCommentId;
         shopId=cShopId;
         userId=cUserId;
@@ -21,7 +22,9 @@ public class Comment {
         score=cScore;
         time=cTime;
     }
+    public void addPic(String newPic){
 
+    }
     public int getCommentId(){
         return commentId;
     }

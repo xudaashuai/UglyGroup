@@ -27,6 +27,11 @@ public class Shop {
     private String simple_info;
     private String long_info;
     private String type;
+    private String time;
+    private String parking;
+    private String wifi;
+    private String[] shopPic;
+
     public void allSet(
                        String sLocal,
                        String sInRank,
@@ -40,7 +45,13 @@ public class Shop {
                        String sSimple_info,
                        String sLong_info,
                        String sType,
-                       int sId
+                       int sId,
+                       String sTime,
+                       String sParking,
+                       String sWifi,
+                       String[]pic
+
+
 
     ) {
         id=sId;
@@ -55,6 +66,10 @@ public class Shop {
         long_info=sLong_info;
         type=sType;
         inRank = sInRank;
+        time=sTime;
+        wifi=sWifi;
+        parking=sParking;
+        shopPic=pic;
 
 
 
@@ -116,6 +131,10 @@ public class Shop {
     public String getSimple_info() {
         return simple_info;
     }
+    public String getTime(){return time;}
+    public String getParking(){return parking;}
+    public String getWifi(){return parking;}
+    public String[] getShopPic(){return shopPic;}
 
 
 
