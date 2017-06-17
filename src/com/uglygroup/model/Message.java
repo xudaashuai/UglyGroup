@@ -1,5 +1,7 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.UserDataUtils;
+
 import java.sql.Timestamp;
 
 /**
@@ -13,6 +15,7 @@ public class Message {
     private String content;
     private int status;
     private Timestamp time ;
+
     public void allSet(int mId,int mType,int mSrc,int mDst,String mContent,int mStatus,Timestamp mTime){
         id=mId;
         type=mType;
@@ -33,5 +36,10 @@ public class Message {
     }
     public String getContent(){
         return content;
+    }
+    public User getUser(){
+        User u=new User();
+        u=UserDataUtils.selectUserInfor(src);
+        return u;
     }
 }

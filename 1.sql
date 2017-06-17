@@ -36,3 +36,18 @@ CREATE TABLE public.comment (
   score       INT,
   time        TEXT
 );
+
+CREATE TABLE public.shop
+(
+  id INT PRIMARY KEY,
+  name TEXT,
+  loction TEXT,
+  address TEXT,
+  star INT,
+  price INT,
+  phone TEXT,
+  recommend_thing TEXT,
+  simple_info TEXT,
+  long_info TEXT
+);
+ALTER TABLE public.shop ADD type TEXT NULL;
