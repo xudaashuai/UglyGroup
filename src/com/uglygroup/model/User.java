@@ -6,7 +6,6 @@ import com.uglygroup.Utils.Utils;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Id;
 import java.util.ArrayList;
 
 /**
@@ -231,7 +230,7 @@ public class User {
     @Basic
     @Column(name = "friendList")
 
-    public ArrayList<com.uglygroup.model.User> getFriendList() {
+    public ArrayList<com.uglygroup.model.User> getFriendInfo() {
         ArrayList<Integer> fId=new ArrayList<Integer>();
         fId=getIntList(friendList);
         ArrayList<com.uglygroup.model.User> friends=new ArrayList<com.uglygroup.model.User>();

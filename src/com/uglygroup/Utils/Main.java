@@ -1,9 +1,7 @@
 package com.uglygroup.Utils;
 
 import com.uglygroup.model.User;
-import com.uglygroup.model.Shop;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -70,7 +68,7 @@ public class Main {
       // MessageUtils.addMessage(3,4,1);
 User u;
 u=UserDataUtils.selectUserInfor(1);
-u.getFriendList().get(1);
+u.getFriendInfo().get(1);
       // System.out.println(Utils.setStatus.ILLEAGEL.toString());
        //
         /*
