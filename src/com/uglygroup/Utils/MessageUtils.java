@@ -45,6 +45,12 @@ public class MessageUtils {
         else if(type==3) {
             content="对方残忍无情的拒绝了你";
         }
+        else if(type==4){
+            content=UserDataUtils.selectUserInfor(src).getNickName()+"关注了你!!";
+        }
+        else if(type==5){
+            content=UserDataUtils.selectUserInfor(src).getNickName()+"成为了你的粉丝!!";
+        }
 
         String sql="insert into message values('"+String.valueOf(inId)+"','"+String.valueOf(type)+"','"+String.valueOf(src)+"','"+String.valueOf(dst)+"','"+content+"','"+String.valueOf(status)+"','"+time.toString()+"');";
         DatabaseUtils.doSql(sql);

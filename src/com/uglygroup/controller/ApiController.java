@@ -8,9 +8,7 @@ import com.uglygroup.model.Message;
 import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -26,6 +24,7 @@ import java.util.Map;
  *
  */
 @Controller
+@SessionAttributes("user")
 public class ApiController {
     @RequestMapping(path = "/api/user/login",method = RequestMethod.POST)
     public @ResponseBody
@@ -75,30 +74,24 @@ public class ApiController {
     public @ResponseBody
 
 
-    Map<String,Object> userSetSex(String newSex,int id){
+    Map<String,Object> userSetSex(String newSex, @ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setSex(newSex);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_age",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetAge(int newAge,int id){
+    Map<String,Object> userSetAge(int newAge,@ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setAge(newAge);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_nickname",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetNickname(String newNickname,int id){
+    Map<String,Object> userSetNickname(String newNickname,@ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setNickName(newNickname);
         return map;
     }
@@ -106,67 +99,49 @@ public class ApiController {
 
     @RequestMapping(path = "/api/user/set_password",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object>  userSetPassword(String newPassword,int id){
+    Map<String,Object>  userSetPassword(String newPassword,@ModelAttribute("user")User u,String oldPassword){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
-        u.setPassword(newPassword);
+        if(u.getPassword().equals(oldPassword)) {
+            u.setPassword(newPassword);
+            map.put("status", true);
+        }else{
+            map.put("status",false);
+        }
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_headPicture",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetHeadPicture(String newHeadPicture,int id){
+    Map<String,Object> userSetHeadPicture(String newHeadPicture,@ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setHeadPicture(newHeadPicture);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_birthday",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetBirthday(String newBirthday,int id){
+    Map<String,Object> userSetBirthday(String newBirthday,@ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setBirthday(newBirthday);
         return map;
 
     }
     @RequestMapping(path = "/api/user/set_sign",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSetSign(String newSign,int id){
+    Map<String,Object> userSetSign(String newSign,@ModelAttribute("user")User u){
         Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
         u.setSign(newSign);
         return map;
 //
     }
     @RequestMapping(path = "/api/user/search_user",method =RequestMethod.POST )
     public @ResponseBody
-    Map<String,Object> userSearchUser(int id,String keyword,int page,String searchWhat){
+    Map<String,Object> userSearchUser(@ModelAttribute("user")User u,String keyword,int page,String searchWhat){
         Map<String,Object> map=new HashMap<>();
         ArrayList<User> users=new ArrayList<>();
-        users=UserDataUtils.searchUser(id,keyword,page,searchWhat);
+        users=UserDataUtils.searchUser(u.getId(),keyword,page,searchWhat);
         map.put("list",users);
         return map;
-    }
-    @RequestMapping(path = "/api/user/add_friend",method =RequestMethod.POST )
-    public @ResponseBody
-    Map<String,Object> userAddFriend(int id,int friendId){
-        Map<String,Object> map=new HashMap<>();
-        User u;
-        u=UserDataUtils.selectUserInfor(id);
-        Utils.addStatus status;
-        status=u.addFriend(friendId);
-        if(status.equals(Utils.addStatus.ADDSUCCESS)){
-            map.put("status",true);
-        }
-        else map.put("status",false);
-        return map;
-
     }
     @RequestMapping(path = "/api/shop/get_todayShop",method =RequestMethod.GET )
     public @ResponseBody
@@ -179,10 +154,11 @@ public class ApiController {
     }
     @RequestMapping(path = "/api/user/check_message",method =RequestMethod.GET )
     public @ResponseBody
-    Map<String,Object> userCheckMessage(int userId){
+    Map<String,Object> userCheckMessage(int type,int status,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
+        User u= (User) request.getSession().getAttribute("user");
         ArrayList<Message>messages=new ArrayList<>();
-        messages=UserDataUtils.checkMessage(userId);
+        messages=u.checkMessage(type,status);
         map.put ("shops",messages);
         return map;
     }
@@ -194,4 +170,15 @@ public class ApiController {
         MessageUtils.addMessage(src,dst,type);
          return map;
     }
+    @RequestMapping(path = "/api/user/send_message",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> setReaded(int type,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        User u= (User) request.getSession().getAttribute("user");
+        u.setReaded(type);
+        return map;
+    }
+
+
+
 }

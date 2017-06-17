@@ -67,7 +67,10 @@ public class Main {
           //  System.out.println(shops.get(i).getShopname());
        // }
         //UserDataUtils.addFriend(1,2);
-       MessageUtils.addMessage(2,1,3);
+      // MessageUtils.addMessage(3,4,1);
+User u;
+u=UserDataUtils.selectUserInfor(1);
+u.getFriendList().get(1);
       // System.out.println(Utils.setStatus.ILLEAGEL.toString());
        //
         /*

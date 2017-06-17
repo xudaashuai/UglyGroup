@@ -31,7 +31,7 @@ public class MainController {
         ModelAndView modelAndView=new ModelAndView("me");
         User user=(User)request.getSession().getAttribute("user");
         modelAndView.addObject("user",user);
-        modelAndView.addObject("friend",UserDataUtils.selectUserFriend(user.getId()));
+        modelAndView.addObject("friend",UserDataUtils .selectUserFriend(user.getId()));
         modelAndView.addObject("follow",UserDataUtils.selectUserFollow(user.getId()));
         return modelAndView;
     }

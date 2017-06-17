@@ -1,5 +1,6 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.MessageUtils;
 import com.uglygroup.Utils.UserDataUtils;
 import com.uglygroup.Utils.Utils;
 
@@ -213,14 +214,23 @@ public class User {
 
     @Basic
     @Column(name = "friendList")
-    public ArrayList<Integer> getFriendList() {
-        ArrayList<Integer> frList=new ArrayList<Integer>();
-        frList=getIntList(friendList);
-        return frList;
+
+    public ArrayList<com.uglygroup.model.User> getFriendList() {
+        ArrayList<Integer> fId=new ArrayList<Integer>();
+        fId=getIntList(friendList);
+        ArrayList<com.uglygroup.model.User> friends=new ArrayList<com.uglygroup.model.User>();
+        int friendId;
+        for(int i=0;i<fId.size();i++){
+            friendId=fId.get(i);
+            friends.add(UserDataUtils.selectUserInfor(friendId));
+        }
+        return friends;
     }
     public Utils.addStatus addFriend(int friendId){
-        for(int i=0;i<this.getFriendList().size();i++){
-            if(friendId==this.getFriendList().get(0)) {
+        ArrayList<Integer> fId=new ArrayList<Integer>();
+        fId=getIntList(friendList);
+        for(int i=0;i<fId.size();i++){
+            if(friendId==fId.get(0)) {
                 return Utils.addStatus.ITEMEXIST;
             }
         }
@@ -234,7 +244,8 @@ public class User {
         return Utils.addStatus.ADDSUCCESS;
     }
     public Utils.deleteStatus deleteFriend(int oldFriend){
-        ArrayList<Integer> a= this.getFriendList();
+        ArrayList<Integer> a=new ArrayList<Integer>();
+        a=getIntList(friendList);
         int c=0;
         this.friendList=getStrFromIntList(a,oldFriend,c);
         if(c==0){
@@ -249,29 +260,42 @@ public class User {
 
     @Basic
     @Column(name = "follow")
-    public ArrayList<Integer> getFollow() {
-        ArrayList<Integer> followList = new ArrayList<Integer>();
-        String a = "";
-        followList=getIntList(follow);
-        return followList;
+    public  ArrayList<com.uglygroup.model.User>getFollow() {
+        ArrayList<Integer> foId = new ArrayList<Integer>();
+        foId=getIntList(follow);
+        ArrayList<com.uglygroup.model.User> follows=new ArrayList<>();
+
+        int followId;
+        for(int i=0;i<foId.size();i++){
+            followId=foId.get(i);
+            follows.add(UserDataUtils.selectUserInfor(followId));
+        }
+        return follows;
     }
     public Utils.addStatus addFollow(int followId){
-        for(int i=0;i<this.getFollow().size();i++){
-            if(followId==this.getFollow().get(i)) {
+        ArrayList<Integer> foId = new ArrayList<Integer>();
+        foId=getIntList(follow);
+        for(int i=0;i<foId.size();i++){
+
+            if(followId==foId.get(i)) {
                 return Utils.addStatus.ITEMEXIST;
             }
         }
         if (this.follow.equals("")){
+            MessageUtils.addMessage(trueId,followId,4);
             this.follow=String.valueOf(followId);
         }
         else {
             this.follow = this.follow + "," + String.valueOf(followId);
         }
+        MessageUtils.addMessage(trueId,followId,4);
+
         UserDataUtils.userChangeInfor(this.follow,trueId,"follow");
         return Utils.addStatus.ADDSUCCESS;
     }
     public Utils.deleteStatus deleteFollow(int oldFollow){
-        ArrayList<Integer> a= this.getFollow();
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        a=getIntList(follow);
         int c=0;
         this.follow=getStrFromIntList(a,oldFollow,c);
         if(c==0){
@@ -287,14 +311,24 @@ public class User {
 
     @Basic
     @Column(name = "fans")
-    public ArrayList<Integer> getFans() {
-        ArrayList<Integer> fansList = new ArrayList<Integer>();
-        fansList=getIntList(fans);
-        return fansList;
+    public ArrayList<com.uglygroup.model.User>  getFans() {
+
+        ArrayList<Integer> faId = new ArrayList<Integer>();
+        faId=getIntList(fans);
+        ArrayList<User> fansLis=new ArrayList<User>();
+        int fansId;
+        for(int i=0;i<faId.size();i++){
+            fansId=faId.get(i);
+            fansLis.add(UserDataUtils.selectUserInfor(fansId));
+        }
+
+        return fansLis;
     }
     public Utils.addStatus addFans(int fansId){
-        for(int i=0;i<this.getFans().size();i++){
-            if(fansId==this.getFans().get(i)) {
+        ArrayList<Integer> faId = new ArrayList<Integer>();
+        faId=getIntList(fans);
+        for(int i=0;i<faId.size();i++){
+            if(fansId==faId.get(i)) {
                 return Utils.addStatus.ITEMEXIST;
             }
         }
@@ -304,13 +338,16 @@ public class User {
         else {
             this.fans = this.fans + "," + fansId;
         }
+        MessageUtils.addMessage(trueId,fansId,5);
+
         UserDataUtils.userChangeInfor(this.fans,trueId,"fans");
         return Utils.addStatus.ADDSUCCESS;
     }
     public Utils.deleteStatus deleteFans(int oldFans){
-        ArrayList<Integer> a= this.getFans();
+        ArrayList<Integer> faId = new ArrayList<Integer>();
+        faId=getIntList(fans);
         int c=0;
-        this.fans=getStrFromIntList(a,oldFans,c);
+        this.fans=getStrFromIntList(faId,oldFans,c);
         if(c==0){
             return Utils.deleteStatus.ITEMNOEXIST;
         }
@@ -322,10 +359,16 @@ public class User {
 
     @Basic
     @Column(name = "message")
-    public ArrayList<String> getMessage() {
-        ArrayList<String>  messageList = new ArrayList<String>();
-        messageList=getList(message);
-        return messageList;
+    public   ArrayList<Message> getMessage() {
+        ArrayList<Integer>  messageList = new ArrayList<>();
+        ArrayList<Message> messages=new ArrayList<>();
+        messageList=getIntList(message);
+        int messageId;
+        for(int i=0;i<messageList.size();i++){
+            messageId=messageList.get(i);
+            messages.add(MessageUtils.selectMessage(messageId));
+        }
+        return messages;
 
     }
     public void addMessage(String newMessage){
@@ -337,33 +380,44 @@ public class User {
            }
         UserDataUtils.userChangeInfor(this.message,trueId,"message");
     }
-    public Utils.deleteStatus deleteMessage(String oldMessage){
-        ArrayList<String> a= this.getMessage();
-        int c=0;
-        this.message=getStrFromStringList(a,oldMessage,c);
-        if(c==0){
-            return Utils.deleteStatus.ITEMNOEXIST;
+    public ArrayList<Message> checkMessage(int type,int status) {
+        ArrayList<Message> messages = new ArrayList<>();
+        messages=getMessage();
+        ArrayList<Message> typeMessage=new ArrayList<>();
+        for(int i=0;i<messages.size();i++){
+            if(messages.get(i).getType()==type){
+                if(messages.get(i).getStatus()==status){
+                    typeMessage.add(messages.get(i));
+                }
+            }
         }
-        else {
-            UserDataUtils.userChangeInfor(this.message, trueId, "message");
-            return Utils.deleteStatus.DELETESUCCES;
+        return typeMessage;
+    }
+
+    public   void setReaded(int type){
+        ArrayList<Message>messages=new ArrayList<>();
+        messages=getMessage();
+        for(int i=0;i<messages.size();i++){
+            if(messages.get(i).getType()==type){
+                messages.get(i).setStatus(1);
+            }
         }
     }
     public boolean inList(String whatList,int id){
         ArrayList<Integer> lis=new ArrayList<>();
          if(whatList.equals("friend")) {
-            lis = getFriendList();
-            for (int i = 0; i < getFriendList().size(); i++) {
-                if (getFriendList().get(i) == id) {
+            lis = getIntList(friendList);
+            for (int i = 0; i < lis.size(); i++) {
+                if (lis.get(i) == id) {
                     return true;
                 }
             }
             return false;
         }
         else if(whatList.equals("follow")){
-                lis=getFollow();
+                lis=getIntList(follow);
                 for(int i=0;i<getFollow().size();i++){
-                    if(getFollow().get(i)==id){
+                    if(lis.get(i)==id){
                         return true;
                     }
                 }

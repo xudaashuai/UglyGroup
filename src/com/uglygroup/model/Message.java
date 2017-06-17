@@ -28,4 +28,7 @@ public class Message {
     public int getType(){
         return type;
     }
+    public int getStatus(){
+        return status;
+    }
 }

@@ -141,44 +141,6 @@ public class UserDataUtils {
 
     //查询操作
 
-    //获取好友列表
-    public static ArrayList<com.uglygroup.model.User> selectUserFriend(int userId){
-        com.uglygroup.model.User u=new com.uglygroup.model.User();
-        ArrayList<com.uglygroup.model.User> friLis=new ArrayList<com.uglygroup.model.User>();
-        u=selectUserInfor(userId);
-        int friendId;
-        for(int i=0;i<u.getFriendList().size();i++){
-            friendId=u.getFriendList().get(i);
-            friLis.add(selectUserInfor(friendId));
-        }
-        return friLis;
-
-    }
-    //获取用户特别关心
-    public static ArrayList<com.uglygroup.model.User> selectUserFollow(int userId){
-        com.uglygroup.model.User u=new com.uglygroup.model.User();
-        ArrayList<com.uglygroup.model.User> followLis=new ArrayList<com.uglygroup.model.User>();
-        u=selectUserInfor(userId);
-        int friendId;
-        for(int i=0;i<u.getFollow().size();i++){
-            friendId=u.getFollow().get(i);
-            followLis.add(selectUserInfor(friendId));
-        }
-        return followLis;
-
-    }
-    //获取用户粉丝
-    public static ArrayList<com.uglygroup.model.User> selectUserFans(int userId){
-        com.uglygroup.model.User u=new com.uglygroup.model.User();
-        ArrayList<com.uglygroup.model.User> fansLis=new ArrayList<com.uglygroup.model.User>();
-        u=selectUserInfor(userId);
-        int friendId;
-        for(int i=0;i<u.getFans().size();i++){
-            friendId=u.getFans().get(i);
-            fansLis.add(selectUserInfor(friendId));
-        }
-        return fansLis;
-    }
     //获取用户喜欢吃的列表
 
     public static ArrayList<String> selectUserFavorite(int userId){
@@ -191,16 +153,6 @@ public class UserDataUtils {
         return favLis;
     }
 
-    //获取用户的消息列表
-    public static ArrayList<String> selectUserMessage(int userId){
-        com.uglygroup.model.User u=new com.uglygroup.model.User();
-        ArrayList<String> messageLis=new ArrayList<String>();
-        u=selectUserInfor(userId);
-        for(int i=0;i<u.getMessage().size();i++){
-            messageLis.add(u.getMessage().get(i));
-        }
-        return messageLis;
-    }
     //获取用户讨厌吃的列表
     public static ArrayList<String> selectUserHate(int userId){
         com.uglygroup.model.User u=new com.uglygroup.model.User();
@@ -242,15 +194,7 @@ public class UserDataUtils {
         u.addFriend(friendId);
     }
 
-    public static  void setReaded(int userId,int type){
-      ArrayList<Message>messages;
-        messages=checkMessage(userId);
-      for(int i=0;i<messages.size();i++){
-          if(messages.get(i).getType()==type){
-              messages.get(i).setStatus(1);
-          }
-      }
-    }
+
     //添加关心
     public static  void addFollow(int userId,int followId){
         com.uglygroup.model.User u=new com.uglygroup.model.User();
@@ -280,17 +224,7 @@ public class UserDataUtils {
 
     }
     //确认是否有自己的消息
-    public static ArrayList<Message> checkMessage(int userId) {
-        ArrayList<Message> messages = new ArrayList<>();
-        ArrayList<String> messageId = new ArrayList<>();
-        messageId = UserDataUtils.selectUserInfor(userId).getMessage();
-        Message m = new Message();
-        for(int i=0;i<messageId.size();i++) {
-            m = MessageUtils.selectMessage(Integer.parseInt(messageId.get(i)));
-            messages.add(m);
-        }
-        return messages;
-    }
+
     //删除操作
 
     //删除好友
