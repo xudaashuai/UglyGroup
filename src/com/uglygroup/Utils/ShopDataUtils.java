@@ -69,12 +69,12 @@ public class ShopDataUtils {
             if (rs.next()) {
 
                 shop.allSet(rs.getString(1), rs.getString(2),
-                        rs.getString(3), rs.getString(4),
-                        rs.getInt(5), rs.getInt(6),
-                        rs.getInt(7), rs.getInt(8),
-                        rs.getInt(9), rs.getString(10),
+                        rs.getString(3), rs.getInt(4),
+                        rs.getInt(5), rs.getString(6),
+                        rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10),
                         rs.getString(11),rs.getString(12),
-                        rs.getString(13),rs.getInt(14));
+                        rs.getInt(13));
 
             }
         }catch (Exception e) {
@@ -132,32 +132,12 @@ public class ShopDataUtils {
         shop=selectShop(shopId);
         shop.addRank(newRank);
     }
-    public static void addShopubType(int shopId,String newSubType){
-        com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
-        shop.addSubType(newSubType);
-    }
-    public static  void addShopMainType(int shopId,String newMainType){
-        com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
-        shop.addMainType(newMainType);
-    }
 
     //删除操作
     public  static void deleteShopInRank(int shopId,String oldRank){
         com.uglygroup.model.Shop shop;
         shop=selectShop(shopId);
         shop.deleteRank(oldRank);
-    }
-    public  static void deleteShopubType(int shopId,String oldSubType){
-        com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
-        shop.deleteSubType(oldSubType);
-    }
-    public  static void deleteShopMainType(int shopId,String oldMainType){
-        com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
-        shop.deleteMainType(oldMainType);
     }
 
     //推荐

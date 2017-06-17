@@ -57,26 +57,7 @@ public class CommentUtils {
        return c;
 
     }
-    public static ArrayList<Comment> selectShopComment(int shopId){
-        String sql="select commentId from comment where shopId='"+String.valueOf(shopId)+"';";
-        ArrayList<Integer>commentId=new ArrayList<Integer>();
-        ArrayList<Comment>comments=new ArrayList<Comment>();
-        int id;
-        try{
-            ResultSet rs=DatabaseUtils.getResult(sql);
-            while (rs.next()){
-                id=rs.getInt(1);
-                commentId.add(id);
-            }
 
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        for(int i=0;i<commentId.size();i++){
-            comments.add(CommentUtils.selectComment(commentId.get(i)));
-        }
-        return comments;
-    }
     public static ArrayList<Comment> selectUserComment(int userId){
         String sql="select commentId from comment where userId='"+String.valueOf(userId)+"';";
         ArrayList<Integer>commentId=new ArrayList<Integer>();

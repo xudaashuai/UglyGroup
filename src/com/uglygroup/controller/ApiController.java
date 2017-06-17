@@ -179,12 +179,12 @@ public class ApiController {
         MessageUtils.addMessage(u.getId(),dst,type);
          return map;
     }
-    @RequestMapping(path = "/api/user/set_readed",method =RequestMethod.POST)
+    @RequestMapping(path = "/api/user/set_read",method =RequestMethod.POST)
     public @ResponseBody
-    Map<String,Object> setReaded(int type,HttpServletRequest request){
+    Map<String,Object> setRead(int id,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
         User u= (User) request.getSession().getAttribute("user");
-        u.setReaded(type);
+        u.setRead(id);
         return map;
     }
 

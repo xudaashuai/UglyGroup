@@ -42,4 +42,7 @@ public class Message {
         u=UserDataUtils.selectUserInfor(src);
         return u;
     }
+    public int getId(){
+        return id;
+    }
 }

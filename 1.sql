@@ -51,3 +51,5 @@ CREATE TABLE public.shop
   long_info TEXT
 );
 ALTER TABLE public.shop ADD type TEXT NULL;
+ALTER TABLE public.shop ADD inRank TEXT NULL;
+ALTER TABLE public.shop ADD comment TEXT NULL;

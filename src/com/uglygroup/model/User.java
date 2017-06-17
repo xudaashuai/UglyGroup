@@ -394,11 +394,11 @@ public class User {
         return typeMessage;
     }
 
-    public   void setReaded(int type){
+    public   void setRead(int messageId){
         ArrayList<Message>messages=new ArrayList<>();
         messages=getMessage();
         for(int i=0;i<messages.size();i++){
-            if(messages.get(i).getType()==type){
+            if(messages.get(i).getId()==messageId){
                 messages.get(i).setStatus(1);
             }
         }
