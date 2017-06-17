@@ -395,13 +395,7 @@ public class User {
     }
 
     public   void setRead(int messageId){
-        ArrayList<Message>messages=new ArrayList<>();
-        messages=getMessage();
-        for(int i=0;i<messages.size();i++){
-            if(messages.get(i).getId()==messageId){
-                messages.get(i).setStatus(1);
-            }
-        }
+      MessageUtils.selectMessage(messageId).setStatus(1);
     }
     public boolean inList(String whatList,int id){
         ArrayList<Integer> lis=new ArrayList<>();

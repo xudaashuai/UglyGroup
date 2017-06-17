@@ -1,5 +1,6 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.DatabaseUtils;
 import com.uglygroup.Utils.UserDataUtils;
 
 import java.sql.Timestamp;
@@ -27,6 +28,8 @@ public class Message {
     }
     public void setStatus(int status){
         this.status=status;
+        String sql="update message set status='"+status+"' where id='"+id+"';";
+        DatabaseUtils.doSql(sql);
     }
     public int getType(){
         return type;
