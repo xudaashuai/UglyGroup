@@ -27,7 +27,7 @@ public class ShopDataUtils {
                         rs.getString(7), rs.getString(8).split(","),
                         rs.getString(9), rs.getString(10),
                         rs.getString(11),rs.getString(12),
-                        rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(17).split(","));
+                        rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16).split(","));
 
             }
         }catch (Exception e) {
