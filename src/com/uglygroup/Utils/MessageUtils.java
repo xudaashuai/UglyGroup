@@ -59,7 +59,7 @@ public class MessageUtils {
         u.addMessage(String.valueOf(inId));
 
     }
-    public int unreadNumber(int userId){
+    public static int unreadNumber(int userId){
         int count=0;
         String sql="select count(1) from message where dst='"+String.valueOf(userId)+"'and status='0';";
         try{

@@ -62,7 +62,9 @@ public class User {
         message=uMessage;
 
     }
-
+   public  int getUnread(){
+        return MessageUtils.unreadNumber(trueId);
+   }
 
     public String getFriendList(){
         return friendList;
