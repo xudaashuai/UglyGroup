@@ -230,7 +230,7 @@ public class User {
         ArrayList<Integer> fId=new ArrayList<Integer>();
         fId=getIntList(friendList);
         for(int i=0;i<fId.size();i++){
-            if(friendId==fId.get(0)) {
+            if(friendId==fId.get(i)) {
                 return Utils.addStatus.ITEMEXIST;
             }
         }
