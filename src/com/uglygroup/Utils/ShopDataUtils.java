@@ -107,7 +107,7 @@ public class ShopDataUtils {
         int x=s.size();
         r=Utils.getRandom(x);
                 for (int i=0;i<10;i++){
-                    Shop shop=s.get(r[i]);
+                    Shop shop=s.get(r[i]-1);
                     shops.add(shop);
                 }
 
