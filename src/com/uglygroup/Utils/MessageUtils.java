@@ -5,6 +5,7 @@ import com.uglygroup.model.User;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -58,7 +59,20 @@ public class MessageUtils {
         u.addMessage(String.valueOf(inId));
 
     }
+    public int unreadNumber(int userId){
+        int count=0;
+        String sql="select count(1) from message where dst='"+String.valueOf(userId)+"'and status='1';";
+        try{
+            ResultSet rs;
+            rs=DatabaseUtils.getResult(sql);
+            count=rs.getInt(1);
 
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return count;
+
+    }
     public static Message selectMessage(int id){
         Message m = new Message();
         String sql = "select * from message where id='" + id + "';";

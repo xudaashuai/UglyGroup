@@ -62,22 +62,11 @@ public class User {
         message=uMessage;
 
     }
-    public int UnReadNumber(){
-        ArrayList<Integer>  messageList = new ArrayList<>();
-        int count=0;
-        messageList=getIntList(message);
-        int messageId;
-        for(int i=0;i<messageList.size();i++){
-            messageId=messageList.get(i);
-            Message m=new Message();
-            m=MessageUtils.selectMessage(messageId);
-            if(m.getStatus()==0)
-            count++;
-        }
-        return count;
 
+
+    public String getFriendList(){
+        return friendList;
     }
-
     //单个属性
     @Basic
     @Column(name = "sex")
