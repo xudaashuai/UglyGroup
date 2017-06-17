@@ -162,6 +162,15 @@ public class ApiController {
         map.put ("shops",messages);
         return map;
     }
+    @RequestMapping(path = "/api/user/add_follow",method =RequestMethod.GET )
+    public @ResponseBody
+    Map<String,Object> addFollow(int dst,HttpServletRequest request){
+        Map<String,Object> map=new HashMap<>();
+        User u= (User) request.getSession().getAttribute("user");
+        u.addFollow(dst);
+        return map;
+    }
+
 
     @RequestMapping(path = "/api/message/send_message",method =RequestMethod.GET )
     public @ResponseBody
