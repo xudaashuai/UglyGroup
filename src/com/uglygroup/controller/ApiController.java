@@ -152,7 +152,7 @@ public class ApiController {
         map.put("shops",shops);
         return map;
     }
-    @RequestMapping(path = "/api/user/check_message",method =RequestMethod.GET )
+    @RequestMapping(path = "/api/user/check_message",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> userCheckMessage(int type,int status,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
@@ -162,7 +162,7 @@ public class ApiController {
         map.put ("shops",messages);
         return map;
     }
-    @RequestMapping(path = "/api/user/add_follow",method =RequestMethod.GET )
+    @RequestMapping(path = "/api/user/add_follow",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> addFollow(int id,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
@@ -172,14 +172,14 @@ public class ApiController {
     }
 
 
-    @RequestMapping(path = "/api/message/send_message",method =RequestMethod.GET )
+    @RequestMapping(path = "/api/message/send_message",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> sendMessage(@ModelAttribute("user")User u,int dst,int type){
         Map<String,Object> map=new HashMap<>();
         MessageUtils.addMessage(u.getId(),dst,type);
          return map;
     }
-    @RequestMapping(path = "/api/user/set_readed",method =RequestMethod.GET )
+    @RequestMapping(path = "/api/user/set_readed",method =RequestMethod.POST)
     public @ResponseBody
     Map<String,Object> setReaded(int type,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
