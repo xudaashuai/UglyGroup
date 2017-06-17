@@ -28,6 +28,7 @@ public class User {
     private int trueId;
     private String headPicture;
     private String message;
+
     public void allSet(String uSex,
                        int uAge,
                        String uBirthDay,
@@ -60,6 +61,21 @@ public class User {
         sign=uSign;
         headPicture=uHeadPicture;
         message=uMessage;
+
+    }
+    public int UnReadNumber(){
+        ArrayList<Integer>  messageList = new ArrayList<>();
+        int count=0;
+        messageList=getIntList(message);
+        int messageId;
+        for(int i=0;i<messageList.size();i++){
+            messageId=messageList.get(i);
+            Message m=new Message();
+            m=MessageUtils.selectMessage(messageId);
+            if(m.getStatus()==0)
+            count++;
+        }
+        return count;
 
     }
 
