@@ -138,8 +138,10 @@ public class Shop {
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;
         try{
+
             ResultSet rs= DatabaseUtils.getResult(sql);
             while (rs.next()){
+
                 cid=rs.getInt(1);
                 commentId.add(cid);
             }

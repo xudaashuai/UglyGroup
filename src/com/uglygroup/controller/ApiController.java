@@ -179,7 +179,7 @@ public class ApiController {
         MessageUtils.addMessage(u.getId(),dst,type);
          return map;
     }
-    @RequestMapping(path = "/api/user/set_read",method =RequestMethod.POST)
+    @RequestMapping(path = "/api/message/set_read",method =RequestMethod.POST)
     public @ResponseBody
     Map<String,Object> setRead(int id,HttpServletRequest request){
         Map<String,Object> map=new HashMap<>();
