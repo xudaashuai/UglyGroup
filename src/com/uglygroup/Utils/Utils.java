@@ -1,12 +1,28 @@
 package com.uglygroup.Utils;
 
 
+import java.sql.ResultSet;
 import java.util.Random;
 
 /**
  * Created by Think on 2017/6/3.
  */
 public class Utils {
+    public static int getInid(String sql){
+        int inId=0;
+        ResultSet rs=DatabaseUtils.getResult(sql);
+        try {
+            if (rs.next()) {
+                inId=rs.getInt(1);
+            }
+            else {
+                inId = 0;
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return inId;
+    }
     public static enum loginStatus{
         PASSWORDERROR,
         LOGINNAMENOEXIST,
@@ -26,6 +42,7 @@ public class Utils {
         ITEMNOEXIST,
         FAILED
     }
+
     public static int[] getRandom(int n){
         Random random = new Random();
         int[] a=new int [n];

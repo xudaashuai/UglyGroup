@@ -1,6 +1,7 @@
 package com.uglygroup.Utils;
 import com.uglygroup.model.Comment;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -13,31 +14,9 @@ public class CommentUtils {
     private static int inId;
     static {
         String sql="select max(commentId) from \"comment\"";
-        ResultSet rs=DatabaseUtils.getResult(sql);
-        try {
-            if (rs.next()) {
-                inId=rs.getInt(1);
-            }
-            else {
-                inId = 0;
-            }
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println(inId);
+        Utils.getInid(sql);
     }
-    public static void addComment(String commentBody,int shopId,int userId,int score){
-        inId++;
-        System.currentTimeMillis();
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-        String time=df.format(new Date());
-        String sql = "insert into comment values("+"'"
-                +String.valueOf(inId)+"','"
-                +String.valueOf(shopId)+"','"
-                +String.valueOf(userId)+ "','"
-                +commentBody+"','"+String.valueOf(score)+"','"+time+ "')" + "on conflict do nothing;";
-        DatabaseUtils.doSql(sql);
-    }
+
     public static void removeComment(int commentId){
         String sql="delete from comment where commentId='"+commentId+"';";
         DatabaseUtils.doSql(sql);
@@ -49,7 +28,7 @@ public class CommentUtils {
                     ResultSet rs;
                     rs=DatabaseUtils.getResult(sql);
                     if(rs.next()){
-                        c.allset(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getString(6));
+                        c.allset(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getInt(5),rs.getTimestamp(6));
                     }
                 } catch (Exception e) {
                     throw new RuntimeException(e);

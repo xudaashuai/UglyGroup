@@ -16,16 +16,7 @@ public class MessageUtils {
     static {
         String sql="select max(Id) from \"message\"";
         ResultSet rs=DatabaseUtils.getResult(sql);
-        try {
-            if (rs.next()) {
-                inId=rs.getInt(1);
-            }
-            else {
-                inId = 0;
-            }
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        inId=Utils.getInid(sql);
         // System.out.println(inId);
     }
 

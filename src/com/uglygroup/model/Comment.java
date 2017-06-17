@@ -1,5 +1,7 @@
 package com.uglygroup.model;
 
+import java.sql.Timestamp;
+
 /**
  * Created by Think on 2017/6/10.
  */
@@ -9,9 +11,9 @@ public class Comment {
     private int userId;
     private String commentBody;
     private int score;
-    private String time;
+    private Timestamp time;
     public void allset(int cCommentId,int cShopId,int cUserId,
-                       String cCommentBody,int cScore,String cTime){
+                       String cCommentBody,int cScore,Timestamp cTime){
         commentId=cCommentId;
         shopId=cShopId;
         userId=cUserId;
@@ -35,7 +37,7 @@ public class Comment {
     public int getScore(){
         return score;
     }
-    public String getTime(){
+    public Timestamp getTime(){
         return time;
     }
 }

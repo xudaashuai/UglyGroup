@@ -53,3 +53,6 @@ CREATE TABLE public.shop
 ALTER TABLE public.shop ADD type TEXT NULL;
 ALTER TABLE public.shop ADD inRank TEXT NULL;
 ALTER TABLE public.shop ADD comment TEXT NULL;
+ALTER TABLE public.shop ADD time TEXT NULL;
+ALTER TABLE public.shop ADD parking TEXT NULL;
+ALTER TABLE public.shop ADD wifi TEXT NULL;

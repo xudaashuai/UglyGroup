@@ -17,18 +17,8 @@ public class ShopDataUtils {
     static {
     String sql="select max(shopTrueId) from \"shop\"";
     ResultSet rs=DatabaseUtils.getResult(sql);
-    try {
-        if (rs.next()) {
-            inId=rs.getInt(1);
-        }
-        else {
-            inId = 0;
-        }
-    }catch (Exception e) {
-        throw new RuntimeException(e);
-    }
-    // System.out.println(inId);
-    }
+    inId=Utils.getInid(sql);
+}
 
 
     //添加一家商家

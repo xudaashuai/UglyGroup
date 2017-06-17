@@ -19,17 +19,7 @@ public class UserDataUtils {
     //用户登录、注册和更改信息操作
     static {
         String sql="select max(trueId) from \"users\"";
-        ResultSet rs=DatabaseUtils.getResult(sql);
-        try {
-            if (rs.next()) {
-              inId=rs.getInt(1);
-            }
-            else {
-                inId = 0;
-            }
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        inId=Utils.getInid(sql);
        System.out.println(inId);
     }
     //登陆处理
@@ -163,6 +153,7 @@ public class UserDataUtils {
         }
         return hateLis;
     }
+
     //获取所有注册用户的对象数组
     public static ArrayList<com.uglygroup.model.User> getAllUser(){
         ArrayList<Integer> allUserId=new ArrayList<Integer>();

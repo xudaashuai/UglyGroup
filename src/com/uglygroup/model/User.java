@@ -377,6 +377,10 @@ public class User {
         return messages;
 
     }
+
+    public void addComment(String newComment){
+
+    }
     public void addMessage(String newMessage){
            if(this.message.equals("")){
                this.message=newMessage;
