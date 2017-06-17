@@ -101,10 +101,10 @@ public class ShopDataUtils {
     //推荐
     public static ArrayList<Shop> getRandomShop(){
         ArrayList<Shop> shops=new ArrayList<>();
-        int[] r=new int [2];
-        r=Utils.getRandom(3);
-                for (int i=0;i<2;i++){
-                    System.out.println(r[i]);
+        int[] r;
+        int x=getAllShop(1).size();
+        r=Utils.getRandom(x);
+                for (int i=0;i<10;i++){
                     Shop shop=selectShop(r[i]);
                     shops.add(shop);
                 }

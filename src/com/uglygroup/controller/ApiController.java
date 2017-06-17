@@ -208,6 +208,13 @@ public class ApiController {
         map.put("list",shops);
         return map;
     }
-
+    @RequestMapping(path = "/api/user/get_todayUser",method =RequestMethod.GET)
+    public @ResponseBody
+    Map<String,Object> getTodyUser(){
+        Map<String,Object> map=new HashMap<>();
+        ArrayList<User>users=UserDataUtils.getRandomUser();
+        map.put("list",users);
+        return map;
+    }
 
 }

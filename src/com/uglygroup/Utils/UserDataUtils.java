@@ -22,6 +22,19 @@ public class UserDataUtils {
         inId=Utils.getInid(sql);
        System.out.println(inId);
     }
+
+    public static ArrayList<User> getRandomUser(){
+        ArrayList<User> users=new ArrayList<>();
+        int[] r;
+        int x=getAllUser().size();
+        r=Utils.getRandom(x);
+        for (int i=0;i<4;i++){
+            User u =selectUserInfor(r[i]);
+            users.add(u);
+        }
+
+        return users;
+    }
     //登陆处理
     public static Utils.loginStatus login(String userName, String userPassword, com.uglygroup.model.User u) {
         String sql = "select password from \"users\" where userName='" + userName + "'";
