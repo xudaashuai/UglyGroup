@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: xudas
@@ -95,17 +96,21 @@
     <h2 id="recommend-list" style="text-align: center">今日推荐</h2>
     <hr class="featurette-divider">
     <div class="row recommend-item">
-        <div class="col-md-7">
-            <a href="shop" style="TEXT-DECORATION:none"><h2 class="featurette-heading">焱铁烧</h2></a>
-            <p class="lead">
-                焱铁烧是以澳洲黑毛和牛为招牌、致力推崇品质和设计的现代派烧肉料理店。餐厅将现代简约设计风格与奢华高品质的和牛肉合二为一。采用传统焱铁烧法，完整的将和牛肉的口感品质表现出来。让你感受真正的烤肉。吃烤肉、就来焱铁烧！ </p>
-        </div>
-        <div style="text-align: center;height: 500px;">
-            <div class="col-md-5" style="display: inline-block;vertical-align: middle">
-                <img src="/pic/s1.jpg" alt="Generic placeholder image">
+        <c:forEach items="${shops}" var="shop">
+
+            <div class="col-md-7">
+                <a href="/shop/${shop.id}" style="TEXT-DECORATION:none"><h2 class="featurette-heading">${shop.name}</h2></a>
+                <p class="lead">
+                    ${shop.simple_info}
+                </p>
             </div>
-            <span style="display: inline-block;vertical-align: middle"></span>
-        </div>
+            <div style="text-align: center;height: 500px;">
+                <div class="col-md-5" style="display: inline-block;vertical-align: middle">
+                    <img src="${shop.shopPic[0]}" alt="Generic placeholder image">
+                </div>
+                <span style="display: inline-block;vertical-align: middle"></span>
+            </div>
+        </c:forEach>
     </div>
 
     <%@include file="footer.jsp" %>

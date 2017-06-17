@@ -24,7 +24,7 @@ public class MainController {
     @RequestMapping(path = "/",method = RequestMethod.GET)
     public ModelAndView index(){
         ModelAndView modelAndView=new ModelAndView("index");
-        modelAndView.addObject("types",new String[]{"1","2","3","4"});
+        modelAndView.addObject("shops",ShopDataUtils.getRandomShop());
         return modelAndView;
     }
     //用户个人首页
@@ -46,10 +46,10 @@ public class MainController {
         return modelAndView;
     }
     //查看商家信息
-    @RequestMapping(path = "/shop",method = RequestMethod.GET)
-    public ModelAndView shop(HttpServletRequest request){
+    @RequestMapping(path = "/shop/{id}",method = RequestMethod.GET)
+    public ModelAndView shop(HttpServletRequest request, @PathVariable("id") int id){
         ModelAndView modelAndView=new ModelAndView("shop");
-        //modelAndView.addObject("shop", ShopsDataUtils.selectShop("qeq"));
+        modelAndView.addObject("shop", ShopDataUtils.selectShop(id));
 
         return modelAndView;
     }

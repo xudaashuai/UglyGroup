@@ -42,7 +42,7 @@
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 person-item" style="margin-top: -150px">
             <h2 style="color: black"></h2>
-            <p style="color: black" class="person-list"></p>
+            <p style="color: black" class="person-list">${shop.name}</p>
         </div>
     </div>
 </div>
@@ -52,21 +52,16 @@
     <div class="row">
         <div class="col-md-9" role="main">
             <div class="bs-docs-section">
-                <h1 id="shop">商家</h1>
-                <h2 id="shop-info">商家介绍</h2>
-                <p> One & Night A+连锁概念清吧隶属逸成力作投资管理有限公司，公司是以投资及管理娱乐、餐饮等服务业的专业投资管理公司，公司主要为大型房地产商提供娱乐、餐饮及服务业配套项目。 One &
-                    Night A+连锁概念清吧投资千万打造华中地区娱乐航母，集合精品红酒、专业艺术，为成熟人士提供精致休闲空间。 One & Night
-                    A+连锁概念清吧自一家分店起，以传播清吧文化，引导时尚夜生活潮流，创新夜店消费概念为己任，始终坚持健康娱乐，贴心服务的经营理念，深受高端消费者青睐，是华中地区清吧标志品牌。</p>
-                <h2 id="shop-pic">商家实景</h2>
-                <img src="http://p0.meituan.net/dpdeal/dafd4714d90c9d22c96a9ffaacbfb685100277.jpg">
-                <img src="http://p0.meituan.net/dpdeal/0cb6b6be014158fb81eaa25f8c6e1e2978610.jpg">
-                <img src="http://p0.meituan.net/dpdeal/3f55f86bd6221bd1c769d2ecc7764d5a135481.jpg">
-                <img src="http://p1.meituan.net/dpdeal/7bd0b6a7f9e9a9d3e0a075e8eb431fc3152520.jpg">
-                <img src="http://p0.meituan.net/dpdeal/1a9746076fa5f53c14489669754d39ba149346.jpg">
-                <img src="http://p1.meituan.net/dpdeal/6915ef22af00f2f4b002c8a0378ad9d7159485.jpg">
-                <img src="http://p0.meituan.net/dpdeal/be0e7e2d4da17f73226ff6bbb027bf39168011.jpg">
-                <img src="http://p0.meituan.net/dpdeal/5d01ce9cb10244c7daa3a49cba2cc0fa155911.jpg">
-
+                <h1 id="shop">商家信息</h1>
+                <h2 id="shop-info">信息</h2>
+                <p class="text-muted">地址：${shop.address}</p>
+                <p class="text-muted">电话：${shop.phone}</p>
+                <p class="text-muted">人均：${shop.price}</p>
+                <p class="text-muted">评分：${shop.star}</p>
+                <p class="text-muted">停车：${shop.parking}</p>
+                <p class="text-muted">wifi：${shop.wifi}</p>
+                <p class="text-muted">简介：${shop.simple_info}</p>
+                ${shop.long_info}
             </div>
         </div>
         <div class="col-md-3" role="complementary" >
@@ -76,10 +71,10 @@
                     <br>
                     <br>
                     <li>
-                        <a href="#shop">商家</a>
+                        <a href="#shop">商家信息</a>
                         <ul class="nav">
-                            <li><a href="#shop-info">介绍</a></li>
-                            <li><a href="#shop-pic">实景</a></li>
+                            <li><a href="#shop-info">信息</a></li>
+                            <li><a href="#shop-pic">详情</a></li>
                             <li><a href="#shop-score">评分</a></li>
                         </ul>
                     </li>

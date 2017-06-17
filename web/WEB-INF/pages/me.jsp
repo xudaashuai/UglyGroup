@@ -128,6 +128,11 @@
 
                                     </div>
                                 </c:forEach>
+                                <c:if test="${user.checkMessage(1,0).size()==0}">
+                                    <div class="well well-lg">
+                                        没有新的好友请求
+                                    </div>
+                                </c:if>
                             </div>
                             <div class="tab-pane fade in " id="new-fans">
                                 <c:forEach var="mes" items="${user.checkMessage(4,0)}">
@@ -155,8 +160,10 @@
                                         </div>
                                     </div>
                                 </c:forEach>
-                                <c:if test="${user.checkMessage(4,0)==0}">
-
+                                <c:if test="${user.checkMessage(4,0).size()==0}">
+                                    <div class="well well-lg">
+                                        没有新的粉丝请求
+                                    </div>
                                 </c:if>
                             </div>
                             <div class="tab-pane fade in " id="new-notice">
@@ -165,6 +172,11 @@
                                             ${mes.content}
                                     </div>
                                 </c:forEach>
+                                <c:if test="${user.checkMessage(3,0).size()==0}">
+                                    <div class="well well-lg">
+                                        没有新的系统通知
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>
