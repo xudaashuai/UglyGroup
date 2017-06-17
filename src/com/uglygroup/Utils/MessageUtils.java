@@ -65,6 +65,7 @@ public class MessageUtils {
         try{
             ResultSet rs;
             rs=DatabaseUtils.getResult(sql);
+            if(rs.next())
             count=rs.getInt(1);
 
         }catch (Exception e) {
