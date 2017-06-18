@@ -199,7 +199,7 @@ public class ApiController {
         map.put("list",shops);
         return map;
     }
-    @RequestMapping(path = "/api/shop/get_searchShop",method =RequestMethod.POST )
+    @RequestMapping(path = "/api/shop/searchShop",method =RequestMethod.POST )
     public @ResponseBody
     Map<String,Object> searchShop(int page,String keyword){
         Map<String,Object> map=new HashMap<>();
