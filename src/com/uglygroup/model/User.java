@@ -379,8 +379,8 @@ public class User {
 
     }
 
-    public void addComment(int shopId,String commentBody,int score){
-        CommentUtils.addComment(commentBody,shopId,trueId,score);
+    public void addComment(int shopId,String commentBody,int score,String[] pic){
+        CommentUtils.addComment(commentBody,shopId,trueId,score,pic);
 
     }
     public void addMessage(String newMessage){

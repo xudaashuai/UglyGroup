@@ -1,5 +1,7 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.UserDataUtils;
+
 import java.sql.Timestamp;
 
 /**
@@ -12,7 +14,7 @@ public class Comment {
     private String commentBody;
     private int score;
     private Timestamp time;
-    private String pic;
+    private String[] pic;
     public void allset(int cCommentId,int cShopId,int cUserId,
                        String cCommentBody,int cScore,Timestamp cTime,String cPic){
         commentId=cCommentId;
@@ -22,8 +24,10 @@ public class Comment {
         score=cScore;
         time=cTime;
     }
-    public void addPic(String newPic){
-
+    public User selectUser(int userId){
+        User u;
+        u= UserDataUtils.selectUserInfor(userId);
+        return u;
     }
     public int getCommentId(){
         return commentId;
