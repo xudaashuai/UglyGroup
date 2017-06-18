@@ -16,7 +16,7 @@ public class CommentUtils {
         String sql="select max(commentId) from \"comment\"";
         Utils.getInid(sql);
     }
-    public static void addComment(String commentBody,int shopId,int userId,int score){
+    public static void addComment(String commentBody,int shopId,int userId,int score,String[]pic){
         inId++;
         Date date=new Date();
         Timestamp time =new Timestamp(date.getTime());
@@ -24,7 +24,7 @@ public class CommentUtils {
                 +String.valueOf(inId)+"','"
                 +String.valueOf(shopId)+"','"
                 +String.valueOf(userId)+ "','"
-                +commentBody+"','"+String.valueOf(score)+"','"+time.toString()+ "')" + "on conflict do nothing;";
+                +commentBody+"','"+String.valueOf(score)+"','"+time.toString()+"','"+pic.toString()+ "')" + "on conflict do nothing;";
         DatabaseUtils.doSql(sql);
     }
     public static void removeComment(int commentId){
@@ -45,27 +45,6 @@ public class CommentUtils {
                 }
        return c;
 
-    }
-
-    public static ArrayList<Comment> selectUserComment(int userId){
-        String sql="select commentId from comment where userId='"+String.valueOf(userId)+"';";
-        ArrayList<Integer>commentId=new ArrayList<Integer>();
-        ArrayList<Comment>comments=new ArrayList<Comment>();
-        int id;
-        try{
-            ResultSet rs=DatabaseUtils.getResult(sql);
-            while (rs.next()){
-                id=rs.getInt(1);
-                commentId.add(id);
-            }
-
-        }catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        for(int i=0;i<commentId.size();i++){
-            comments.add(CommentUtils.selectComment(commentId.get(i)));
-        }
-        return comments;
     }
 
 }

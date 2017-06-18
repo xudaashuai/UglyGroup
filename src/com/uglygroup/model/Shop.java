@@ -148,7 +148,7 @@ public class Shop {
         return type;
     }
 
-    public  ArrayList<Comment> getShopComment(){
+    public  ArrayList<Comment> selectShopComment(){
         String sql="select commentId from comment where shopId='"+String.valueOf(id)+"';";
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
