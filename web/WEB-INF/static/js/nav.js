@@ -7,10 +7,11 @@ function searchShop() {
         type: 'post',
         url: '/api/shop/search_shop',
         data: {
-            'type':'',
             'keyword':keyword,
         },
         dataType: 'json',
-        success: function (r){}
+        success: function (r){
+
+        }
     })
 }

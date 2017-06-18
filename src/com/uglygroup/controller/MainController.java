@@ -4,6 +4,7 @@ import com.uglygroup.Utils.MessageUtils;
 import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
 import com.uglygroup.model.Message;
+import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,9 @@ public class MainController {
     @RequestMapping(path = "/",method = RequestMethod.GET)
     public ModelAndView index(){
         ModelAndView modelAndView=new ModelAndView("index");
-        modelAndView.addObject("shops",ShopDataUtils.getRandomShop());
+        ArrayList<Shop> shops=ShopDataUtils.getRandomShop();
+        modelAndView.addObject("shops",shops);
+        modelAndView.addObject("users",UserDataUtils.getRandomUser());
         return modelAndView;
     }
     //用户个人首页

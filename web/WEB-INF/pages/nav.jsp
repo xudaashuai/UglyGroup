@@ -31,7 +31,7 @@
                        placeholder="搜索好吃哒" >
                 <span class="input-group-btn" style="margin-top: 1px">
                                 <button class="btn btn-default"
-                                        type="button">搜索</button>
+                                        type="button" onclick="searchShop()">搜索</button>
                             </span>
             </div>
         </form>

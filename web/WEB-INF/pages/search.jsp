@@ -17,7 +17,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>丑团 -- 首页</title>
+    <title>丑团 -- 搜索结果</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -34,51 +34,7 @@
 </head>
 <%@include file="nav.jsp" %>
 <body>
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active" style="overflow: hidden">
-            <img class="first-slide" src="/pic/list-1.jpeg" alt="First slide" style="width:100%;">
-            <div class="container">
-                <div class="carousel-caption">
-                    <h1>可能是东半球第二好的美食榜单</h1>
-                    <p></p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">立即查看</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
-
 <div class="container person-list">
-    <h2 style="text-align: center">丑团达人</h2>
-
-    <hr class="featurette-divider">
-    <div class="row">
-        <c:forEach items="${users}" var="u">
-            <div class="col-lg-3 person-item ">
-                <img class="img-circle" src="${u.headPicture}" alt="Generic placeholder image" width="140" height="140">
-                <h2>${u.nickName}</h2>
-                <p class="person-list">${u.sign}</p>
-                <p><a class="btn btn-success" href="/user/${u.id}" role="button">看他</a></p>
-            </div>
-        </c:forEach>
-    </div><!-- /.row -->
-    <h2 id="recommend-list" style="text-align: center">今日推荐</h2>
-    <hr class="featurette-divider">
     <div class="row recommend-item">
         <c:forEach items="${shops}" var="shop">
 
