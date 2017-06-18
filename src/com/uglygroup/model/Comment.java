@@ -24,7 +24,7 @@ public class Comment {
         score=cScore;
         time=cTime;
     }
-    public User selectUser(int userId){
+    public User selectUser(){
         User u;
         u= UserDataUtils.selectUserInfor(userId);
         return u;
