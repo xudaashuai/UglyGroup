@@ -39,10 +39,10 @@ public class DatabaseUtils {
     //进行连接
     public  static void getConnection(){
         try {
-            String url = "jdbc:postgresql://localhost:5439/postgres";
+            String url = "jdbc:postgresql://120.25.75.23:5439/postgres";
             //换成自己PostgreSQL数据库实例所在的ip地址，并设置自己的端口
             String user = "postgres";
-            String password = "";
+            String password = "123456";
             Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(url, user, password);
             //System.out.println("是否成功连接pg数据库" + connection);
