@@ -149,7 +149,7 @@ public class Shop {
     }
 
     public  ArrayList<Comment> selectShopComment(int page){
-        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"' limit 10 offset"+String.valueOf(page*10);
+        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"' limit 10 offset "+String.valueOf(page*10);
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;

@@ -64,19 +64,19 @@
                 <p class="text-muted">简介：${shop.simple_info}</p>
                 ${shop.long_info}
                 <h1 id="comment">评论</h1>
-                <c:forEach var="x" begin="0" end="10" step="1">
+                <c:forEach var="x" items="${shop.selectShopComment(1)}">
                 <div class="well well-lg">
                     <div class="row">
                         <div class="col-lg-3 person-item">
-                            <img class="img-circle" src="${shop.selectShopComment().get(x).selectUser().headPicture}"
+                            <img class="img-circle" src="${x.get(x).selectUser().headPicture}"
                                  alt="Generic placeholder image"
                                  width="100"
                                  height="100">
-                            <h3 style="margin-bottom: -20px;font-size: large;color:black">${shop.selectShopComment().get(x).selectUser().nickName}</h3>
+                            <h3 style="margin-bottom: -20px;font-size: large;color:black">${x.get(x).selectUser().nickName}</h3>
                         </div>
                         <div class="col-lg-6">
                             <p>
-                                    ${shop.selectShopComment().get(x).commentBody}
+                                    ${x.get(x).commentBody}
                             </p>
                         </div>
                     </div>
