@@ -1,4 +1,5 @@
 package com.uglygroup.Utils;
+
 import java.util.HashSet;
 import java.util.Random;
 
@@ -12,66 +13,69 @@ import java.util.ArrayList;
  */
 public class ShopDataUtils {
     //获取商家信息
-    public static com.uglygroup.model.Shop selectShop(int shopId){
-        com.uglygroup.model.Shop shop=new com.uglygroup.model.Shop();
+    public static com.uglygroup.model.Shop selectShop(int shopId) {
+        com.uglygroup.model.Shop shop = new com.uglygroup.model.Shop();
         String sql = "select * from \"shop\" where id='" + String.valueOf(shopId) + "'";
         try {
+            shop = new Shop();
             ResultSet rs = DatabaseUtils.getResult(sql);
-            String str,str2;
-            String[] a={},b={};
+            String str, str2;
+            String[] a = {}, b = {};
             if (rs.next()) {
-                str=rs.getString(8);
-                if(!str.equals(null)) a=str.split(",");
-                str2=rs.getString(16);
-                if(!str2.equals(null)) b=str2.split(",");
+                str = rs.getString(8);
+                if (str != null) a = str.split(",");
+                str2 = rs.getString(16);
+                if (str2 != null) b = str2.split(",");
                 shop.allSet(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
                         rs.getInt(5), rs.getInt(6),
                         rs.getString(7), a,
                         rs.getString(9), rs.getString(10),
-                        rs.getString(11),rs.getString(12),
-                        rs.getString(13),rs.getString(14),rs.getString(15),b);
+                        rs.getString(11), rs.getString(12),
+                        rs.getString(13), rs.getString(14), rs.getString(15), b);
 
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         return shop;
     }
+
     //获取在列表中的所有商家的对象数组
-    public static ArrayList<com.uglygroup.model.Shop> getAllShop(int page){
-        ArrayList<Integer> ShopId=new ArrayList<Integer>();
-        String sql="select \"id\" from shop limit 10 offset "+String.valueOf(page*10)+";";
+    public static ArrayList<com.uglygroup.model.Shop> getAllShop(int page) {
+        ArrayList<Integer> ShopId = new ArrayList<Integer>();
+        String sql = "select \"id\" from shop limit 10 offset " + String.valueOf(page * 10) + ";";
         try {
-            ResultSet myrs=DatabaseUtils.getResult(sql);
-            while (myrs.next()){
-                int id=myrs.getInt(1);
+            ResultSet myrs = DatabaseUtils.getResult(sql);
+            while (myrs.next()) {
+                int id = myrs.getInt(1);
                 ShopId.add(id);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        ArrayList<com.uglygroup.model.Shop> Shop=new ArrayList<com.uglygroup.model.Shop>();
-        for(int i=0;i<ShopId.size();i++){
+        ArrayList<com.uglygroup.model.Shop> Shop = new ArrayList<com.uglygroup.model.Shop>();
+        for (int i = 0; i < ShopId.size(); i++) {
             Shop.add(selectShop(ShopId.get(i)));
         }
         return Shop;
     }
+
     //获取相关商家
-    public static ArrayList<com.uglygroup.model.Shop> searchShop(String keyword,int page){
-        ArrayList<com.uglygroup.model.Shop> Shop=new ArrayList<com.uglygroup.model.Shop>();
-        ArrayList<Integer> ShopId=new ArrayList<Integer>();
-        String sql="select \"id\" from shop where name like '%"+keyword+"%' limit 10 offset "+String.valueOf(page*10);
+    public static ArrayList<com.uglygroup.model.Shop> searchShop(String keyword, int page) {
+        ArrayList<com.uglygroup.model.Shop> Shop = new ArrayList<com.uglygroup.model.Shop>();
+        ArrayList<Integer> ShopId = new ArrayList<Integer>();
+        String sql = "select \"id\" from shop where name like '%" + keyword + "%' limit 10 offset " + String.valueOf(page * 10);
         try {
             ResultSet rs;
-            rs=DatabaseUtils.getResult(sql);
-            while (rs.next()){
+            rs = DatabaseUtils.getResult(sql);
+            while (rs.next()) {
                 ShopId.add(rs.getInt(1));
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        for(int i=0;i<ShopId.size();i++){
+        for (int i = 0; i < ShopId.size(); i++) {
             Shop.add(selectShop(ShopId.get(i)));
         }
         return Shop;
@@ -79,57 +83,55 @@ public class ShopDataUtils {
     //变更商家信息处理
 
 
-
-
-
-    public static void shopChangeInfor(String content,int shopId,String changeWhat){
-            String sql="update \"shop\" set "+changeWhat+"='"+content+"'where shopTrueId='"+String.valueOf(shopId)+"'";
-            DatabaseUtils.doSql(sql);
+    public static void shopChangeInfor(String content, int shopId, String changeWhat) {
+        String sql = "update \"shop\" set " + changeWhat + "='" + content + "'where shopTrueId='" + String.valueOf(shopId) + "'";
+        DatabaseUtils.doSql(sql);
     }
+
     //TODO
     //添加操作
-    public static  void addShopInRank(int shopId,String newRank){
+    public static void addShopInRank(int shopId, String newRank) {
         com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
+        shop = selectShop(shopId);
         shop.addRank(newRank);
     }
 
     //删除操作
-    public  static void deleteShopInRank(int shopId,String oldRank){
+    public static void deleteShopInRank(int shopId, String oldRank) {
         com.uglygroup.model.Shop shop;
-        shop=selectShop(shopId);
+        shop = selectShop(shopId);
         shop.deleteRank(oldRank);
     }
 
     //推荐
-    public static ArrayList<Shop> getRandomShop(){
-        ArrayList<Shop> shops=new ArrayList<>();
+    public static ArrayList<Shop> getRandomShop() {
+        ArrayList<Shop> shops = new ArrayList<>();
         int[] r;
         int id;
-        ArrayList<Integer> ShopId=new ArrayList<Integer>();
-        String sql="select \"id\" from shop;";
+        ArrayList<Integer> ShopId = new ArrayList<Integer>();
+        String sql = "select \"id\" from shop;";
         try {
-            ResultSet myrs1=DatabaseUtils.getResult(sql);
-            while (myrs1.next()){
-                id=myrs1.getInt(1);
+            ResultSet myrs1 = DatabaseUtils.getResult(sql);
+            while (myrs1.next()) {
+                id = myrs1.getInt(1);
                 ShopId.add(id);
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        ArrayList<com.uglygroup.model.Shop> Shop=new ArrayList<com.uglygroup.model.Shop>();
-        for(int i=0;i<ShopId.size();i++){
+        ArrayList<com.uglygroup.model.Shop> Shop = new ArrayList<com.uglygroup.model.Shop>();
+        for (int i = 0; i < ShopId.size(); i++) {
             Shop.add(selectShop(ShopId.get(i)));
         }
-        int x=Shop.size();
+        int x = Shop.size();
         System.out.println(x);
-        r=Utils.getRandom(x);
-                for (int i=0;i<10;i++){
+        r = Utils.getRandom(x);
+        for (int i = 0; i < 10; i++) {
 
-                    Shop shop=Shop.get(r[i]-1);
-                    shops.add(shop);
-                }
+            Shop shop = Shop.get(r[i] - 1);
+            shops.add(shop);
+        }
 
         return shops;
     }
