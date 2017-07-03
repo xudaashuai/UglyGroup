@@ -17,17 +17,20 @@ public class ShopDataUtils {
         String sql = "select * from \"shop\" where id='" + String.valueOf(shopId) + "'";
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
-
+            String str,str2;
+            String[] a={},b={};
             if (rs.next()) {
-
-
+                str=rs.getString(8);
+                if(!str.equals(null)) a=str.split(",");
+                str2=rs.getString(16);
+                if(!str2.equals(null)) b=str2.split(",");
                 shop.allSet(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
                         rs.getInt(5), rs.getInt(6),
-                        rs.getString(7), rs.getString(8).split(","),
+                        rs.getString(7), a,
                         rs.getString(9), rs.getString(10),
                         rs.getString(11),rs.getString(12),
-                        rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16).split(","));
+                        rs.getString(13),rs.getString(14),rs.getString(15),b);
 
             }
         }catch (Exception e) {
@@ -102,12 +105,29 @@ public class ShopDataUtils {
     public static ArrayList<Shop> getRandomShop(){
         ArrayList<Shop> shops=new ArrayList<>();
         int[] r;
+        int id;
+        ArrayList<Integer> ShopId=new ArrayList<Integer>();
+        String sql="select \"id\" from shop;";
+        try {
+            ResultSet myrs1=DatabaseUtils.getResult(sql);
+            while (myrs1.next()){
+                id=myrs1.getInt(1);
+                ShopId.add(id);
+            }
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
-        ArrayList<Shop>s=getAllShop(1);
-        int x=s.size();
+        ArrayList<com.uglygroup.model.Shop> Shop=new ArrayList<com.uglygroup.model.Shop>();
+        for(int i=0;i<ShopId.size();i++){
+            Shop.add(selectShop(ShopId.get(i)));
+        }
+        int x=Shop.size();
+        System.out.println(x);
         r=Utils.getRandom(x);
                 for (int i=0;i<10;i++){
-                    Shop shop=s.get(r[i]-1);
+
+                    Shop shop=Shop.get(r[i]-1);
                     shops.add(shop);
                 }
 
