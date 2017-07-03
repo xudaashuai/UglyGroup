@@ -119,20 +119,13 @@ public class ShopDataUtils {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
-        ArrayList<com.uglygroup.model.Shop> Shop = new ArrayList<com.uglygroup.model.Shop>();
-        for (int i = 0; i < ShopId.size(); i++) {
-            Shop.add(selectShop(ShopId.get(i)));
-        }
-        int x = Shop.size();
+        int x = ShopId.size();
         System.out.println(x);
         r = Utils.getRandom(x);
         for (int i = 0; i < 10; i++) {
-
-            Shop shop = Shop.get(r[i] - 1);
+            Shop shop = selectShop(ShopId.get(r[i] - 1));
             shops.add(shop);
         }
-
         return shops;
     }
 
