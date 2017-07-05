@@ -148,8 +148,8 @@ public class Shop {
         return type;
     }
 
-    public  ArrayList<Comment> selectShopComment(int page){
-        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"' limit 10 offset "+String.valueOf(page*10);
+    public  ArrayList<Comment> selectShopComment(){
+        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"';";
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;
@@ -170,9 +170,6 @@ public class Shop {
         }
         return comments;
     }
-
-
-
     //列表属性
     @Basic
     @Column(name = "inRank")//所在排行榜

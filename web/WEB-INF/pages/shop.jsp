@@ -67,78 +67,78 @@
                 <h2 id="add-comment">添加评论</h2>
                 <div class="well well-lg">
 
-                        <div>
-                            <textarea class="form-control" id="inputComment" placeholder="评论内容" rows="7"></textarea>
-                        </div>
-                        <div style="margin-top: 20px">
-                                <button id="addCommitButton"  class="btn btn-success" onclick="addComment($('#inputComment').val(),${shop.id},'')">评论</button>
-                        </div>
+                    <div>
+                        <textarea class="form-control" id="inputComment" placeholder="评论内容" rows="7"></textarea>
+                    </div>
+                    <div style="margin-top: 20px">
+                        <button id="addCommitButton"  class="btn btn-success" onclick="addComment($('#inputComment').val(),${shop.id},'')">评论</button>
+                    </div>
                 </div>
 
                 <h2 id="old-comment">已有评论</h2>
                 <c:forEach var="x" items="${shop.selectShopComment(1)}">
-                <div class="well well-lg">
-                    <div class="row">
-                        <div class="col-lg-3 person-item">
-                            <img class="img-circle" src="${x.selectUser().headPicture}"
-                                 alt="Generic placeholder image"
-                                 width="100"
-                                 height="100">
-                            <h3 style="margin-bottom: -20px;font-size: large;color:black">${x.selectUser().nickName}</h3>
-                        </div>
-                        <div class="col-lg-6">
-                            <p>
-                                    ${x.commentBody}
-                            </p>
+                    <div class="well well-lg">
+                        <div class="row">
+                            <div class="col-lg-3 person-item">
+                                <img class="img-circle" src="${x.selectUser().headPicture}"
+                                     alt="Generic placeholder image"
+                                     width="100"
+                                     height="100">
+                                <h3 style="margin-bottom: -20px;font-size: large;color:black">${x.selectUser().nickName}</h3>
+                            </div>
+                            <div class="col-lg-6">
+                                <p>
+                                        ${x.commentBody}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </c:forEach>
             </div>
         </div>
-            <div class="col-lg-3" role="complementary">
-                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
-                    <ul class="nav bs-docs-sidenav">
-                        <br>
-                        <br>
-                        <br>
-                        <li>
-                            <a href="#shop">商家信息</a>
-                            <ul class="nav">
-                                <li><a href="#shop-info">信息</a></li>
-                                <li><a href="#">详情</a></li>
-                                <li><a href="#shop-score">评分</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#comment">评论</a>
-                            <ul class="nav">
-                                <li><a href="#add-comment">添加评论</a></li>
-                                <li><a href="#old-comment">已有评论</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <a class="back-to-top" href="#top">
-                        返回顶部
-                    </a>
-                </nav>
-            </div>
-
+        <div class="col-lg-3" role="complementary">
+            <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm">
+                <ul class="nav bs-docs-sidenav">
+                    <br>
+                    <br>
+                    <br>
+                    <li>
+                        <a href="#shop">商家信息</a>
+                        <ul class="nav">
+                            <li><a href="#shop-info">信息</a></li>
+                            <li><a href="#">详情</a></li>
+                            <li><a href="#shop-score">评分</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#comment">评论</a>
+                        <ul class="nav">
+                            <li><a href="#add-comment">添加评论</a></li>
+                            <li><a href="#old-comment">已有评论</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a class="back-to-top" href="#top">
+                    返回顶部
+                </a>
+            </nav>
         </div>
 
-        <%@include file="footer.jsp" %>
     </div>
 
-
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="http://v3.bootcss.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <%@include file="footer.jsp" %>
+</div>
 
 
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://v3.bootcss.com/assets/js/vendor/jquery.min.js"><\/script>')</script>
 
 
-    <script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<script src="http://v3.bootcss.com/assets/js/docs.min.js"></script>
 
 </body>
 </html>

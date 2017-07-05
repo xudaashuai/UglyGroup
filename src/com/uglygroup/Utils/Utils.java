@@ -48,6 +48,7 @@ public class Utils {
         Random random = new Random();
         int[] a=new int [n];
         int[]b=new int[n];
+        System.out.println();
         for (int i=0;i<n;i++){
             a[i]=i+1;
         }
@@ -63,10 +64,6 @@ public class Utils {
         }
         return b;
     }
-
-
-
-
     public static String[] rheadPicture={"https://ooo.0o0.ooo/2017/06/14/59412b1e54cab.jpg",
            "https://ooo.0o0.ooo/2017/06/14/59412b1e54cb2.jpg",
             "https://ooo.0o0.ooo/2017/06/14/59412b1e3bafe.jpg",
