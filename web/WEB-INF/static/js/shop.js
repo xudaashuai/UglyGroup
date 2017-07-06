@@ -24,3 +24,4 @@ function addComment(text,id,pic) {
         }
     })
 }
+
