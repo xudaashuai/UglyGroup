@@ -38,7 +38,7 @@ function nextPage(num,keyword) {
             var shops=r['list']
             for (var i = 0; i < shops.length; i++) {
                 var shop = shops[i];
-                s += String.format(temp,shop.id,shop.name,shop.simple_info.substr(0,300),shop.shoppic);
+                s += String.format(temp,shop.id,shop.name,shop.simple_info.substr(0,250),shop.shoppic);
             }
             $('#recommend-list').html($('#recommend-list').html()+s);
 
