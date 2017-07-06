@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>丑团 -- </title>
+    <title>丑团 -- ${shop.name} </title>
 
     <!-- Bootstrap core CSS -->
 
@@ -20,7 +20,9 @@
 
     <link href="http://v3.bootcss.com/assets/css/patch.css" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/jquery.raty.css" rel="stylesheet">
     <script src="/js/shop.js" ></script>
+    <script src="/js/jquery.raty.js"></script>
     <script>
         var _hmt = _hmt || [];
     </script>
@@ -58,6 +60,27 @@
                 <p class="text-muted">电话：${shop.phone}</p>
                 <p class="text-muted">人均：${shop.price}元</p>
                 <p class="text-muted">评分：${shop.star}</p>
+
+                <div id="raty" data-number="5" data-path="images/raty"></div>
+                <div id="ratydesc" class="hint"></div>
+                <script>
+                    $('#raty').raty({
+                        path: function() {
+                            return this.getAttribute('data-path');//图片路径
+                        },
+                        number: function() {
+                            return $(this).attr('data-number');//星星数量
+                        },
+                        starOn: 'star-smile-gorgeous.png',//激活星星图标
+                        starOff: 'star-smile-off.png',//未激活星星图标
+                        halfShow : 'false',//是否显示半颗星星
+                        hints: ['很差', '一般', '好', '很好', '非常好'],//等级的内容
+                        target: '#ratydesc',//评分等级显示的div
+                        targetType: 'hint',//评分等级显示的div
+                        targetKeep: true,//固定显示评分结果
+                        targetText: '请打分'//评分结果默认显示文字
+                    });
+                </script>
                 <p class="text-muted">停车：${shop.parking.equals("") ? shop.parking:"未知"}</p>
                 <p class="text-muted">wifi：${shop.wifi.equals("") ? shop.wifi:"未知"}</p>
                 <p class="text-muted">简介：${shop.simple_info.equals("") ? shop.simple_info:"未知"}</p>
@@ -84,7 +107,7 @@
                                      alt="Generic placeholder image"
                                      width="100"
                                      height="100">
-                                <h3 style="margin-bottom: -20px;font-size: large;color:black">${x.selectUser().nickName}</h3>
+                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="user?id=${x.selectUser().id}"> ${x.selectUser().nickName}</a></h3>
                             </div>
                             <div class="col-lg-6">
                                 <p>

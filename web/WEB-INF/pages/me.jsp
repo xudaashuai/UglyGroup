@@ -45,11 +45,11 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4 col-lg-offset-4 person-item" style="margin-top: -350px">
-            <img class="img-circle" src="${user.getHeadPicture()}" alt="Generic placeholder image" width="140"
+            <img class="img-circle" src="${user.headPicture}" alt="Generic placeholder image" width="140"
                  height="140">
             <div id="name-block" style="height: 60px;">
                 <div style="display:inline-block;">
-                    <h2 style="color: black">${user.getNickName()}</h2></div>
+                    <h2 style="color: black">${user.nickName}</h2></div>
                 <div style="display:inline-block;" onclick="startNicknameEdit()">
                     <span class="glyphicon glyphicon-edit "/>
                 </div>
@@ -57,7 +57,7 @@
             <div id="sign-block">
 
                 <div style="display:inline-block;">
-                    <p style="color: black" class="">${user.getSign()}</p>
+                    <p style="color: black" class="">${user.sign}</p>
                 </div>
                 <div style="display:inline-block;" onclick="startSignEdit()">
                     <span class="glyphicon glyphicon-edit "/>
@@ -106,7 +106,7 @@
                                                      alt="Generic placeholder image"
                                                      width="100"
                                                      height="100">
-                                                <h3 style="margin-bottom: -20px;font-size: large;color:black">${mes.getUser().nickName}</h3>
+                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${mes.getUser().nickName}</a></h3>
                                             </div>
                                             <div class="col-lg-5">
                                                 <p>
@@ -143,7 +143,7 @@
                                                      alt="Generic placeholder image"
                                                      width="100"
                                                      height="100">
-                                                <h3 style="margin-bottom: -20px;font-size: large;color:black">${mes.getUser().nickName}</h3>
+                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${mes.getUser().nickName}</a></h3>
                                             </div>
                                             <div class="col-lg-5">
                                                 <p>
@@ -230,7 +230,7 @@
                                     <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
                                          width="140"
                                          height="140">
-                                    <h4 style="height: 40px">${f.nickName}</h4>
+                                    <h4 style="height: 40px"><a href="/user?id=${f.id}"> <a href="/user?id=${f.id}"> ${f.nickName}</a></a></h4>
                                     <button onclick="sendMeassage('${f.id}')" class="btn btn-success disabled">
                                         发消息哟(todo)
                                     </button>
@@ -267,7 +267,7 @@
                                     <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
                                          width="140"
                                          height="140">
-                                    <h4 style="height: 40px">${f.nickName}</h4>
+                                    <h4 style="height: 40px"><a href="/user?id=${f.id}"> ${f.nickName}</a></h4>
                                     <button onclick="sendMessage('${f.id}')" class="btn btn-success disabled">
                                         发消息哟(todo)
                                     </button>
@@ -287,7 +287,7 @@
                                     <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
                                          width="140"
                                          height="140">
-                                    <h4 style="height: 40px">${f.nickName}</h4>
+                                    <h4 style="height: 40px"><a href="/user?id=${f.id}"> ${f.nickName}</a></h4>
                                     <button onclick="sendMessage('${f.id}')" class="btn btn-success disabled">
                                         发消息哟(todo)
                                     </button>

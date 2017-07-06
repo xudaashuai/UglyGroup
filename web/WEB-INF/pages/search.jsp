@@ -31,18 +31,20 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/index.css" rel="stylesheet">
+    <script src="/js/search.js"></script>
 </head>
 <%@include file="nav.jsp" %>
 <body>
-<div class="container person-list">
-    <div class="row recommend-item">
+<div class="container" style="padding-top: 80px">
+    <h1>搜索结果</h1>
+    <hr class="featurette-divider">
+    <div class="row recommend-item" id="recommend-list">
         <c:forEach items="${shops}" var="shop">
-
             <div class="well well-lg" style="height: 400px">
-                <div class="col-md-7" >
-                    <a href="/shop/${shop.id}" style="TEXT-DECORATION:none"><h2>${shop.name}</h2></a>
+                <div class="col-md-7">
+                    <a href="/shop?id=${shop.id}" style="TEXT-DECORATION:none"><h2>${shop.name}</h2></a>
                     <p class="lead">
-                            ${shop.simple_info}
+                            ${shop.simple_info.substring(0,300)}
                     </p>
                 </div>
                 <div style="text-align: center;height: 500px;">
@@ -53,8 +55,19 @@
                 </div>
             </div>
         </c:forEach>
-    </div>
 
+
+    </div>
+    <c:if test="${shops.size()==10}">
+        <div>
+            <button class="btn btn-link" id="more-button" onclick="nextPage(1,'${keyword}')">更多结果</button>
+        </div>
+    </c:if>
+    <c:if test="${shops.size()==0}">
+        <div>
+            <button class="btn btn-link" disabled="disabled" id="more-button" onclick="nextPage(1,'${keyword}')">没有啦</button>
+        </div>
+    </c:if>
     <%@include file="footer.jsp" %>
 </div>
 </body>
