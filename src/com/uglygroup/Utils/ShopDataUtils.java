@@ -16,19 +16,28 @@ public class ShopDataUtils {
     public static com.uglygroup.model.Shop selectShop(int shopId) {
         com.uglygroup.model.Shop shop = new com.uglygroup.model.Shop();
         String sql = "select * from \"shop\" where id='" + String.valueOf(shopId) + "'";
+
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
-
+            String str1,str2;
+            String[]a={},b={};
             if (rs.next()) {
-
+                str1=rs.getString(8);
+                str2=rs.getString(16);
+                if(str1!=null){
+                    a=str1.split(",");
+                }
+                if(str2!=null){
+                    b=str2.split(",");
+                }
 
                 shop.allSet(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
                         rs.getInt(5), rs.getInt(6),
-                        rs.getString(7), rs.getString(8).split(","),
+                        rs.getString(7), a,
                         rs.getString(9), rs.getString(10),
                         rs.getString(11), rs.getString(12),
-                        rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16).split(","));
+                        rs.getString(13), rs.getString(14), rs.getString(15), b);
 
             }
         } catch (Exception e) {
@@ -40,7 +49,13 @@ public class ShopDataUtils {
     //获取在列表中的所有商家的对象数组
     public static ArrayList<com.uglygroup.model.Shop> getAllShop(int page) {
         ArrayList<Integer> ShopId = new ArrayList<Integer>();
-        String sql = "select \"id\" from shop limit 10 offset " + String.valueOf(page * 10) + ";";
+        String sql="";
+        if(page==-1){
+             sql= "select \"id\" from shop";
+        }
+        else {
+             sql = "select \"id\" from shop limit 10 offset " + String.valueOf(page * 10) + ";";
+        }
         try {
             ResultSet myrs = DatabaseUtils.getResult(sql);
             while (myrs.next()) {
@@ -103,7 +118,7 @@ public class ShopDataUtils {
     public static ArrayList<Shop> getRandomShop() {
         ArrayList<Shop> shops = new ArrayList<>();
         int[] r;
-        ArrayList<Shop> s = getAllShop(1);
+        ArrayList<Shop> s = getAllShop(-1);
         int x = s.size();
         r = Utils.getRandom(x);
         for (int i = 0; i < 10; i++) {
