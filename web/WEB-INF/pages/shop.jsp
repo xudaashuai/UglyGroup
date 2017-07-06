@@ -101,7 +101,6 @@
                 <ul class="nav bs-docs-sidenav">
                     <br>
                     <br>
-                    <br>
                     <li>
                         <a href="#shop">商家信息</a>
                         <ul class="nav">
