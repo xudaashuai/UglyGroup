@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by Think on 2017/6/4.
@@ -148,8 +150,8 @@ public class Shop {
         return type;
     }
 
-    public  ArrayList<Comment> selectShopComment(){
-        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"';";
+    public  ArrayList<Comment> selectShopComment(int page){
+        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"'limit 10 offset "+String.valueOf(page*10);
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;
