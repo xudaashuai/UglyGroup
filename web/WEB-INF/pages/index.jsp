@@ -86,7 +86,7 @@
                 <div class="col-md-7" >
                     <a href="/shop?id=${shop.id}" style="TEXT-DECORATION:none"><h2>${shop.name}</h2></a>
                     <p class="lead">
-                            ${shop.simple_info.substring(0,300)+"..."}
+                            ${shop.simple_info.length()>300?shop.simple_info.substring(0,300):shop.simple_info}
                     </p>
                 </div>
                 <div style="text-align: center;height: 500px;">
