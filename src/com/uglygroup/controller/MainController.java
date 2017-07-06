@@ -53,4 +53,11 @@ public class MainController {
         modelAndView.addObject("shop", ShopDataUtils.selectShop(id));
         return modelAndView;
     }
+    @RequestMapping(path = "/search")
+    public ModelAndView search(String keyword){
+        ModelAndView modelAndView = new ModelAndView("search");
+        modelAndView.addObject("shops", ShopDataUtils.searchShop(keyword,0));
+        modelAndView.addObject("keyword",keyword);
+        return modelAndView;
+    }
 }

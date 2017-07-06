@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>丑团 -- </title>
+    <title>丑团 -- ${shop.name} </title>
 
     <!-- Bootstrap core CSS -->
 
@@ -107,7 +107,7 @@
                                      alt="Generic placeholder image"
                                      width="100"
                                      height="100">
-                                <h3 style="margin-bottom: -20px;font-size: large;color:black">${x.selectUser().nickName}</h3>
+                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="user?id=${x.selectUser().id}"> ${x.selectUser().nickName}</a></h3>
                             </div>
                             <div class="col-lg-6">
                                 <p>

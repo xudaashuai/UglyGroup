@@ -1,8 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script>
-    var uid=${user.getId()};
+    var uid =${user.getId()};
 </script>
-<nav class="navbar  navbar-pils navbar-fixed-top" role="navigation" >
+<nav class="navbar  navbar-pils navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/">丑团</a>
@@ -15,7 +15,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         分类<b class="caret"></b>
                     </a>
-                    <ul class="dropdown-menu" >
+                    <ul class="dropdown-menu">
                         <li><a href="/top">火锅</a></li>
                         <li><a href="/top">烧烤</a></li>
                         <li><a href="/top">小炒</a></li>
@@ -25,14 +25,12 @@
             </ul>
 
         </div>
-        <form class="navbar-form navbar-right" role="search">
+        <form class="navbar-form navbar-right" role="search" action="/search">
             <div class="input-group">
-                <input id="search-edit" type="text" class="form-control"
-                       placeholder="搜索好吃哒" >
+                <input id="search-edit" name="keyword" type="text" class="form-control" placeholder="搜索好吃哒">
                 <span class="input-group-btn" style="margin-top: 1px">
-                                <button class="btn btn-default"
-                                        type="button" onclick="searchShop()">搜索</button>
-                            </span>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </span>
             </div>
         </form>
 

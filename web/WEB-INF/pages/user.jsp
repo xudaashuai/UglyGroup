@@ -69,7 +69,7 @@
         <div class="col-lg-2">
 
             <ul id="myTab" class="nav nav-pills nav-stacked">
-                <li><a href="#moments" data-toggle="tab">丑圈<span class="badge">0</span></a></li>
+                <li class="active"><a href="#moments" data-toggle="tab">丑圈<span class="badge">0</span></a></li>
                 <li><a href="#friend" data-toggle="tab">好友<span class="badge">${user.selectFriend().size()}</span></a>
                 </li>
                 <li><a href="#follow" data-toggle="tab">关注<span class="badge">${user.selectFollow().size()}</span></a>
@@ -81,7 +81,7 @@
         <!-- Tab panes -->
         <div class="col-lg-10 ">
             <div id="myTabContent" class="tab-content">
-                <div class="tab-pane fade" id="moments">
+                <div class="tab-pane fade in active" id="moments">
                     <div class="well well-lg">
                         他的丑圈空空荡荡哟。
                     </div>

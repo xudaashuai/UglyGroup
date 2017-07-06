@@ -73,7 +73,7 @@
                 <img class="img-circle" src="${u.headPicture}" alt="Generic placeholder image" width="140" height="140">
                 <h2>${u.nickName}</h2>
                 <p class="person-list">${u.sign}</p>
-                <p><a class="btn btn-success" href="/user/${u.id}" role="button">看他</a></p>
+                <p><a class="btn btn-success" href="/user?id=${u.id}" role="button">看他</a></p>
             </div>
         </c:forEach>
     </div><!-- /.row -->
@@ -86,7 +86,7 @@
                 <div class="col-md-7" >
                     <a href="/shop?id=${shop.id}" style="TEXT-DECORATION:none"><h2>${shop.name}</h2></a>
                     <p class="lead">
-                            ${shop.simple_info.length()>300?shop.simple_info.substring(0,300)+"...":shop.simple_info}
+                            ${shop.simple_info.substring(0,300)+"..."}
                     </p>
                 </div>
                 <div style="text-align: center;height: 500px;">
