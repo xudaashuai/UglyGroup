@@ -76,9 +76,10 @@ public class ShopDataUtils {
     public static ArrayList<com.uglygroup.model.Shop> searchShop(String keyword, int page) {
         ArrayList<com.uglygroup.model.Shop> Shop = new ArrayList<com.uglygroup.model.Shop>();
         ArrayList<Integer> ShopId = new ArrayList<Integer>();
+        ResultSet rs;
         String sql = "select \"id\" from shop where name like '%" + keyword + "%' limit 10 offset " + String.valueOf(page * 10);
         try {
-            ResultSet rs;
+
             rs = DatabaseUtils.getResult(sql);
             while (rs.next()) {
                 ShopId.add(rs.getInt(1));
