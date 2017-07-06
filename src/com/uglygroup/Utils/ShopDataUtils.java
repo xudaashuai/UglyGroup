@@ -19,10 +19,11 @@ public class ShopDataUtils {
 
         try {
             ResultSet rs = DatabaseUtils.getResult(sql);
-            String str1,str2;
-            String[]a={},b={};
+            String str1,str2,str3;
+            String[]a={},b={},c={};
             if (rs.next()) {
                 str1=rs.getString(8);
+                str3=rs.getString(12);
                 str2=rs.getString(16);
                 if(str1!=null){
                     a=str1.split(",");
@@ -30,13 +31,17 @@ public class ShopDataUtils {
                 if(str2!=null){
                     b=str2.split(",");
                 }
+                if(str3!=null){
+                    c=str3.split(",");
+                }
+
 
                 shop.allSet(rs.getInt(1), rs.getString(2),
                         rs.getString(3), rs.getString(4),
                         rs.getInt(5), rs.getInt(6),
                         rs.getString(7), a,
                         rs.getString(9), rs.getString(10),
-                        rs.getString(11), rs.getString(12),
+                        rs.getString(11),c,
                         rs.getString(13), rs.getString(14), rs.getString(15), b);
 
             }
@@ -98,21 +103,6 @@ public class ShopDataUtils {
     public static void shopChangeInfor(String content, int shopId, String changeWhat) {
         String sql = "update \"shop\" set " + changeWhat + "='" + content + "'where shopTrueId='" + String.valueOf(shopId) + "'";
         DatabaseUtils.doSql(sql);
-    }
-
-    //TODO
-    //添加操作
-    public static void addShopInRank(int shopId, String newRank) {
-        com.uglygroup.model.Shop shop;
-        shop = selectShop(shopId);
-        shop.addRank(newRank);
-    }
-
-    //删除操作
-    public static void deleteShopInRank(int shopId, String oldRank) {
-        com.uglygroup.model.Shop shop;
-        shop = selectShop(shopId);
-        shop.deleteRank(oldRank);
     }
 
     //推荐

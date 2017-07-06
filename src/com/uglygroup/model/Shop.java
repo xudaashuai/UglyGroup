@@ -18,7 +18,7 @@ import java.util.List;
 
 public class Shop {
     private String location;
-    private String inRank;
+    private String[] inRank;
     private String phone;
     private int star;
     private int price;
@@ -46,7 +46,7 @@ public class Shop {
                        String sSimple_info,
                        String sLong_info,
                        String sType,
-                       String sInRank,
+                       String[] sInRank,
                        String sTime,
                        String sParking,
                        String sWifi,
@@ -173,6 +173,7 @@ public class Shop {
         return comments;
     }
     //列表属性
+    /*
     @Basic
     @Column(name = "inRank")//所在排行榜
     public ArrayList<String> getInRank() {
@@ -200,6 +201,7 @@ public class Shop {
         ShopDataUtils.shopChangeInfor(this.inRank, id, "inRank");
     }
 
+*/
     //用字符串分割的方法获取到列表
     private ArrayList<String> getList(String str){
         ArrayList<String> list=new ArrayList<String>();
