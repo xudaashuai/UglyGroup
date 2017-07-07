@@ -136,14 +136,15 @@
                             </div>
                             <div class="tab-pane fade in " id="new-fans">
                                 <c:forEach var="mes" items="${user.checkMessage(4,0)}">
+                                    <c:set var="u" value="${mes.getUser()}"/>
                                     <div class="well well-lg active">
                                         <div class="row">
                                             <div class="col-lg-3 person-item">
-                                                <img class="img-circle" src="${mes.getUser().headPicture}"
+                                                <img class="img-circle" src="${u.headPicture}"
                                                      alt="Generic placeholder image"
                                                      width="100"
                                                      height="100">
-                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${mes.getUser().nickName}</a></h3>
+                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${u.nickName}</a></h3>
                                             </div>
                                             <div class="col-lg-5">
                                                 <p>

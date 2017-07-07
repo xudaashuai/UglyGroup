@@ -9,7 +9,7 @@ function addComment(text,id,pic) {
     $('#addCommitButton').attr('disabled','disabled');
     $.ajax({
         type: 'post',
-        url: '/api/user/set_nickname',
+        url: '/api/shop/add_comment',
         data: {
             'commentBody': text,
             'shopId':id,
@@ -18,8 +18,7 @@ function addComment(text,id,pic) {
         },
         dataType: 'json',
         success: function (r) {
-            alert('添加评论成功')
-
+            alert('添加评论成功');
             $('#addCommitButton').removeAttr('disabled')
         }
     })

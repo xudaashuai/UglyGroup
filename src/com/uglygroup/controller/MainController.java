@@ -60,4 +60,8 @@ public class MainController {
         modelAndView.addObject("keyword",keyword);
         return modelAndView;
     }
+    @RequestMapping(path = "/we")
+    public String we(String keyword) {
+        return "we";
+    }
 }
