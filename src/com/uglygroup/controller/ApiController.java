@@ -201,7 +201,7 @@ public class ApiController {
         return map;
     }
 
-    @RequestMapping(path = "/api/shop/get_todyShop", method = RequestMethod.GET)
+    @RequestMapping(path = "/api/shop/get_todayShop", method = RequestMethod.GET)
     public @ResponseBody
     Map<String, Object> getTodayShop() {
         Map<String, Object> map = new HashMap<>();
@@ -230,9 +230,9 @@ public class ApiController {
     }
     @RequestMapping(path = "/api/shop/add_comment", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> addComment(String commentBody,int shopId,int userId,int score,String[]pic) {
+    Map<String, Object> addComment(String commentBody,int shopId,@ModelAttribute("user") User u,int score,String[]pic) {
         Map<String, Object> map = new HashMap<>();
-        CommentUtils.addComment(commentBody,shopId,userId,score,pic);
+        CommentUtils.addComment(commentBody,shopId,u.getId(),score,pic);
         map.put("status", true);
         return map;
     }
