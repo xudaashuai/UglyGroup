@@ -18,13 +18,22 @@ public class CommentUtils {
     }
     public static void addComment(String commentBody,int shopId,int userId,int score,String[]pic){
         inId++;
+        String str;
+        if(pic==null){
+            str="";
+        }
+        else {
+            str=pic.toString();
+        }
         Date date=new Date();
         Timestamp time =new Timestamp(date.getTime());
+
         String sql = "insert into comment values("+"'"
                 +String.valueOf(inId)+"','"
                 +String.valueOf(shopId)+"','"
                 +String.valueOf(userId)+ "','"
-                +commentBody+"','"+String.valueOf(score)+"','"+time.toString()+"','"+pic.toString()+ "')" + "on conflict do nothing;";
+                +commentBody+"','"+String.valueOf(score)+"','"+time.toString()
+                +"','"+str+ "')" + "on conflict do nothing;";
         DatabaseUtils.doSql(sql);
     }
     public static void removeComment(int commentId){
