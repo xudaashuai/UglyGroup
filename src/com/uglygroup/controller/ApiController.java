@@ -1,9 +1,7 @@
 package com.uglygroup.controller;
 
-import com.uglygroup.Utils.MessageUtils;
-import com.uglygroup.Utils.ShopDataUtils;
-import com.uglygroup.Utils.UserDataUtils;
-import com.uglygroup.Utils.Utils;
+import com.uglygroup.Utils.*;
+import com.uglygroup.model.Comment;
 import com.uglygroup.model.Message;
 import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
@@ -183,7 +181,15 @@ public class ApiController {
         u.setRead(id);
         return map;
     }
-
+    @RequestMapping(path = "/api/shop/select_shop_comment", method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, Object> selectShopComment(HttpServletRequest request,int page) {
+        Map<String, Object> map = new HashMap<>();
+        Shop s=(Shop)request.getSession().getAttribute("shop");
+        ArrayList<Comment> c=s.selectShopComment(page);
+        map.put("list",c);
+        return map;
+    }
     @RequestMapping(path = "/api/shop/get_allShop", method = RequestMethod.POST)
     public @ResponseBody
     Map<String, Object> getAllShop(int page) {
@@ -220,6 +226,14 @@ public class ApiController {
         Map<String, Object> map = new HashMap<>();
         ArrayList<User> users = UserDataUtils.getRandomUser();
         map.put("list", users);
+        return map;
+    }
+    @RequestMapping(path = "/api/shop/add_comment", method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, Object> addComment(String commentBody,int shopId,int userId,int score,String[]pic) {
+        Map<String, Object> map = new HashMap<>();
+        CommentUtils.addComment(commentBody,shopId,userId,score,pic);
+        map.put("status", true);
         return map;
     }
 

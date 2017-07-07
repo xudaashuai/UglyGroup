@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -170,6 +171,18 @@ public class Shop {
         for(int i=0;i<commentId.size();i++){
             comments.add(CommentUtils.selectComment(commentId.get(i)));
         }
+
+            for (int i = 0; i < commentId.size(); i++)
+            {
+                for (int j = i + 1; j < commentId.size(); j++)
+                {
+                    if (comments.get(i).getCommentId()<comments.get(j).getCommentId())
+                    {
+                        java.util.Collections.swap(comments,j,i);
+                    }
+                }
+            }
+
         return comments;
     }
     //列表属性
