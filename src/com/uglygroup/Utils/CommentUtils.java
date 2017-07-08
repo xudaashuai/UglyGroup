@@ -14,7 +14,7 @@ public class CommentUtils {
     private static int inId;
     static {
         String sql="select max(commentId) from \"comment\"";
-        Utils.getInid(sql);
+        inId=Utils.getInid(sql);
     }
     public static void addComment(String commentBody,int shopId,int userId,int score,String[]pic){
         inId++;

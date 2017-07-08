@@ -236,5 +236,15 @@ public class ApiController {
         map.put("status", true);
         return map;
     }
+    @RequestMapping(path = "/api/user/select_user_comment", method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, Object> selectUserComment(@ModelAttribute("user") User u,int page) {
+        Map<String, Object> map = new HashMap<>();
+        ArrayList<Comment> c=new ArrayList<>();
+        c=u.selectUserComment(page);
+        map.put("list", c);
+        return map;
+    }
+
 
 }

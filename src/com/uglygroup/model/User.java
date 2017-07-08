@@ -1,12 +1,10 @@
 package com.uglygroup.model;
 
-import com.uglygroup.Utils.CommentUtils;
-import com.uglygroup.Utils.MessageUtils;
-import com.uglygroup.Utils.UserDataUtils;
-import com.uglygroup.Utils.Utils;
+import com.uglygroup.Utils.*;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -362,6 +360,42 @@ public class User {
             UserDataUtils.userChangeInfor(this.fans, trueId, "fans");
             return Utils.deleteStatus.DELETESUCCES;
         }
+    }
+    public  ArrayList<Comment> selectUserComment(int page){
+        String sql="select commentId from comment where userId='"+String.valueOf(trueId)+"'limit 10 offset "+String.valueOf(page*10);
+        ArrayList<Integer>commentId=new ArrayList<Integer>();
+        ArrayList<Comment>comments=new ArrayList<Comment>();
+        int cid;
+        ResultSet rs;
+        try{
+
+            rs= DatabaseUtils.getResult(sql);
+            while (rs.next()){
+
+                cid=rs.getInt(1);
+                commentId.add(cid);
+            }
+
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        for(int i=0;i<commentId.size();i++){
+            comments.add(CommentUtils.selectComment(commentId.get(i)));
+        }
+
+
+        for (int i = 0; i < commentId.size(); i++)
+        {
+            for (int j = i + 1; j < commentId.size(); j++)
+            {
+                if (comments.get(i).getCommentId()<comments.get(j).getCommentId())
+                {
+                    java.util.Collections.swap(comments,j,i);
+                }
+            }
+        }
+
+        return comments;
     }
 
     @Basic

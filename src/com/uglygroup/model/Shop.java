@@ -168,6 +168,7 @@ public class Shop {
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
+
         for(int i=0;i<commentId.size();i++){
             comments.add(CommentUtils.selectComment(commentId.get(i)));
         }
@@ -178,7 +179,7 @@ public class Shop {
                 {
                     if (comments.get(i).getCommentId()<comments.get(j).getCommentId())
                     {
-                        java.util.Collections.swap(comments,j,i);
+                        java.util.Collections.swap(comments,i,j);
                     }
                 }
             }
