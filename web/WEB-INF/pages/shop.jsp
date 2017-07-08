@@ -80,7 +80,7 @@
                 </div>
 
                 <h2 id="old-comment">已有评论</h2>
-                <c:forEach var="x" items="${shop.selectShopComment(1)}">
+                <c:forEach var="x" items="${shop.selectShopComment(0)}">
                     <c:set var="u" value="${x.selectUser()}"/>
                     <div class="well well-lg">
                         <div class="row">
