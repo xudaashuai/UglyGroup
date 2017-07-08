@@ -152,7 +152,7 @@ public class Shop {
     }
 
     public  ArrayList<Comment> selectShopComment(int page){
-        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"'limit 10 offset "+String.valueOf(page*10);
+        String sql="select commentId from comment where shopId='"+String.valueOf(id)+"' ORDER  by commentId desc limit 10 offset "+String.valueOf(page*10);
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;
@@ -172,18 +172,6 @@ public class Shop {
         for(int i=0;i<commentId.size();i++){
             comments.add(CommentUtils.selectComment(commentId.get(i)));
         }
-
-            for (int i = 0; i < commentId.size(); i++)
-            {
-                for (int j = i + 1; j < commentId.size(); j++)
-                {
-                    if (comments.get(i).getCommentId()<comments.get(j).getCommentId())
-                    {
-                        java.util.Collections.swap(comments,i,j);
-                    }
-                }
-            }
-
         return comments;
     }
     //列表属性

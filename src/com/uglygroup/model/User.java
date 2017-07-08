@@ -362,7 +362,7 @@ public class User {
         }
     }
     public  ArrayList<Comment> selectUserComment(int page){
-        String sql="select commentId from comment where userId='"+String.valueOf(trueId)+"'limit 10 offset "+String.valueOf(page*10);
+        String sql="select commentId from comment where userId='"+String.valueOf(trueId)+"' ORDER  by commentId desc limit 10 offset "+String.valueOf(page*10);
         ArrayList<Integer>commentId=new ArrayList<Integer>();
         ArrayList<Comment>comments=new ArrayList<Comment>();
         int cid;
@@ -381,18 +381,6 @@ public class User {
         }
         for(int i=0;i<commentId.size();i++){
             comments.add(CommentUtils.selectComment(commentId.get(i)));
-        }
-
-
-        for (int i = 0; i < commentId.size(); i++)
-        {
-            for (int j = i + 1; j < commentId.size(); j++)
-            {
-                if (comments.get(i).getCommentId()<comments.get(j).getCommentId())
-                {
-                    java.util.Collections.swap(comments,j,i);
-                }
-            }
         }
 
         return comments;
