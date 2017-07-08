@@ -247,4 +247,13 @@ public class ApiController {
     }
 
 
+    @RequestMapping(path = "/api/user/add_rank", method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, Object> addRank(@ModelAttribute("user") User u,String name,String introduction,String[] shopList) {
+        Map<String, Object> map = new HashMap<>();
+        RankUtils.addRank(name,u.getId(),introduction,shopList);
+        map.put("status", true);
+        return map;
+    }
+
 }

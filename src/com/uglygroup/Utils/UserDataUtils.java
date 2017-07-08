@@ -32,7 +32,7 @@ public class UserDataUtils {
         int x=mu.size();
         r=Utils.getRandom(x);
         for (int i=0;i<4;i++){
-            User u =mu.get(r[i]);
+            User u =mu.get(r[i]-1);
             users.add(u);
         }
 

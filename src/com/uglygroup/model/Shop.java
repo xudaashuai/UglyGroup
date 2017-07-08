@@ -174,6 +174,7 @@ public class Shop {
         }
         return comments;
     }
+
     //列表属性
     /*
     @Basic
@@ -193,7 +194,7 @@ public class Shop {
             this.inRank=newRank;
         }
         else {
-           this.inRank = this.inRank+ "/" + newRank;
+           this.inRank = this.inRank+ "," + newRank;
     }
         ShopDataUtils.shopChangeInfor(this.inRank,id,"inRank");
 }

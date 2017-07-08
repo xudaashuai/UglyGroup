@@ -57,3 +57,16 @@ ALTER TABLE public.shop ADD time TEXT NULL;
 ALTER TABLE public.shop ADD parking TEXT NULL;
 ALTER TABLE public.shop ADD wifi TEXT NULL;
 ALTER TABLE public.shop ADD shoppic TEXT NULL;
+
+
+CREATE TABLE public.rank
+(
+  id INT,
+  name TEXT,
+  creator TEXT,
+  time TIMESTAMP,
+  introduction TEXT,
+  shoplist TEXT
+);
+ALTER TABLE public.rank RENAME COLUMN creator TO creatorId;
+ALTER TABLE public.rank ALTER COLUMN creatorId TYPE INT USING creatorId::INT;
