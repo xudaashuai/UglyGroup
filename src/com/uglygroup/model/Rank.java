@@ -32,6 +32,7 @@ public class Rank {
         time=rTime;
         introduction = rIntroduction;
         shopList=rShopList;
+        this.pic=pic;
     }
 
     public int getId() {

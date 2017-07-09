@@ -36,7 +36,7 @@
 <%@include file="nav.jsp" %>
 <body>
 <div class="jumbotron"
-     style="background-color: #1b6d85 ;height: 300px;background-size:100%;width: 100%">
+     style="background-image: url('${rank.pic}') ;height: 500px;background-size:100%;width: 100%">
 </div>
 <div class="container">
     <div class="row">

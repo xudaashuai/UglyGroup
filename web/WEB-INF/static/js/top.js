@@ -9,9 +9,9 @@ String.format = function (src) {
     });
 };
 var temp=`
-<div style="height: 500px;width: 100%;background-image:url("{3}");margin-bottom: -20px">
-    <h1 style="text-align: center;padding-top: 250px"><a href="/rank?id=${0}">{1}</a></h1>
-    <p style="text-align: center;">${2}</p>
+<div style="height: 500px;width: 100%;background-image:url('{3}');margin-bottom: -20px">
+    <h1 style="text-align: center;padding-top: 250px"><a href="/rank?id={0}">{1}</a></h1>
+    <p style="text-align: center;">{2}</p>
     </div>
 `;
 function nextPage(num,keyword) {
@@ -27,7 +27,7 @@ function nextPage(num,keyword) {
             var shops=r['list']
             for (var i = 0; i < shops.length; i++) {
                 var shop = shops[i];
-                s += String.format(temp,shop.id,shop.name,shop.introduction,shop.pic===null?"":shop.pic);
+                s += String.format(temp,shop.id,shop.name,shop.introduction,shop.pic);
             }
             $('#recommend-list').html($('#recommend-list').html()+s);
 
