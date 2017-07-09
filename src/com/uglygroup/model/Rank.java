@@ -33,6 +33,12 @@ public class Rank {
         introduction = rIntroduction;
         shopList=rShopList;
     }
+
+    public int getId() {
+        return id;
+    }
+
+
     public ArrayList<Shop> selectShop(int page){
         ArrayList<Shop> shops=new ArrayList<>();
         if((page+1)*10>shopList.length){
