@@ -81,7 +81,7 @@ public class RankUtils {
         ArrayList<Rank> ranks = getAllRank(-1);
         int x = ranks.size();
         r = Utils.getRandom(x);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 3; i++) {
             Rank rank = ranks.get(r[i] - 1);
             res.add(rank);
         }
