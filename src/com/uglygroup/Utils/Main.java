@@ -36,9 +36,9 @@ public class Main {
     }
     public static void main(String []args) {
         for (int j = 0; j < 20;j++) {
-            String[] rank = new String[10];
+            String[] rank = new String[60];
             ArrayList<Shop> shops = ShopDataUtils.getAllShop(-1);
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 60; i++) {
                 Random random = new Random();
                 rank[i] = String.valueOf(shops.get(random.nextInt(shops.size())).getId());
 

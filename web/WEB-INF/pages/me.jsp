@@ -1,4 +1,6 @@
 <%@ page import="com.uglygroup.model.User" %>
+<%@ page import="com.uglygroup.Utils.UserDataUtils" %>
+<%@ page import="com.uglygroup.Utils.ShopDataUtils" %>
 <%@ page import="com.uglygroup.Utils.UserDataUtils" %><%--
   Created by IntelliJ IDEA.
   User: xudas
@@ -106,7 +108,8 @@
                                                      alt="Generic placeholder image"
                                                      width="100"
                                                      height="100">
-                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${mes.getUser().nickName}</a></h3>
+                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a
+                                                        href="/user?id=${f.id}"> ${mes.getUser().nickName}</a></h3>
                                             </div>
                                             <div class="col-lg-5">
                                                 <p>
@@ -144,7 +147,8 @@
                                                      alt="Generic placeholder image"
                                                      width="100"
                                                      height="100">
-                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a href="/user?id=${f.id}"> ${u.nickName}</a></h3>
+                                                <h3 style="margin-bottom: -20px;font-size: large;color:black"><a
+                                                        href="/user?id=${f.id}"> ${u.nickName}</a></h3>
                                             </div>
                                             <div class="col-lg-5">
                                                 <p>
@@ -193,15 +197,32 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="moments">
-                    <div class="well well-lg">
-                        <textarea class="form-control" rows="5" placeholder="来写一下自己的开心事吧"></textarea>
-                        <button class="btn btn-success" style="margin-left: auto;margin-right: 5px;margin-top: 20px;"
-                                onclick="submitNewStatus()">发布
-                        </button>
-                    </div>
-                    <div class="well well-lg">
-                        你的丑圈空空荡荡哟。
-                    </div>
+                   <c:set value="${user.selectUserComment(0)}" var="comments"/>
+                    <c:forEach items="${comments}" var="x">
+                        <c:set var="s" value="${x.selectShop()}"/>
+                        <div class="well well-lg">
+                            <div class="row">
+                                <div class="col-lg-3 person-item">
+                                    <img class="img-circle" src="${s.shopPic[0]}"
+                                         alt="Generic placeholder image"
+                                         width="100"
+                                         height="100">
+                                    <h3 style="margin-bottom: -20px;font-size: large;color:black"><a
+                                            href="shop?id=${s.id}"> ${s.name}</a></h3>
+                                </div>
+                                <div>
+                                    <div>
+                                        <p>
+                                                ${x.commentBody}
+                                        </p>
+                                    </div>
+                                    <div style="text-align:right;margin-top:auto;margin-bottom: 0px">
+                                        <p>${x.time}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
                 </div>
                 <div class="tab-pane fade" id="friend">
 
@@ -231,7 +252,8 @@
                                     <img class="img-circle" src="${f.headPicture}" alt="Generic placeholder image"
                                          width="140"
                                          height="140">
-                                    <h4 style="height: 40px"><a href="/user?id=${f.id}"> <a href="/user?id=${f.id}"> ${f.nickName}</a></a></h4>
+                                    <h4 style="height: 40px"><a href="/user?id=${f.id}"> <a
+                                            href="/user?id=${f.id}"> ${f.nickName}</a></a></h4>
                                     <button onclick="sendMeassage('${f.id}')" class="btn btn-success disabled">
                                         发消息哟(todo)
                                     </button>

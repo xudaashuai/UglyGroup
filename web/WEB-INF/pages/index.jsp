@@ -42,16 +42,18 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
     </ol>
     <div class="carousel-inner" role="listbox">
-        <div class="item active" style="overflow: hidden">
+        <c:forEach var="index" begin="0" end="2" step="1">
+            <c:set var="rank" value="${ranks.get(index)}"/>
+        <div class="item ${index==0?"active":""}" style="overflow: hidden">
             <img class="first-slide" src="/pic/list-1.jpeg" alt="First slide" style="width:100%;">
             <div class="container">
                 <div class="carousel-caption">
-                    <h1>可能是东半球第二好的美食榜单</h1>
-                    <p></p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">立即查看</a></p>
+                    <h1>${rank.name}</h1>
+                    <p><a class="btn btn-lg btn-primary" href="rank?id=${rank.id}" role="button">立即查看</a></p>
                 </div>
             </div>
         </div>
+        </c:forEach>
     </div>
     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

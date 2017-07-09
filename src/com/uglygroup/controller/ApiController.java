@@ -254,11 +254,9 @@ public class ApiController {
     }
     @RequestMapping(path = "/api/rank/select_shop", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> selectShop(int page, HttpServletRequest request) {
+    Map<String, Object> selectShop(int page,int id, HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
-        Rank r = (Rank) request.getSession().getAttribute("rank");
-        ArrayList<Shop> s=new ArrayList<>();
-        s=r.selectShop(page);
+        ArrayList<Shop> s=RankUtils.selectRank(id).selectShop(page);
         map.put("list",s);
         return map;
     }

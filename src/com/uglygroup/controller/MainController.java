@@ -1,9 +1,11 @@
 package com.uglygroup.controller;
 
 import com.uglygroup.Utils.MessageUtils;
+import com.uglygroup.Utils.RankUtils;
 import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
 import com.uglygroup.model.Message;
+import com.uglygroup.model.Rank;
 import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -25,8 +28,10 @@ public class MainController {
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         ArrayList<Shop> shops = ShopDataUtils.getRandomShop();
+
         modelAndView.addObject("shops", shops);
         modelAndView.addObject("users", UserDataUtils.getRandomUser());
+        modelAndView.addObject("ranks", RankUtils.getRandomRank());
         return modelAndView;
     }
 
@@ -63,5 +68,18 @@ public class MainController {
     @RequestMapping(path = "/we")
     public String we(String keyword) {
         return "we";
+    }
+    @RequestMapping(path = "/rank")
+    public ModelAndView rank(Integer id) {
+        if (id==null){
+            ModelAndView modelAndView = new ModelAndView("top");
+            ArrayList<Rank> s=RankUtils.getAllRank(0);
+            modelAndView.addObject("ranks",s);
+            return modelAndView;
+        }else {
+            ModelAndView modelAndView = new ModelAndView("rank");
+            modelAndView.addObject("rank", RankUtils.selectRank(id));
+            return modelAndView;
+        }
     }
 }
