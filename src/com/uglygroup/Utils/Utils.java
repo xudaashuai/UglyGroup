@@ -72,5 +72,16 @@ public class Utils {
             "https://ooo.0o0.ooo/2017/06/14/59412b1e3c1a1.jpg",
             "https://ooo.0o0.ooo/2017/06/14/59412ba7a7ae4.jpg"
     };
+    public  static String[] rankPicture={
+        "http://i1.buimg.com/597927/8cbbaa74583c62ac.jpg",
+           " http://i1.buimg.com/597927/e0db56c8644d08c6.jpg",
+    "http://i1.buimg.com/597927/2c005e044218138b.jpg",
+    "http://i1.buimg.com/597927/45fa036e98b23a56.jpg",
+    "http://i1.buimg.com/597927/c1acb344c58acf0b.jpg",
+    "http://i1.buimg.com/597927/408494c93bfe328a.jpg",
+    "http://i1.buimg.com/597927/a6048c0080b295b9.jpg",
+    "http://i1.buimg.com/597927/2ac26e6d63f9ab88.jpg",
+    "http://i1.buimg.com/597927/37e7b3f116979a96.jpg"
+    };
 
 }

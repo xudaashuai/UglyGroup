@@ -262,5 +262,23 @@ public class ApiController {
         map.put("list",s);
         return map;
     }
+    @RequestMapping(path = "/api/rank/get_todayRank", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> getTodayRank() {
+        Map<String, Object> map = new HashMap<>();
+        ArrayList<Rank> r=new ArrayList<>();
+        r=RankUtils.getRandomRank();
+        map.put("list",r);
+        return map;
+    }
+    @RequestMapping(path = "/api/rank/get_Rank", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> getRankByPage(int page) {
+        Map<String, Object> map = new HashMap<>();
+        ArrayList<Rank> r=new ArrayList<>();
+        r=RankUtils.getAllRank(page);
+        map.put("list",r);
+        return map;
+    }
 
 }

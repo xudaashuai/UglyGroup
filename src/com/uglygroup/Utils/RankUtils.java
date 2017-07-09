@@ -45,11 +45,49 @@ public class RankUtils {
             s.addRank(String.valueOf(inId));
         }
     }
+    public static ArrayList<Rank> getAllRank(int page) {
+        ArrayList<Integer> RankId = new ArrayList<Integer>();
+        ResultSet myRs;
+        String sql="";
+        if(page==-1){
+            sql= "select \"id\" from rank";
+        }
+        else {
+            sql = "select \"id\" from rank limit 10 offset " + String.valueOf(page * 10) + ";";
+        }
+        try {
+            myRs = DatabaseUtils.getResult(sql);
+            while (myRs.next()) {
+                int id = myRs.getInt(1);
+                RankId.add(id);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        ArrayList<Rank> ranks = new ArrayList<>();
+        for (int i = 0; i < RankId.size(); i++) {
+            ranks.add(selectRank(RankId.get(i)));
+        }
+        return ranks;
+    }
+
     public static void removeRank(int rankId){
         String sql="delete from rank where Id='"+rankId+"';";
         DatabaseUtils.doSql(sql);
     }
+    public static  ArrayList<Rank>  getRandomRank(){
+        ArrayList<Rank> res = new ArrayList<>();
+        int[] r;
+        ArrayList<Rank> ranks = getAllRank(-1);
+        int x = ranks.size();
+        r = Utils.getRandom(x);
+        for (int i = 0; i < 10; i++) {
+            Rank rank = ranks.get(r[i] - 1);
+            res.add(rank);
+        }
 
+        return res;
+    }
     public static Rank selectRank(int rankId){
         Rank c=new Rank();
         String sql="select * from rank where Id='"+rankId+"';";

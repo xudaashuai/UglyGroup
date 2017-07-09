@@ -43,6 +43,9 @@ public class Main {
                 rank[i] = String.valueOf(shops.get(random.nextInt(shops.size())).getId());
 
             }
+            Random random2=new Random();
+
+            String pic=Utils.rankPicture[random2.nextInt(9)];
             RankUtils.addRank(getRandomStr(), 2, "介绍个屁！直接看内容。", rank, "");
         }
     }
