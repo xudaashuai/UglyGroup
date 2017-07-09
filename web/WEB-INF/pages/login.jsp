@@ -13,7 +13,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>丑团 --</title>
+    <title>丑团 -- 登录}</title>
 
     <!-- 新 Bootstrap 核心 CSS 文件 -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -50,7 +50,7 @@
                                 <i class="fa fa-user"></i>
                             </div>
                             <div class="form-group">
-                                <input name="password" type="password" class="form-control" id="login-password" data-toggle="popover" data-placement="top" title="密码错误" placeholder="密　码">
+                                <input name="password"  onkeypress="if(event.keyCode===13)tryLogin();" type="password" class="form-control" id="login-password" data-toggle="popover" data-placement="top" title="密码错误" placeholder="密　码">
                             </div>
                         </form>
                         <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">
@@ -66,7 +66,7 @@
                             <input name="username" type="text" class="form-control" id="register-username" placeholder="用户名" data-toggle="popover" data-placement="top" title="用户名已存在">
                         </div>
                         <div class="form-group">
-                            <input name="password" type="text" class="form-control" id="register-password" placeholder="密　码" data-toggle="popover" data-placement="top" title="">
+                            <input name="password" onkeypress="if(event.keyCode===13)tryLogin();" type="text" class="form-control" id="register-password" placeholder="密　码" data-toggle="popover" data-placement="top" title="">
                         </div>
                     </form>
                     <div style="margin-left: 40px; padding-right: 40px;margin-top: -50px">

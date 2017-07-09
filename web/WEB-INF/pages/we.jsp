@@ -16,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>丑团 -- 的个人主页</title>
+    <title>丑团 -- 我们</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -50,6 +50,10 @@
         <h3>我们要？</h3>
         <hr class="featurette-divider">
         <p>无可奉告</p>
+        <br>
+        <h3>联系我们？</h3>
+        <hr class="featurette-divider">
+        <p>wechat ： xudashuai0819</p>
         <br>
     </div>
     <%@include file="footer.jsp" %>
