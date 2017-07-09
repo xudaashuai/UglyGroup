@@ -1,7 +1,9 @@
 package com.uglygroup.Utils;
 
+import com.uglygroup.model.Shop;
 import com.uglygroup.model.User;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -9,49 +11,39 @@ import java.util.Random;
  */
 public class Main {
     public static String[] firstU={
-            "a","b","c","d","e","f","g","h","i","j","k"
+            "宇宙","世界","天下","地表","中国","全亚洲","中国高校"
     };
     public static String[]  lastU={
-            "1","2","3","4","5","6","7","8"
+            "第一","第二","第三","最强","无敌","一级棒","顶级","公认"
     };
     public static String[] firstName={
-            "陈","徐","王","李","贾","姚","童","程","蒋","沈","黄"
+            "好吃的","美味的","吸引人的","受欢迎的"
     };
     public static String[]  lastName={
-            "努","迎","港","树","梁","彩","娟","白"
+            "店家榜单","吃货福地榜单","美食天堂榜单","大饱口福之地榜单"
     };
 
     public static String getRandomStr(){
         String name="";
         Random random = new Random();
-        int number=random.nextInt(10);
-
-        int j=Utils.getRandom(6)[0];
-        System.out.println(number);
-        name=firstU[number];
-        for(int i=0;i<j;i++){
-            int number2=random.nextInt(7);
-            name+=lastU[number2];
-        }
+        int number=random.nextInt(7);
+        int number2=random.nextInt(8);
+        int number3=random.nextInt(4);
+        int number4=random.nextInt(4);
+        name=firstU[number]+lastU[number2]+firstName[number3]+lastName[number4];
         return name;
 
     }
-    public static String getRandomNickname(){
-        String name="";
-        Random random = new Random();
-        int number=random.nextInt(10);
+    public static void main(String []args) {
+        for (int j = 0; j < 20;j++) {
+            String[] rank = new String[10];
+            ArrayList<Shop> shops = ShopDataUtils.getAllShop(-1);
+            for (int i = 0; i < 10; i++) {
+                Random random = new Random();
+                rank[i] = String.valueOf(shops.get(random.nextInt(shops.size())).getId());
 
-        int j=Utils.getRandom(3)[0];
-        System.out.println(number);
-        name=firstName[number];
-        for(int i=0;i<j;i++){
-            int number2=random.nextInt(7);
-            name+=lastName[number2];
+            }
+            RankUtils.addRank(getRandomStr(), 2, "介绍个屁！直接看内容。", rank, "");
         }
-        return name;
-
-    }
-    public static void main(String []args){
-
     }
 }

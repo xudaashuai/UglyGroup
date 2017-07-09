@@ -1,10 +1,7 @@
 package com.uglygroup.controller;
 
 import com.uglygroup.Utils.*;
-import com.uglygroup.model.Comment;
-import com.uglygroup.model.Message;
-import com.uglygroup.model.Shop;
-import com.uglygroup.model.User;
+import com.uglygroup.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -249,10 +246,20 @@ public class ApiController {
 
     @RequestMapping(path = "/api/user/add_rank", method = RequestMethod.POST)
     public @ResponseBody
-    Map<String, Object> addRank(@ModelAttribute("user") User u,String name,String introduction,String[] shopList) {
+    Map<String, Object> addRank(@ModelAttribute("user") User u,String name,String introduction,String[] shopList,String pic) {
         Map<String, Object> map = new HashMap<>();
-        RankUtils.addRank(name,u.getId(),introduction,shopList);
+        RankUtils.addRank(name,u.getId(),introduction,shopList,pic);
         map.put("status", true);
+        return map;
+    }
+    @RequestMapping(path = "/api/rank/select_shop", method = RequestMethod.POST)
+    public @ResponseBody
+    Map<String, Object> selectShop(int page, HttpServletRequest request) {
+        Map<String, Object> map = new HashMap<>();
+        Rank r = (Rank) request.getSession().getAttribute("rank");
+        ArrayList<Shop> s=new ArrayList<>();
+        s=r.selectShop(page);
+        map.put("list",s);
         return map;
     }
 

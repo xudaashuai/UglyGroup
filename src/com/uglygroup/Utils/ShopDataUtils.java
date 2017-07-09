@@ -107,7 +107,7 @@ public class ShopDataUtils {
 
 
     public static void shopChangeInfor(String content, int shopId, String changeWhat) {
-        String sql = "update \"shop\" set " + changeWhat + "='" + content + "'where shopTrueId='" + String.valueOf(shopId) + "'";
+        String sql = "update \"shop\" set " + changeWhat + "='" + content + "'where Id='" + String.valueOf(shopId) + "'";
         DatabaseUtils.doSql(sql);
     }
 

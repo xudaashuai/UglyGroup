@@ -17,7 +17,7 @@ public class RankUtils {
         String sql="select max(id) from \"rank\"";
         inId=Utils.getInid(sql);
     }
-    public static void addRank(String name,int creatorId,String introduction,String[] shopList){
+    public static void addRank(String name,int creatorId,String introduction,String[] shopList,String pic){
         inId++;
         Date date=new Date();
         Timestamp time =new Timestamp(date.getTime());
@@ -34,7 +34,7 @@ public class RankUtils {
                     + name + "','"
                     + String.valueOf(creatorId) + "','"
                     + time.toString()
-                    + "','" + introduction + "','" +str+ "')" + "on conflict do nothing;";
+                    + "','" + introduction + "','" +str+"','"+pic+ "')" + "on conflict do nothing;";
             DatabaseUtils.doSql(sql);
         }
         Rank r=selectRank(inId);
@@ -64,7 +64,8 @@ public class RankUtils {
                         rs.getInt(3),
                         rs.getTimestamp(4),
                         rs.getString(5),
-                        rs.getString(6).split(",")
+                        rs.getString(6).split(","),
+                        rs.getString(7)
                         );
             }
         } catch (Exception e) {

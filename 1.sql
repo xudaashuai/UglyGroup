@@ -70,3 +70,5 @@ CREATE TABLE public.rank
 );
 ALTER TABLE public.rank RENAME COLUMN creator TO creatorId;
 ALTER TABLE public.rank ALTER COLUMN creatorId TYPE INT USING creatorId::INT;
+
+ALTER TABLE public.rank ADD pic TEXT NULL;
