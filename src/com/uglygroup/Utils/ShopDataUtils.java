@@ -21,6 +21,7 @@ public class ShopDataUtils {
             ResultSet rs = DatabaseUtils.getResult(sql);
             String str1,str2,str3;
             String[]a={},b={},c={};
+            ArrayList<String>inRank=new ArrayList<>();
             if (rs.next()) {
                 str1=rs.getString(8);
                 str3=rs.getString(12);
@@ -32,7 +33,12 @@ public class ShopDataUtils {
                     b=str2.split(",");
                 }
                 if(str3!=null){
+
                     c=str3.split(",");
+
+                }
+                for(int i=0;i<c.length;i++){
+                    inRank.add(c[i]);
                 }
 
 
@@ -41,7 +47,7 @@ public class ShopDataUtils {
                         rs.getInt(5), rs.getInt(6),
                         rs.getString(7), a,
                         rs.getString(9), rs.getString(10),
-                        rs.getString(11),c,
+                        rs.getString(11),inRank,
                         rs.getString(13), rs.getString(14), rs.getString(15), b);
 
             }

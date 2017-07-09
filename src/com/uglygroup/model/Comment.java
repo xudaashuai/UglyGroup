@@ -1,5 +1,6 @@
 package com.uglygroup.model;
 
+import com.uglygroup.Utils.ShopDataUtils;
 import com.uglygroup.Utils.UserDataUtils;
 
 import java.sql.Timestamp;
@@ -28,6 +29,11 @@ public class Comment {
         User u;
         u= UserDataUtils.selectUserInfor(userId);
         return u;
+    }
+    public Shop selectShop(){
+        Shop s;
+        s= ShopDataUtils.selectShop(shopId);
+        return s;
     }
     public int getCommentId(){
         return commentId;

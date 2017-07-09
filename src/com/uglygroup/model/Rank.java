@@ -26,4 +26,12 @@ public class Rank {
         introduction = rIntroduction;
         shopList=rShopList;
     }
+
+    public int getCreatorId() {
+        return creatorId;
+    }
+
+    public String[] getShopList() {
+        return shopList;
+    }
 }

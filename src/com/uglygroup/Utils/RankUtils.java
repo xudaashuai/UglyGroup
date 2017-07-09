@@ -1,6 +1,7 @@
 package com.uglygroup.Utils;
 
 import com.uglygroup.model.Rank;
+import com.uglygroup.model.Shop;
 
 import java.sql.ResultSet;
 import java.sql.Timestamp;
@@ -35,6 +36,13 @@ public class RankUtils {
                     + time.toString()
                     + "','" + introduction + "','" +str+ "')" + "on conflict do nothing;";
             DatabaseUtils.doSql(sql);
+        }
+        Rank r=selectRank(inId);
+        String[] sId;
+        sId=r.getShopList();
+        for(int i=0;i<sId.length;i++){
+            Shop s=ShopDataUtils.selectShop(Integer.parseInt(sId[i]));
+            s.addRank(String.valueOf(inId));
         }
     }
     public static void removeRank(int rankId){

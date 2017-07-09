@@ -52,55 +52,6 @@ public class Main {
 
     }
     public static void main(String []args){
-       // for(int i=0;i<100;i++)
-        //UserDataUtils.register(getRandomStr(),getRandomStr(),getRandomNickname());
-       // UserDataUtils.register("456","321","男","19","Fate灬潇雨南","19970808","李树梁");
-        //UserDataUtils.register("12322","321");
-        //User u=new User();
-      //  System.out.println(UserDataUtils.login("123","321",u));
-        //UserDataUtils.searchUser("魔菌");
-       // ArrayList<Shop> shops=new ArrayList<>();
-        //shops=ShopDataUtils.getRandomShop();
-        //for(int i=0;i<shops.size();i++){
-          //  System.out.println(shops.get(i).getShopname());
-       // }
-        //UserDataUtils.addFriend(1,2);
-      // MessageUtils.addMessage(3,4,1);
-User u;
-u=UserDataUtils.selectUserInfor(1);
-u.selectFriend().get(1);
-      // System.out.println(Utils.setStatus.ILLEAGEL.toString());
-       //
-        /*
-       u=UserDataUtils.selectUserInfor(1);
-       u.addHate("爱食");
-       u.addFavorite("黄焖鸡");
-       u.setAge(18);
-       u.setBirthday("19970701");
-       u.setHeadPicture("no picture");
-       u.setNickName("陈魔菌");
-       u.setPassword("7033715");
-       u.setSex("男");
-       u.setSign("穿梭。");
-       System.out.println(u.getAge());
-        System.out.println(u.getBirthday());
-        */
-        //UserDataUtils.
 
-
-
-        //
-        /*
-        ShopDataUtils.addShop("132,123","全国百佳食堂","食堂","0819222",10,6,6,6,6,"食堂","中国地质大学52栋旁边","学三食堂","1");
-        Shop s;
-
-
-        s=ShopDataUtils.selectShop(1);
-        System.out.println(s.getAddress());
-        s.setTel("05927033715");
-        s.setAvgPrice(6.5);
-        */
-       // CommentUtils.addComment("学三真的太好吃了",1,1,10);
-        //CommentUtils.removeComment(1);
     }
 }

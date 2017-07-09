@@ -19,7 +19,7 @@ import java.util.List;
 
 public class Shop {
     private String location;
-    private String[] inRank;
+    private ArrayList<String> inRank;
     private String phone;
     private int star;
     private int price;
@@ -47,7 +47,7 @@ public class Shop {
                        String sSimple_info,
                        String sLong_info,
                        String sType,
-                       String[] sInRank,
+                       ArrayList<String> sInRank,
                        String sTime,
                        String sParking,
                        String sWifi,
@@ -174,37 +174,31 @@ public class Shop {
         }
         return comments;
     }
-
     //列表属性
-    /*
+
     @Basic
     @Column(name = "inRank")//所在排行榜
     public ArrayList<String> getInRank() {
-        ArrayList<String> inRankList=new ArrayList<String>();
-        inRankList=getList(inRank);
-        return inRankList;
+        return inRank;
     }
     public void addRank(String newRank) {
-        for(int i=0;i<this.getInRank().size();i++){
-            if(newRank.equals(this.getInRank().get(i))) {
+
+        String str="";
+        for(int i=0;i<inRank.size();i++){
+            if(newRank.equals(inRank.get(i))) {
                 return;
             }
         }
-        if (this.inRank.equals("")){
-            this.inRank=newRank;
+        inRank.add(newRank);
+        for(int i=0;i<inRank.size();i++){
+            str+=inRank.get(i);
+            if(i!=inRank.size()-1){
+                str+=",";
+            }
         }
-        else {
-           this.inRank = this.inRank+ "," + newRank;
-    }
-        ShopDataUtils.shopChangeInfor(this.inRank,id,"inRank");
+        ShopDataUtils.shopChangeInfor(str,id,"inRank");
 }
-    public void deleteRank(String oldRank) {
-        ArrayList<String> a = this.getInRank();
-        this.inRank = getStr(a, oldRank);
-        ShopDataUtils.shopChangeInfor(this.inRank, id, "inRank");
-    }
 
-*/
     //用字符串分割的方法获取到列表
     private ArrayList<String> getList(String str){
         ArrayList<String> list=new ArrayList<String>();
