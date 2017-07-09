@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 /**
  * Created by Think on 2017/7/8.
@@ -19,6 +20,10 @@ public class RankUtils {
     }
     public static void addRank(String name,int creatorId,String introduction,String[] shopList,String pic){
         inId++;
+        if(pic.equals("")){
+            Random random2=new Random();
+            pic=Utils.rankPicture[random2.nextInt(9)];
+        }
         Date date=new Date();
         Timestamp time =new Timestamp(date.getTime());
         String str="";
